@@ -1,9 +1,11 @@
 import Banner from "../Banner";
+import Overview from "./Overview";
 
 const Home = () => {
   return (
     <div>
       <Banner></Banner>
+      <Overview></Overview>
     </div>
   );
 };
