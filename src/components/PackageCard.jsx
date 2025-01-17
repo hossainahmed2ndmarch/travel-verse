@@ -13,6 +13,7 @@ const PackageCard = ({ item }) => {
     groupSize,
     price,
     tourLocation,
+    _id
   } = item;
   return (
     <div className="card bg-base-100 w-96 shadow-xl">
@@ -33,7 +34,7 @@ const PackageCard = ({ item }) => {
         <div className="card-actions justify-end">
           <p className="flex items-center space-x-2"><FaClock className="mr-2"></FaClock>{duration}</p>
           <p className="flex items-center space-x-2"><IoIosPeople className="mr-2"/> {groupSize}</p>
-          <Link className="btn bg-transparent border-none">Explore <FaArrowRightLong /></Link>
+          <Link to={`/package-details/${_id}`} className="btn bg-transparent border-none">Explore <FaArrowRightLong /></Link>
         </div>
       </div>
     </div>
