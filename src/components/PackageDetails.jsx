@@ -90,6 +90,7 @@ const PackageDetails = () => {
       .replace(/\s+/g, "");
   return (
     <div className="px-6">
+     {/* Tour cover image */}
       <div
         className="hero min-h-screen"
         style={{
@@ -103,15 +104,16 @@ const PackageDetails = () => {
               Discover Your Next Adventure
             </h1>
             <p className="mb-5">
-              Explore the breathtaking beauty of [Place Name], where
+              Explore the breathtaking beauty of <span className="text-green-400"> {tripTitle}</span>, where
               unforgettable experiences and mesmerizing landscapes await. Let
               the journey begin!
             </p>
           </div>
         </div>
       </div>
-
+      {/* Main body with package details */}
       <div className="bg-green-50 p-12 mt-10 flex flex-row items-center justify-between">
+       {/* Tour title, type, and others */}
         <div className="space-y-6">
           <h3 className="text-4xl font-bold">{tripTitle}</h3>
           <div className="flex items-center space-x-2">
@@ -149,6 +151,7 @@ const PackageDetails = () => {
       </div>
       <div className="flex items-center justify-between">
         <div className="w-2/3">
+        {/* Photo gallery of tour */}
           <div className="my-10">
             <Swiper
               slidesPerView={2}
@@ -161,7 +164,7 @@ const PackageDetails = () => {
             >
               {photoGallery.map((photog, idx) => (
                 <SwiperSlide key={idx}>
-                  <img src={photog} alt="" />
+                  <img src={photog}  alt="" />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -264,7 +267,7 @@ const PackageDetails = () => {
         </div>
 
         <div className="w-1/3 flex flex-col items-center space-y-6">
-        
+
         </div>
       </div>
     </div>
