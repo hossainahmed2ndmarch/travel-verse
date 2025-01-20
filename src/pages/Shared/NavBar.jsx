@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ImEarth } from "react-icons/im";
 import { NavLink, useLocation } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
+import userIcon from "../../assets/user.png";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,6 +53,32 @@ const NavBar = () => {
       })}
     </>
   );
+  // const navLinksAuth = (
+  //   <>
+  //     {[ "/login", "/register"].map((path, index) => {
+  //       const labels = ["Login", "SignUp"];
+  //       return (
+  //         <NavLink
+  //           key={index}
+  //           to={path}
+  //           className={({ isActive }) =>
+  //             `btn border-none bg-transparent text-lg font-bold transition-all ${
+  //               isActive
+  //                 ? isScrolled
+  //                   ? "text-slate-800"
+  //                   : "text-green-400"
+  //                 : isScrolled
+  //                 ? "text-slate-200"
+  //                 : "text-white"
+  //             }`
+  //           }
+  //         >
+  //           {labels[index]}
+  //         </NavLink>
+  //       );
+  //     })}
+  //   </>
+  // );
 
   return (
     <div
@@ -93,23 +121,35 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end flex items-center space-x-4">
+        <NavLink
+          to="/login"
+          className="btn border-none bg-transparent text-lg text-white font-bold transition-all"
+        >
+          LogIn
+        </NavLink>
+        <NavLink
+          to="/register"
+          className="btn border-none bg-transparent text-lg text-white font-bold transition-all"
+        >
+          SignUp
+        </NavLink>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
+            to="/my-profile"
+            data-tooltip-id="profile-tooltip"
+            // data-tooltip-content={`Logged in as ${user.displayName || "User"}`}
             role="button"
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full">
-              <img
-                alt="User Avatar"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
+              <img alt="User Avatar" src={userIcon} />
             </div>
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black"
           >
             <li>
               <a className="justify-between">
@@ -126,6 +166,10 @@ const NavBar = () => {
           </ul>
         </div>
       </div>
+      <Tooltip id="profile-tooltip" place="bottom" />
+      <Tooltip id="register-tooltip" place="bottom" />
+      <Tooltip id="logout-tooltip" place="bottom" />
+      <Tooltip id="login-tooltip" place="bottom" />
     </div>
   );
 };
