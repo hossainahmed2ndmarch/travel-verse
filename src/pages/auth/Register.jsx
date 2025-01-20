@@ -56,14 +56,14 @@ const Register = () => {
         <title>Register | TravelVerse</title>
       </Helmet>
       <div className="card w-full max-w-2xl p-2 md:p-[76px] shrink-0">
-        <h2 className="text-4xl font-semibold text-blackLight text-center">
+        <h2 className="text-4xl font-semibold text-black text-center">
           Register your account
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           {/* Name */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-blackLight font-semibold">
+              <span className="label-text text-xl text-black font-semibold">
                 Your Name
               </span>
             </label>
@@ -71,7 +71,7 @@ const Register = () => {
               type="text"
               {...register("name", { required: "Name is required." })}
               placeholder="Enter your name"
-              className="input input-bordered w-full md:w-auto rounded-none border border-secondary"
+              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
             />
             {errors.name && (
               <p className="text-red-600 text-sm font-semibold">
@@ -82,7 +82,7 @@ const Register = () => {
           {/* Photo */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-blackLight font-semibold">
+              <span className="label-text text-xl text-black font-semibold">
                 Photo URL
               </span>
             </label>
@@ -101,7 +101,7 @@ const Register = () => {
           {/* Email */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-blackLight font-semibold">
+              <span className="label-text text-xl text-black font-semibold">
                 Email address
               </span>
             </label>
@@ -109,7 +109,7 @@ const Register = () => {
               type="email"
               {...register("email", { required: "Email is required." })}
               placeholder="Enter your email address"
-              className="input input-bordered w-full md:w-auto rounded-none border border-secondary"
+              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
             />
             {errors.email && (
               <p className="text-red-600 font-semibold text-sm">
@@ -120,7 +120,7 @@ const Register = () => {
           {/* Password Create */}
           <div className="form-control relative">
             <label className="label">
-              <span className="label-text text-xl text-blackLight font-semibold">
+              <span className="label-text text-xl text-black font-semibold">
                 Create Your Password
               </span>
             </label>
@@ -136,12 +136,12 @@ const Register = () => {
                 },
               })}
               placeholder="Enter your password"
-              className="input input-bordered w-full md:w-auto rounded-none border border-secondary"
+              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="btn btn-xs bg-transparent hover:bg-transparent text-blackLight shadow-none border-none absolute right-2 top-14"
+              className="btn btn-xs bg-transparent hover:bg-transparent text-primary shadow-none border-none absolute right-2 top-14"
             >
               {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
             </button>
@@ -154,7 +154,7 @@ const Register = () => {
           {/* Confirm Password */}
           <div className="form-control relative">
             <label className="label">
-              <span className="label-text text-xl text-blackLight font-semibold">
+              <span className="label-text text-xl text-black font-semibold">
                 Confirm Your Password
               </span>
             </label>
@@ -166,7 +166,7 @@ const Register = () => {
                   value === watch("password") || "Passwords do not match.",
               })}
               placeholder="Enter your password"
-              className="input input-bordered w-full md:w-auto rounded-none border border-secondary"
+              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
             />
             {errors.confirmPassword && (
               <p className="text-red-600 font-semibold text-sm">
@@ -182,15 +182,15 @@ const Register = () => {
                 {...register("terms", {
                   required: "You must accept the terms.",
                 })}
-                className="checkbox checked:bg-navyText border-2 border-blackLight checkbox-primary outline-navyText"
+                className="checkbox checked:bg-navyText border-2 border-black checkbox-primary outline-navyText"
               />
-              <span className="label-text text-blackLight font-semibold ml-4">
+              <span className="label-text text-black font-semibold ml-4">
                 Accept our{" "}
-                <a className="underline" href="">
+                <a className="underline text-primary" href="">
                   terms
                 </a>{" "}
                 and{" "}
-                <a className="underline" href="">
+                <a className="underline text-primary" href="">
                   conditions
                 </a>
               </span>
@@ -202,26 +202,27 @@ const Register = () => {
             )}
           </div>
           <div className="form-control mt-6">
-            <button className="btn border-none bg-primary text-light rounded-none hover:text-blackLight w-full">
+            <button className="btn border-none bg-primary text-light rounded-none hover:text-primary w-full">
               Register
             </button>
           </div>
+
+          <div className="form-control mt-6">
+            <h5 className="text-3xl font-semibold text-blackLight text-center mb-6">
+              Or
+            </h5>
+            <button
+              onClick={handleGoogleSignUp}
+              className="btn border-none bg-primary text-light rounded-none hover:text-primary w-full"
+            >
+              <FaGoogle></FaGoogle>{" "}
+              <span className="hidden md:flex">Sign Up With Google</span>
+            </button>
+          </div>
         </form>
-        <div className="form-control mt-6">
-          <h5 className="text-3xl font-semibold text-blackLight text-center mb-6">
-            Or
-          </h5>
-          <button
-            onClick={handleGoogleSignUp}
-            className="btn border-none bg-primary text-light rounded-none hover:text-blackLight w-full"
-          >
-            <FaGoogle></FaGoogle>{" "}
-            <span className="hidden md:flex">Sign Up With Google</span>
-          </button>
-        </div>
         <p className="font-semibold text-blackLight text-center">
           Already Have An Account ?{" "}
-          <Link to={"/login"} className="text-[#F75B5F]">
+          <Link to={"/login"} className="text-primary">
             Login
           </Link>
         </p>
