@@ -9,6 +9,7 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import ForgotPassword from "../pages/auth/ForgotPassword";
+import GuideProfile from "../components/GuideProfile";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,12 @@ export const router = createBrowserRouter([
         path: "trips",
         element: <Trips></Trips>,
         loader: () => fetch("http://localhost:5000/packages"),
+      },
+      {
+        path: "/guide-profile/:id",
+        element: <GuideProfile></GuideProfile>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/guides/${params.id}`),
       },
       {
         path: "community",

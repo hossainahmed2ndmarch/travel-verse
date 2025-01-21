@@ -1,11 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ImEarth } from "react-icons/im";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import userIcon from "../../assets/user.png";
+import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  // Log out
+  const handleLogOut = () => {
+    toast.info("🚪 You have successfully logged out. See you soon!", {
+      icon: "👋",
+    });
+    navigate("/");
+    logOut(navigate);
+  };
   // const location = useLocation();
 
   // Scroll listener to detect scroll
@@ -122,49 +136,75 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end flex items-center space-x-4">
-        <NavLink
-          to="/login"
-          className="btn border-none bg-transparent text-lg text-white font-bold transition-all"
-        >
-          LogIn
-        </NavLink>
-        <NavLink
-          to="/register"
-          className="btn border-none bg-transparent text-lg text-white font-bold transition-all"
-        >
-          SignUp
-        </NavLink>
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            to="/my-profile"
-            data-tooltip-id="profile-tooltip"
-            // data-tooltip-content={`Logged in as ${user.displayName || "User"}`}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
+        {user && user?.email ? (
+          <button
+            onClick={handleLogOut}
+            className="btn border-none bg-transparent text-lg text-white font-bold transition-all"
           >
-            <div className="w-10 rounded-full">
-              <img alt="User Avatar" src={userIcon} />
+            LogOut
+          </button>
+        ) : (
+          <NavLink
+            to="/login"
+            className="btn border-none bg-transparent text-lg text-white font-bold transition-all"
+          >
+            LogIn
+          </NavLink>
+        )}
+
+        {user && user?.email ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              data-tooltip-id="profile-tooltip"
+              data-tooltip-content={`Logged in as ${
+                user?.displayName || "User"
+              }`}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img alt="User Avatar" src={user?.photoURL || userIcon} />
+              </div>
             </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3  p-4 shadow text-black"
+            >
+              {/* User Display Name */}
+              <li
+                className="ml-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-full"
+                title={user?.displayName}
+              >
+                {user?.displayName}
+              </li>
+              {/* User Email */}
+              <li
+                className="ml-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-full"
+                title={user?.email}
+              >
+                {user?.email}
+              </li>
+              {/* Other Menu Items */}
+              <li>
+                <a>Profile</a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a>Logout</a>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black"
+        ) : (
+          <NavLink
+            to="/register"
+            className="btn border-none bg-transparent text-lg text-white font-bold transition-all"
           >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
+            SignUp
+          </NavLink>
+        )}
       </div>
       <Tooltip id="profile-tooltip" place="bottom" />
       <Tooltip id="register-tooltip" place="bottom" />

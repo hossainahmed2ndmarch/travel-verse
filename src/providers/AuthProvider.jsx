@@ -47,7 +47,6 @@ const AuthProvider = ({ children }) => {
   // Log-out
   const logOut = () => {
     return signOut(auth);
-
     setLoading(true);
   };
   // Log In

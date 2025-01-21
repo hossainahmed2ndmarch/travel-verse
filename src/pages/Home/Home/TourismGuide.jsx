@@ -3,13 +3,20 @@ import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import PackageCard from "../../../components/packageCard";
+import GuidesCard from "../../../components/GuidesCard";
 
 const TourismGuide = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [packages, setPackages] = useState([]);
+  const [guides, setGuides] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:5000/packages-home").then((res) => {
       setPackages(res?.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get("http://localhost:5000/guides-home").then((res) => {
+      setGuides(res?.data);
     });
   }, []);
   return (
@@ -37,7 +44,13 @@ const TourismGuide = () => {
               ))}
             </div>
           </TabPanel>
-          <TabPanel></TabPanel>
+          <TabPanel>
+            <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {guides?.map((item) => (
+                <GuidesCard key={item?._id} item={item}></GuidesCard>
+              ))}
+            </div>
+          </TabPanel>
         </Tabs>
       </div>
     </div>
