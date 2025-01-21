@@ -1,8 +1,8 @@
-import React from "react";
-import { FaDollarSign, FaRegClock } from "react-icons/fa";
+import React, { useContext, useEffect, useState } from "react";
+import { FaCalendarAlt, FaDollarSign, FaRegClock } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
-import { MdOutlineTravelExplore } from "react-icons/md";
-import { useLoaderData } from "react-router-dom";
+import { MdEmojiTransportation, MdOutlineTravelExplore } from "react-icons/md";
+import { Link, useLoaderData } from "react-router-dom";
 import { Autoplay, FreeMode, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -11,9 +11,33 @@ import "swiper/css/pagination";
 import { FaCircleRight } from "react-icons/fa6";
 import { TiTick } from "react-icons/ti";
 import { RxCross2 } from "react-icons/rx";
+import axios from "axios";
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
+import { useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
+import ReactDOMServer from "react-dom/server";
+import { CgProfile } from "react-icons/cg";
+import { BsPeople } from "react-icons/bs";
 
 const PackageDetails = () => {
   const packageData = useLoaderData();
+  const { user } = useContext(AuthContext);
+  const [guides, setGuides] = useState([]);
+  const [tourDate, setTourDate] = useState(new Date());
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  useEffect(() => {
+    axios.get("http://localhost:5000/guides").then((res) => {
+      setGuides(res?.data);
+    });
+  }, []);
   const {
     _id,
     photo,
@@ -88,9 +112,33 @@ const PackageDetails = () => {
         index === 0 ? match.toLowerCase() : match.toUpperCase()
       )
       .replace(/\s+/g, "");
+
+  const onSubmit = (data) => {
+    const selectedGuide = JSON.parse(data.selectedGuide);
+    const { selectedGuide: _, ...otherData } = data;
+
+    const bookingData = {
+      ...otherData,
+      guideID: selectedGuide.guideID,
+      bookedPackage: _id,
+      guideName: selectedGuide.guideName,
+      tourDate: tourDate.toISOString(),
+      status: "pending",
+    };
+    axios.post("http://localhost:5000/bookings", bookingData).then((res) => {
+      if (res.data?.insertedId) {
+        Swal.fire({
+          title: "Booking Successful!",
+          html: `Your booking has been successfully submitted.<br><a href="/my-bookings" class="text-blue-600 font-semibold underline">View My Bookings</a>`,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      }
+    });
+  };
   return (
     <div className="px-6">
-     {/* Tour cover image */}
+      {/* Tour cover image */}
       <div
         className="hero min-h-screen"
         style={{
@@ -104,7 +152,8 @@ const PackageDetails = () => {
               Discover Your Next Adventure
             </h1>
             <p className="mb-5">
-              Explore the breathtaking beauty of <span className="text-green-400"> {tripTitle}</span>, where
+              Explore the breathtaking beauty of{" "}
+              <span className="text-green-400"> {tripTitle}</span>, where
               unforgettable experiences and mesmerizing landscapes await. Let
               the journey begin!
             </p>
@@ -113,7 +162,7 @@ const PackageDetails = () => {
       </div>
       {/* Main body with package details */}
       <div className="bg-green-50 p-12 mt-10 flex flex-row items-center justify-between">
-       {/* Tour title, type, and others */}
+        {/* Tour title, type, and others */}
         <div className="space-y-6">
           <h3 className="text-4xl font-bold">{tripTitle}</h3>
           <div className="flex items-center space-x-2">
@@ -149,9 +198,9 @@ const PackageDetails = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-between">
+      <div className="my-10 flex justify-between gap-6">
         <div className="w-2/3">
-        {/* Photo gallery of tour */}
+          {/* Photo gallery of tour */}
           <div className="my-10">
             <Swiper
               slidesPerView={2}
@@ -164,7 +213,7 @@ const PackageDetails = () => {
             >
               {photoGallery.map((photog, idx) => (
                 <SwiperSlide key={idx}>
-                  <img src={photog}  alt="" />
+                  <img src={photog} alt="" />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -244,6 +293,30 @@ const PackageDetails = () => {
                 })}
               </div>
             </div>
+            <h2 className="text-3xl font-bold">More Information</h2>
+            <div className="flex flex-row items-center space-x-5">
+              <div className="flex flex-row items-center space-x-2">
+                <BsPeople className="text-4xl text-green-500" />
+                <div>
+                  <p className="text-gray-400">Max Guests</p>
+                  <p className="text-lg font-bold">{groupSize}</p>
+                </div>
+              </div>
+              <div className="flex flex-row items-center space-x-2">
+                <CgProfile className="text-4xl text-green-500" />
+                <div>
+                  <p className="text-gray-400">Min Age</p>
+                  <p className="text-lg font-bold">{minAge}</p>
+                </div>
+              </div>
+              <div className="flex flex-row items-center space-x-2">
+                <MdEmojiTransportation className="text-4xl text-green-500" />
+                <div>
+                  <p className="text-gray-400">Transportation </p>
+                  <p className="text-lg font-bold">{transportation}</p>
+                </div>
+              </div>
+            </div>
             <div>
               <h3 className="text-3xl font-bold">Tour plan</h3>
               <div className="mt-6 grid grid-cols-1 gap-6">
@@ -267,7 +340,175 @@ const PackageDetails = () => {
         </div>
 
         <div className="w-1/3 flex flex-col items-center space-y-6">
+          {/* Tour Guides */}
+          <div className="p-4">
+            <h2 className="text-3xl text-black font-semibold">
+              Choose Your Guide
+            </h2>
+            <div className="grid grid-cols-1 gap-4 mt-6">
+              {guides.map((guide) => (
+                <Link
+                  key={guide?._id}
+                  to={`/guide-profile/${guide?._id}`}
+                  className="flex items-center space-x-4 bg-secondary rounded-xl p-2"
+                >
+                  <img
+                    src={guide?.photo}
+                    className="w-12 h-12 rounded-full object-cover"
+                    alt=""
+                  />
+                  <div>
+                    <h5 className="text-blackLight font-semibold">
+                      {guide?.name}
+                    </h5>
+                    <Rating
+                      style={{ maxWidth: 120 }}
+                      value={guide?.ratings}
+                      readOnly
+                      stars={5}
+                      step={0.5}
+                      size={24}
+                    />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+          {/* Booking Tour Form */}
+          <div className="bg-secondary rounded-xl p-6 w-full max-w-lg mx-auto">
+            <h2 className="text-3xl font-semibold text-center text-black  mb-4">
+              Book Your Tour
+            </h2>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              {/* Package Name */}
+              <div className="form-control">
+                <label className="label text-white font-semibold">
+                  <span className="label-text">Package Name</span>
+                </label>
+                <input
+                  type="text"
+                  {...register("tripTitle")}
+                  value={tripTitle}
+                  readOnly
+                  className="input input-bordered border-primary w-full rounded-none"
+                />
+              </div>
 
+              {/* Tourist Name */}
+              <div className="form-control">
+                <label className="label text-white font-semibold">
+                  <span className="label-text">Tourist Name</span>
+                </label>
+                <input
+                  type="text"
+                  {...register("touristName")}
+                  value={user?.displayName}
+                  readOnly
+                  className="input input-bordered border-primary w-full rounded-none"
+                />
+              </div>
+
+              {/* Tourist Email */}
+              <div className="form-control">
+                <label className="label text-white font-semibold">
+                  <span className="label-text">Tourist Email</span>
+                </label>
+                <input
+                  type="email"
+                  {...register("touristEmail")}
+                  value={user?.email}
+                  readOnly
+                  className="input input-bordered border-primary w-full rounded-none"
+                />
+              </div>
+
+              {/* Tourist Image */}
+              <div className="form-control">
+                <label className="label text-white font-semibold">
+                  <span className="label-text">Tourist Image</span>
+                </label>
+                <input
+                  type="url"
+                  {...register("touristPhoto")}
+                  value={user?.photoURL}
+                  readOnly
+                  className="input input-bordered border-primary w-ful rounded-none"
+                />
+              </div>
+
+              {/* Price */}
+              <div className="form-control">
+                <label className="label text-white font-semibold">
+                  <span className="label-text">Price</span>
+                </label>
+                <input
+                  type="number"
+                  {...register("packagePrice")}
+                  value={price}
+                  readOnly
+                  className="input input-bordered border-primary w-full rounded-none"
+                />
+              </div>
+
+              {/* Tour Date */}
+              <div className="form-control">
+                <label className="label text-white font-semibold">
+                  <span className="label-text">From</span>
+                </label>
+                <DatePicker
+                  selected={tourDate}
+                  onChange={(date) => setTourDate(date)}
+                  className="input input-bordered space-x-3 border-primary w-full rounded-none"
+                  showIcon
+                  icon={<FaCalendarAlt className="mt-1 text-xl text-primary" />}
+                  minDate={new Date()}
+                  dateFormat="MMMM d, yyyy"
+                />
+              </div>
+
+              {/* Tour Guide */}
+              <div className="form-control">
+                <label className="label text-white font-semibold">
+                  <span className="label-text">Tour Guide</span>
+                </label>
+                <select
+                  {...register("selectedGuide", {
+                    required: "Please select a guide.",
+                  })}
+                  className="select select-bordered border-primary w-full rounded-none"
+                >
+                  <option value="">Select a guide</option>
+                  {guides.map((guide) => (
+                    <option
+                      key={guide?._id}
+                      value={JSON.stringify({
+                        guideID: guide?._id,
+                        guideName: guide?.name,
+                      })}
+                    >
+                      {guide?.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.selectedGuide && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.selectedGuide.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Submit Button */}
+              <div className="form-control mt-4">
+                <button
+                  type="submit"
+                  className="btn rounded-none bg-secondary border-primary text-primary font-semibold hover:bg-primary hover:text-secondary w-full"
+                  disabled={!user}
+                >
+                  Book Now
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
