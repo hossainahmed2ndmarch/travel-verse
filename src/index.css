@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* .active{
- color: #64cd8a;
-} */
+.active {
+  color: white;
+}

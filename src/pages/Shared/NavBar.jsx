@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ImEarth } from "react-icons/im";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import userIcon from "../../assets/user.png";
-import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
 
   const navigate = useNavigate();
 
@@ -187,7 +187,7 @@ const NavBar = () => {
               </li>
               {/* Other Menu Items */}
               <li>
-                <a>Profile</a>
+                <NavLink to='/dashBoard/myBookings'>Dashboard</NavLink>
               </li>
               <li>
                 <a>Settings</a>

@@ -10,6 +10,12 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import GuideProfile from "../components/GuideProfile";
+import DashBoardLayout from "../LayOuts/DashBoardLayout";
+import TouristProfile from "../pages/DashBoard/TouristHome/TouristProfile";
+import MyBookings from "../pages/DashBoard/TouristHome/MyBookings";
+import ManageStories from "../pages/DashBoard/TouristHome/ManageStories";
+import AddStories from "../pages/DashBoard/TouristHome/AddStories";
+import JoinApplication from "../pages/DashBoard/TouristHome/JoinApplication";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +63,33 @@ export const router = createBrowserRouter([
       {
         path: "forgot-password",
         element: <ForgotPassword></ForgotPassword>,
+      },
+    ],
+  },
+  {
+    path: "dashBoard",
+    element: <DashBoardLayout></DashBoardLayout>,
+    errorElement: <NotFound></NotFound>,
+    children: [
+      {
+        path: "myProfile",
+        element: <TouristProfile></TouristProfile>,
+      },
+      {
+        path: "myBookings",
+        element: <MyBookings></MyBookings>,
+      },
+      {
+        path: "myStories",
+        element: <ManageStories></ManageStories>,
+      },
+      {
+        path: "addStories",
+        element: <AddStories></AddStories>,
+      },
+      {
+        path: "application",
+        element: <JoinApplication></JoinApplication>,
       },
     ],
   },

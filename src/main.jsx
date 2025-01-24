@@ -7,29 +7,34 @@ import { HelmetProvider } from "react-helmet-async";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "./providers/AuthProvider.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <HelmetProvider>
-        <RouterProvider router={router} />
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          hideProgressBar={true}
-          closeOnClick={true}
-          pauseOnHover={true}
-          draggable={true}
-          toastStyle={{
-            background: "rgba(255, 255, 255, 0.3)",
-            backdropFilter: "blur(10px)",
-            borderRadius: "10px",
-            color: "#0077b6",
-            fontWeight: "bold",
-            textAlign: "center",
-          }}
-        />
-      </HelmetProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <HelmetProvider>
+          <RouterProvider router={router} />
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            hideProgressBar={true}
+            closeOnClick={true}
+            pauseOnHover={true}
+            draggable={true}
+            toastStyle={{
+              background: "rgba(255, 255, 255, 0.3)",
+              backdropFilter: "blur(10px)",
+              borderRadius: "10px",
+              color: "#0077b6",
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
+          />
+        </HelmetProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </StrictMode>
 );

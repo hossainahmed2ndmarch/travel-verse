@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCalendarAlt, FaDollarSign, FaRegClock } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdEmojiTransportation, MdOutlineTravelExplore } from "react-icons/md";
 import { Link, useLoaderData } from "react-router-dom";
-import { Autoplay, FreeMode, Pagination } from "swiper/modules";
+import { Autoplay, FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -17,16 +17,17 @@ import "@smastrom/react-rating/style.css";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
-import ReactDOMServer from "react-dom/server";
 import { CgProfile } from "react-icons/cg";
 import { BsPeople } from "react-icons/bs";
+import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const PackageDetails = () => {
   const packageData = useLoaderData();
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [guides, setGuides] = useState([]);
+  const axiosSecure = useAxiosSecure();
   const [tourDate, setTourDate] = useState(new Date());
   const {
     register,
@@ -125,7 +126,7 @@ const PackageDetails = () => {
       tourDate: tourDate.toISOString(),
       status: "pending",
     };
-    axios.post("http://localhost:5000/bookings", bookingData).then((res) => {
+    axiosSecure.post("/bookings", bookingData).then((res) => {
       if (res.data?.insertedId) {
         Swal.fire({
           title: "Booking Successful!",
