@@ -5,10 +5,12 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Login = () => {
-  const { userLogIn, setUser, signUpWithGoogle, setResetEmail } =
-    useContext(AuthContext);
+  const { userLogIn, setUser, signUpWithGoogle, setResetEmail } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state || "/";
@@ -44,16 +46,18 @@ const Login = () => {
   };
 
   // Sign up with Google
-  const handleGoogleSignUp = async () => {
-    try {
-      const res = await signUpWithGoogle();
-      toast.success("🎉 Welcome! Your Google signup was successful!", {
-        icon: "🌟",
+  const handleGoogleSignUp = () => {
+    signUpWithGoogle().then((res) => {
+      const userInfo = {
+        name: res?.user?.displayName,
+        email: res?.user?.email,
+        photo: res?.user?.photoURL,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        console.log(res.data);
+        navigate(from);
       });
-      navigate(from);
-    } catch (err) {
-      toast.error(err.message || "Failed to sign up with Google.");
-    }
+    });
   };
 
   // Forgot password functionality

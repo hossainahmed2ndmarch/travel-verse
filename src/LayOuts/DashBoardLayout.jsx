@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import Footer from "../pages/Shared/Footer";
-import { ImEarth } from "react-icons/im";
+import { ImEarth, ImProfile } from "react-icons/im";
 import { CgProfile } from "react-icons/cg";
 import { TbBrandBooking } from "react-icons/tb";
 import { SiStorybook } from "react-icons/si";
@@ -10,9 +10,12 @@ import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineTravelExplore } from "react-icons/md";
 import { GrGroup } from "react-icons/gr";
 import useBooking from "../hooks/useBooking";
+import { FaUsersGear } from "react-icons/fa6";
+import { LuPackagePlus } from "react-icons/lu";
 
 const DashBoardLayout = () => {
   const [bookings] = useBooking();
+  const isAdmin = true;
   // const links = (
   //   <>
   //     <NavLink
@@ -82,41 +85,77 @@ const DashBoardLayout = () => {
               </span>
               TravelVerse
             </Link>
-            <NavLink
-              to="/dashBoard/myProfile"
-              className="btn justify-start border-none bg-transparent text-lg font-bold"
-            >
-              <CgProfile className="text-2xl" />
-              My Profile
-            </NavLink>
-            <NavLink
-              to="/dashBoard/myBookings"
-              className="btn justify-start border-none bg-transparent text-lg font-bold"
-            >
-              <TbBrandBooking className="text-2xl" />
-              My Bookings({bookings?.length})
-            </NavLink>
-            <NavLink
-              to="/dashBoard/myStories"
-              className="btn justify-start border-none bg-transparent text-lg font-bold"
-            >
-              <SiStorybook className="text-2xl" />
-              My Stories
-            </NavLink>
-            <NavLink
-              to="/dashBoard/addStories"
-              className="btn justify-start border-none bg-transparent text-lg font-bold"
-            >
-              <SiStorybook className="text-2xl" />
-              Add Your Story
-            </NavLink>
-            <NavLink
-              to="/dashBoard/application"
-              className="btn justify-start border-none bg-transparent text-lg font-bold"
-            >
-              <VscGitStashApply className="text-2xl" />
-              Join Us
-            </NavLink>
+            {isAdmin ? (
+              <>
+                <NavLink
+                  to="/dashBoard/adminProfile"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <CgProfile className="text-2xl" />
+                  My Profile
+                </NavLink>
+                <NavLink
+                  to="/dashBoard/allUsers"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <FaUsersGear className="text-2xl" />
+                  Manage Users({bookings?.length})
+                </NavLink>
+                <NavLink
+                  to="/dashBoard/addPackages"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <LuPackagePlus className="text-2xl" />
+                  Add Packages
+                </NavLink>
+                <NavLink
+                  to="/dashBoard/manageCandidates"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <ImProfile className="text-2xl" />
+                  Recruit Guides
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="/dashBoard/myProfile"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <CgProfile className="text-2xl" />
+                  My Profile
+                </NavLink>
+                <NavLink
+                  to="/dashBoard/myBookings"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <TbBrandBooking className="text-2xl" />
+                  My Bookings({bookings?.length})
+                </NavLink>
+                <NavLink
+                  to="/dashBoard/myStories"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <SiStorybook className="text-2xl" />
+                  My Stories
+                </NavLink>
+                <NavLink
+                  to="/dashBoard/addStories"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <SiStorybook className="text-2xl" />
+                  Add Your Story
+                </NavLink>
+                <NavLink
+                  to="/dashBoard/application"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <VscGitStashApply className="text-2xl" />
+                  Join Us
+                </NavLink>
+              </>
+            )}
+            {/* Shared Nav links */}
             <div className="divider"></div>
             <NavLink
               to="/"

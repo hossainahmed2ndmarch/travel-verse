@@ -1,14 +1,17 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa6";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { createNewUser, setUser, updateUserProfile, signUpWithGoogle } =
-    useContext(AuthContext);
+    useAuth();
+  const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const from = location.state || "/";
@@ -16,37 +19,51 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
+    watch,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
     // Firebase user creation
-    createNewUser(data.email, data.password)
-      .then((res) => {
-        const user = res.user;
-        setUser(user);
-        updateUserProfile({ displayName: data.name, photoURL: data.photo })
-          .then(() => {
-            toast.success(
-              `🎉 Registration successful! Welcome ${user.displayName}!`,
-              {
-                icon: "🚀",
-              }
-            );
-            navigate(from);
-          })
-          .catch(() => {
-            toast.error("Profile update failed. Please try again.");
+    createNewUser(data.email, data.password).then((res) => {
+      const user = res.user;
+      setUser(user);
+      updateUserProfile({ displayName: data.name, photoURL: data.photo }).then(
+        () => {
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+            photo: data.photo,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              reset();
+              toast.success(
+                `🎉 Registration successful! Welcome ${user.displayName}!`,
+                {
+                  icon: "🚀",
+                }
+              );
+              navigate(from);
+            }
           });
-      })
-      .catch((error) => {
-        toast.error("🚨 Account creation failed: " + error.message);
-      });
+        }
+      );
+    });
   };
 
   const handleGoogleSignUp = () => {
     signUpWithGoogle().then((res) => {
-      navigate(from);
+      const userInfo = {
+        name: res?.user?.displayName,
+        email: res?.user?.email,
+        photo: res?.user?.photoURL,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        console.log(res.data);
+        navigate(from);
+      });
     });
   };
 
@@ -90,7 +107,7 @@ const Register = () => {
               type="url"
               {...register("photo", { required: "Photo URL is required." })}
               placeholder="Drop your photo url"
-              className="input input-bordered w-full md:w-auto rounded-none border border-secondary"
+              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
             />
             {errors.photo && (
               <p className="text-red-600 font-semibold text-sm">

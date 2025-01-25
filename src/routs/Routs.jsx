@@ -16,6 +16,11 @@ import MyBookings from "../pages/DashBoard/TouristHome/MyBookings";
 import ManageStories from "../pages/DashBoard/TouristHome/ManageStories";
 import AddStories from "../pages/DashBoard/TouristHome/AddStories";
 import JoinApplication from "../pages/DashBoard/TouristHome/JoinApplication";
+import PrivateRoute from "./PrivateRoute";
+import AdminProfile from "../pages/DashBoard/AdminHome/AdminProfile";
+import AllUsers from "../pages/DashBoard/AdminHome/AllUsers";
+import AddPackage from "../pages/DashBoard/AdminHome/AddPackage";
+import ManageCandidates from "../pages/DashBoard/AdminHome/ManageCandidates";
 
 export const router = createBrowserRouter([
   {
@@ -68,9 +73,29 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashBoard",
-    element: <DashBoardLayout></DashBoardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashBoardLayout></DashBoardLayout>
+      </PrivateRoute>
+    ),
     errorElement: <NotFound></NotFound>,
     children: [
+      {
+        path: "adminProfile",
+        element: <AdminProfile></AdminProfile>,
+      },
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "addPackages",
+        element: <AddPackage></AddPackage>,
+      },
+      {
+        path: "manageCandidates",
+        element: <ManageCandidates></ManageCandidates>,
+      },
       {
         path: "myProfile",
         element: <TouristProfile></TouristProfile>,
