@@ -4,10 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { FaUsers } from "react-icons/fa6";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
@@ -15,6 +16,23 @@ const AllUsers = () => {
     },
   });
 
+  // Make Admin Functionality
+  const handleMakeAdmin = (user) => {
+    axiosSecure.patch(`/users/admin/${user?._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `${user.name} is admin now`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+  // Delete Functionality
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -62,7 +80,6 @@ const AllUsers = () => {
                 <th className="p-4">User Name</th>
                 <th className="p-4">User Email</th>
                 <th className="p-4">Role</th>
-                <th className="text-center p-4">Action</th>
                 <th className="text-center last:rounded-tr-2xl p-4">Action</th>
               </tr>
             </thead>
@@ -86,16 +103,22 @@ const AllUsers = () => {
                   </td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td className="flex items-center space-y-2"></td>
-
                   <td>
-                    <button
-                      // onClick={() => handlePay(booking._id)}
-                      className="btn btn-md bg-primary text-2xl text-light"
-                    >
-                      {" "}
-                      <FaUsers></FaUsers>
-                    </button>
+                    {user?.role === "admin" ? (
+                      <button className="btn flex items-center gap-1 bg-transparent border-none text-primary text-2xl">
+                        {" "}
+                        <MdOutlineAdminPanelSettings />
+                        <span className="text-lg">Admin</span>
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="btn btn-md bg-primary text-2xl text-light"
+                      >
+                        {" "}
+                        <FaUsers></FaUsers>
+                      </button>
+                    )}
                   </td>
                   <td>
                     <button
