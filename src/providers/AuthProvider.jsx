@@ -13,6 +13,7 @@ import { app } from "../firebase/firebase.config";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -21,6 +22,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const [resetEmail, setResetEmail] = useState("");
+  const axiosPublic = useAxiosPublic();
 
   const googleProvider = new GoogleAuthProvider();
   // console.log(user);
@@ -58,12 +60,22 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+      }
       setLoading(false);
     });
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [axiosPublic]);
   const authInfo = {
     createNewUser,
     signUpWithGoogle,
