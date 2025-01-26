@@ -2,7 +2,7 @@ import useAuth from "../../../hooks/useAuth";
 import MyProfile from "../../../components/MyProfile";
 import useUser from "../../../hooks/useUser";
 
-const TouristProfile = () => {
+const GuideProfileDashboard = () => {
   const { user } = useAuth();
   const [userData] = useUser();
   return (
@@ -20,4 +20,4 @@ const TouristProfile = () => {
   );
 };
 
-export default TouristProfile;
+export default GuideProfileDashboard;

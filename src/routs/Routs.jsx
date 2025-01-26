@@ -21,6 +21,10 @@ import AdminProfile from "../pages/DashBoard/AdminHome/AdminProfile";
 import AllUsers from "../pages/DashBoard/AdminHome/AllUsers";
 import AddPackage from "../pages/DashBoard/AdminHome/AddPackage";
 import ManageCandidates from "../pages/DashBoard/AdminHome/ManageCandidates";
+import AddStoriesGuide from "../pages/DashBoard/GuideHome/AddStoriesGuide";
+import ManageGuideStories from "../pages/DashBoard/GuideHome/ManageGuideStories";
+import MyAssignedTours from "../pages/DashBoard/GuideHome/MyAssignedTours";
+import GuideProfileDashboard from "../pages/DashBoard/GuideHome/GuideProfileDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -95,6 +99,22 @@ export const router = createBrowserRouter([
       {
         path: "manageCandidates",
         element: <ManageCandidates></ManageCandidates>,
+      },
+      {
+        path: "guideProfile",
+        element: <GuideProfileDashboard></GuideProfileDashboard>,
+      },
+      {
+        path: "guideAddStories",
+        element: <AddStoriesGuide></AddStoriesGuide>,
+      },
+      {
+        path: "guideStories",
+        element: <ManageGuideStories></ManageGuideStories>,
+      },
+      {
+        path: "guideTours",
+        element: <MyAssignedTours></MyAssignedTours>,
       },
       {
         path: "myProfile",

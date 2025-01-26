@@ -187,7 +187,7 @@ const NavBar = () => {
               </li>
               {/* Other Menu Items */}
               <li>
-                <NavLink to='/dashBoard/myBookings'>Dashboard</NavLink>
+                <NavLink to='/dashBoard'>Dashboard</NavLink>
               </li>
               <li>
                 <a>Settings</a>

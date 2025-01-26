@@ -7,15 +7,19 @@ import { TbBrandBooking } from "react-icons/tb";
 import { SiStorybook } from "react-icons/si";
 import { VscGitStashApply } from "react-icons/vsc";
 import { IoHomeOutline } from "react-icons/io5";
-import { MdOutlineTravelExplore } from "react-icons/md";
+import { MdOutlineHistoryEdu, MdOutlineTravelExplore } from "react-icons/md";
 import { GrGroup } from "react-icons/gr";
 import useBooking from "../hooks/useBooking";
 import { FaUsersGear } from "react-icons/fa6";
 import { LuPackagePlus } from "react-icons/lu";
+import useAdmin from "../hooks/useAdmin";
+import useGuide from "../hooks/useGuide";
+import { BsJournalPlus } from "react-icons/bs";
 
 const DashBoardLayout = () => {
   const [bookings] = useBooking();
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  const [isGuide] = useGuide();
   // const links = (
   //   <>
   //     <NavLink
@@ -116,6 +120,37 @@ const DashBoardLayout = () => {
                   Recruit Guides
                 </NavLink>
               </>
+            ) : isGuide ? (
+              <>
+                <NavLink
+                  to="/dashBoard/guideProfile"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <CgProfile className="text-2xl" />
+                  My Profile
+                </NavLink>
+                <NavLink
+                  to="/dashBoard/guideTours"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <MdOutlineTravelExplore className="text-2xl" />
+                  My Assigned Tours
+                </NavLink>
+                <NavLink
+                  to="/dashBoard/guideStories"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <MdOutlineHistoryEdu className="text-2xl" />
+                  My Stories
+                </NavLink>
+                <NavLink
+                  to="/dashBoard/guideAddStories"
+                  className="btn justify-start border-none bg-transparent text-lg font-bold"
+                >
+                  <BsJournalPlus className="text-2xl" />
+                  Add Stories
+                </NavLink>
+              </>
             ) : (
               <>
                 <NavLink
@@ -136,14 +171,14 @@ const DashBoardLayout = () => {
                   to="/dashBoard/myStories"
                   className="btn justify-start border-none bg-transparent text-lg font-bold"
                 >
-                  <SiStorybook className="text-2xl" />
+                  <MdOutlineHistoryEdu className="text-2xl" />
                   My Stories
                 </NavLink>
                 <NavLink
                   to="/dashBoard/addStories"
                   className="btn justify-start border-none bg-transparent text-lg font-bold"
                 >
-                  <SiStorybook className="text-2xl" />
+                  <BsJournalPlus className="text-2xl" />
                   Add Your Story
                 </NavLink>
                 <NavLink
