@@ -1,7 +1,7 @@
 import React from "react";
 import useGuide from "../hooks/useGuide";
 
-const MyProfile = ({ userData }) => {
+const MyProfile = ({ userData, setModalOpen, isModalOpen }) => {
   const [isGuide] = useGuide();
   return (
     <div className="my-12 flex items-center justify-between  w-full">
@@ -31,7 +31,7 @@ const MyProfile = ({ userData }) => {
 
         {/* Edit Button */}
         <button
-          // onClick={() => setModalOpen(true)}
+          onClick={() => setModalOpen(true)}
           className="btn bg-primary text-light rounded-none  w-full mt-4"
         >
           Edit Profile
