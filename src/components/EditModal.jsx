@@ -27,7 +27,7 @@ const EditModal = ({ setModalOpen, isModalOpen, userData, refetch }) => {
           photo: imageResponse.data.data.display_url,
         };
 
-        // Update the user profile in your backend
+        // Update the user profile in backend
         await axiosSecure
           .patch(`/users/${userData?._id}`, updatedProfileData)
           .then((res) => {
@@ -44,13 +44,9 @@ const EditModal = ({ setModalOpen, isModalOpen, userData, refetch }) => {
               });
             }
           });
-        // alert("Profile updated successfully!");
-      } else {
-        alert("Image upload failed. Please try again.");
       }
     } catch (error) {
-      console.error("Error updating profile:", error);
-      alert("Failed to update profile. Please try again.");
+      // console.error("Error updating profile:", error);
     }
   };
 
