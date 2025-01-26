@@ -3,6 +3,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAuth from "../hooks/useAuth";
+import useUser from "../hooks/useUser";
 const cloudName = import.meta.env.VITE_CLOUD_NAME;
 const uploadPreset = import.meta.env.VITE_PRESET;
 
@@ -16,6 +17,7 @@ const UploadStory = () => {
   const [previewImages, setPreviewImages] = useState([]);
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
+  const [userData] = useUser();
 
   // Generate image previews
   const handleImagePreview = (event) => {
@@ -45,7 +47,9 @@ const UploadStory = () => {
       const uploadedImages = uploadResponses.map((res) => res.data.secure_url);
       console.log(uploadedImages);
       const storyData = {
-        storyTeller: user?.email,
+        storyTeller: userData.email,
+        storyTellerName: userData.name,
+        storyTellerImage: userData.photo,
         title: data.title,
         content: data.content,
         images: uploadedImages,
@@ -78,7 +82,9 @@ const UploadStory = () => {
       {/* Title */}
       <div className="form-control">
         <label className="label">
-          <span className="label-text text-xl text-black font-semibold">Title</span>
+          <span className="label-text text-xl text-black font-semibold">
+            Title
+          </span>
         </label>
         <input
           type="text"
@@ -96,7 +102,9 @@ const UploadStory = () => {
       {/* Content */}
       <div className="form-control">
         <label className="label">
-          <span className="label-text text-xl text-black font-semibold">Story Content</span>
+          <span className="label-text text-xl text-black font-semibold">
+            Story Content
+          </span>
         </label>
         <textarea
           {...register("content", { required: "Content is required" })}
@@ -114,7 +122,9 @@ const UploadStory = () => {
       {/* Image Upload */}
       <div className="form-control">
         <label className="label">
-          <span className="label-text text-xl text-black font-semibold">Upload Images</span>
+          <span className="label-text text-xl text-black font-semibold">
+            Upload Images
+          </span>
         </label>
         <input
           type="file"
