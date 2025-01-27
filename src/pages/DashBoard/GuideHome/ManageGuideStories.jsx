@@ -10,13 +10,14 @@ const ManageGuideStories = () => {
         Manage Your Story
       </h2>
       <div className="mt-10 grid lg:grid-cols-2 gap-6">
-        {storyData?.map((story) => (
-          <StoriesCardDashboard
-            key={story?._id}
-            story={story}
-            refetch={refetch}
-          ></StoriesCardDashboard>
-        ))}
+        {Array.isArray(storyData) &&
+          storyData?.map((story) => (
+            <StoriesCardDashboard
+              key={story?._id}
+              story={story}
+              refetch={refetch}
+            ></StoriesCardDashboard>
+          ))}
       </div>
     </div>
   );

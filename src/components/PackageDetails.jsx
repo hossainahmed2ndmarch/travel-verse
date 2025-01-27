@@ -130,7 +130,7 @@ const PackageDetails = () => {
       if (res.data?.insertedId) {
         Swal.fire({
           title: "Booking Successful!",
-          html: `Your booking has been successfully submitted.<br><a href="/my-bookings" class="text-blue-600 font-semibold underline">View My Bookings</a>`,
+          html: `Your booking has been successfully submitted.<br><a href="/dashBoard/myBookings" class="text-blue-600 font-semibold underline">View My Bookings</a>`,
           icon: "success",
           confirmButtonText: "OK",
         });
@@ -403,7 +403,7 @@ const PackageDetails = () => {
                 <input
                   type="text"
                   {...register("touristName")}
-                  value={user?.displayName}
+                  defaultValue={user?.displayName}
                   readOnly
                   className="input input-bordered border-primary w-full rounded-none"
                 />
@@ -417,7 +417,7 @@ const PackageDetails = () => {
                 <input
                   type="email"
                   {...register("touristEmail")}
-                  value={user?.email}
+                  defaultValue={user?.email}
                   readOnly
                   className="input input-bordered border-primary w-full rounded-none"
                 />
@@ -431,7 +431,7 @@ const PackageDetails = () => {
                 <input
                   type="url"
                   {...register("touristPhoto")}
-                  value={user?.photoURL}
+                  defaultValue={user?.photoURL}
                   readOnly
                   className="input input-bordered border-primary w-ful rounded-none"
                 />

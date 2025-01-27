@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import useBooking from "../../../hooks/useBooking";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ booking }) => {
   const stripe = useStripe();
@@ -12,6 +13,7 @@ const CheckoutForm = ({ booking }) => {
   const [transactionId, setTransactionId] = useState("");
   const [error, setError] = useState("");
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [refetch] = useBooking();
 
@@ -93,6 +95,7 @@ const CheckoutForm = ({ booking }) => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate('/dashboard/myBookings')
         }
       }
     }
