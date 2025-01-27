@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { FaUsers } from "react-icons/fa6";
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { MdEmojiPeople, MdOutlineAdminPanelSettings } from "react-icons/md";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -13,7 +13,7 @@ const AllUsers = () => {
     queryFn: async () => {
       const res = await axiosSecure.get("/users", {
         headers: {
-          authorization: `Bearer ${localStorage.getItem('access-token')}`,
+          authorization: `Bearer ${localStorage.getItem("access-token")}`,
         },
       });
       return res.data;
@@ -109,23 +109,33 @@ const AllUsers = () => {
                   <td>{user.email}</td>
                   <td>
                     {user?.role === "admin" ? (
-                      <button className="btn flex items-center gap-1 bg-transparent border-none text-primary text-2xl">
-                        {" "}
+                      <button
+                        className="btn flex items-center gap-1 bg-transparent border-none text-primary text-2xl"
+                        disabled // Disable the button if the role is 'guide'
+                      >
                         <MdOutlineAdminPanelSettings />
                         <span className="text-lg">Admin</span>
+                      </button>
+                    ) : user?.role === "guide" ? (
+                      <button
+                        className="btn flex items-center gap-1 bg-transparent border-none text-primary text-2xl"
+                        disabled
+                      >
+                        <MdEmojiPeople />
+                        <span className="text-lg">Guide</span>
                       </button>
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}
                         className="btn btn-md bg-primary text-2xl text-light"
                       >
-                        {" "}
-                        <FaUsers></FaUsers>
+                        <FaUsers />
                       </button>
                     )}
                   </td>
                   <td>
                     <button
+                      disabled={user?.role === "admin"}
                       onClick={() => handleDelete(user?._id)}
                       className="btn btn-md text-red-500 text-2xl"
                     >

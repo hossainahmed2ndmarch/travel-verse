@@ -23,7 +23,7 @@ const StoriesCard = ({ story }) => {
             key={index}
             src={image}
             alt={`Story Image ${index + 1}`}
-            className="w-32 h-32 object-cover rounded-lg"
+            className="w-full h-32 object-cover rounded-lg"
           />
         ))}
       </div>

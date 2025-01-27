@@ -4,10 +4,11 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAuth from "../hooks/useAuth";
 import useUser from "../hooks/useUser";
+import { useQueryClient } from "@tanstack/react-query";
 const cloudName = import.meta.env.VITE_CLOUD_NAME;
 const uploadPreset = import.meta.env.VITE_PRESET;
 
-const UploadStory = () => {
+const UploadStory = ({ refetch }) => {
   const {
     register,
     handleSubmit,
@@ -15,6 +16,7 @@ const UploadStory = () => {
     formState: { errors },
   } = useForm();
   const [previewImages, setPreviewImages] = useState([]);
+  const queryClient = useQueryClient();
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const [userData] = useUser();
@@ -59,6 +61,8 @@ const UploadStory = () => {
         console.log(res.data);
         if (res.data.insertedId) {
           reset();
+          queryClient.invalidateQueries({ queryKey: ["user", user?.email] });
+          // refetch();
           Swal.fire({
             position: "center",
             icon: "success",
