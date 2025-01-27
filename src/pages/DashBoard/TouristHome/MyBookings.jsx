@@ -22,8 +22,8 @@ const MyBookings = () => {
       confirmButtonText: "Yes, cancel booking!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/bookings/${id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
+        axiosSecure.patch(`/bookings/${id}`).then((res) => {
+          if (res.data.modifiedCount > 0) {
             refetch();
             Swal.fire({
               title: "Canceled!",

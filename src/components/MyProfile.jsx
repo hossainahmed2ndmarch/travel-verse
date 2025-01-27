@@ -1,8 +1,10 @@
 import React from "react";
 import useGuide from "../hooks/useGuide";
+import useAdmin from "../hooks/useAdmin";
 
 const MyProfile = ({ userData, setModalOpen, isModalOpen }) => {
   const [isGuide] = useGuide();
+  const [isAdmin] = useAdmin();
   return (
     <div className="my-12 flex items-center justify-between  w-full">
       <div className="bg-primary w-full items-center flex flex-col p-32 space-y-6">
@@ -38,7 +40,7 @@ const MyProfile = ({ userData, setModalOpen, isModalOpen }) => {
         </button>
 
         {/* Apply as Tour Guide */}
-        {!isGuide && (
+        {isAdmin && !isGuide && (
           <button
             // onClick={() => navigate("/join-as-tour-guide")}
             className="btn bg-transparent border-primary rounded-none text-primary w-full mt-2"
