@@ -100,15 +100,22 @@ const MyBookings = () => {
                     {booking.status}
                   </td>
                   <td>
-                    <Link
-                      to="/dashBoard/payment"
-                      state={{ booking: booking }}
-                      // onClick={() => handlePay(booking._id)}
-                      className="btn btn-success text-light"
-                    >
-                      {" "}
-                      Pay
-                    </Link>
+                    {booking.status === "in-review" ? (
+                      <button
+                        disabled
+                        className="btn btn-success text-light opacity-50 cursor-not-allowed"
+                      >
+                        Pay
+                      </button>
+                    ) : (
+                      <Link
+                        to="/dashBoard/payment"
+                        state={{ booking: booking }}
+                        className="btn btn-success text-light"
+                      >
+                        Pay
+                      </Link>
+                    )}
                   </td>
                   <td>
                     <button
