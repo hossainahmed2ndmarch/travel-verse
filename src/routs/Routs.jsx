@@ -25,6 +25,7 @@ import AddStoriesGuide from "../pages/DashBoard/GuideHome/AddStoriesGuide";
 import ManageGuideStories from "../pages/DashBoard/GuideHome/ManageGuideStories";
 import MyAssignedTours from "../pages/DashBoard/GuideHome/MyAssignedTours";
 import GuideProfileDashboard from "../pages/DashBoard/GuideHome/GuideProfileDashboard";
+import Payment from "../pages/DashBoard/payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,7 @@ export const router = createBrowserRouter([
     ),
     errorElement: <NotFound></NotFound>,
     children: [
+      // Admin routs
       {
         path: "adminProfile",
         element: <AdminProfile></AdminProfile>,
@@ -101,6 +103,7 @@ export const router = createBrowserRouter([
         path: "manageCandidates",
         element: <ManageCandidates></ManageCandidates>,
       },
+      // Guides Routs
       {
         path: "guideProfile",
         element: <GuideProfileDashboard></GuideProfileDashboard>,
@@ -117,6 +120,7 @@ export const router = createBrowserRouter([
         path: "guideTours",
         element: <MyAssignedTours></MyAssignedTours>,
       },
+      // Tourist Routs
       {
         path: "myProfile",
         element: <TouristProfile></TouristProfile>,
@@ -137,6 +141,10 @@ export const router = createBrowserRouter([
         path: "application",
         element: <JoinApplication></JoinApplication>,
       },
+      {
+        path:'payment',
+        element:<Payment></Payment>
+      }
     ],
   },
 ]);

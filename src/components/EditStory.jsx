@@ -164,7 +164,7 @@ const EditStory = ({ setModalOpen, story, refetch }) => {
         <div className="mt-6 text-center">
           <button
             onClick={handleSaveChanges}
-            className="btn btn-success w-full"
+            className="btn border-none bg-primary text-light rounded-none hover:text-primary w-full"
           >
             Save Changes
           </button>

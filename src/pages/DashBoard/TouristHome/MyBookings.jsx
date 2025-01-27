@@ -3,15 +3,13 @@ import { FaDollarSign, FaTimesCircle } from "react-icons/fa";
 import useBooking from "../../../hooks/useBooking";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const MyBookings = () => {
   const [bookings, refetch] = useBooking();
   const axiosSecure = useAxiosSecure();
-
-  const handlePay = (id) => {
-    console.log("Pay clicked for booking ID:", id);
-    // Add payment logic here
-  };
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const [selectedBookingId, setSelectedBookingId] = useState(null);
 
   const handleCancel = (id) => {
     Swal.fire({
@@ -37,6 +35,16 @@ const MyBookings = () => {
       }
     });
   };
+
+  // const handlePayClick = (id) => {
+  //   setSelectedBookingId(id); // Set the booking ID
+  //   setModalOpen(true); // Open the modal
+  // };
+
+  // const closeModal = () => {
+  //   setModalOpen(false);
+  //   setSelectedBookingId(null);
+  // };
 
   return (
     <div className="min-h-screen py-10 px-4 md:px-16">
@@ -92,13 +100,15 @@ const MyBookings = () => {
                     {booking.status}
                   </td>
                   <td>
-                    <button
-                      onClick={() => handlePay(booking._id)}
+                    <Link
+                      to="/dashBoard/payment"
+                      state={{ booking: booking }}
+                      // onClick={() => handlePay(booking._id)}
                       className="btn btn-success text-light"
                     >
                       {" "}
                       Pay
-                    </button>
+                    </Link>
                   </td>
                   <td>
                     <button

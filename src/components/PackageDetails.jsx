@@ -120,7 +120,7 @@ const PackageDetails = () => {
 
     const bookingData = {
       ...otherData,
-      guideID: selectedGuide.guideID,
+      guideEmail: selectedGuide.guideEmail,
       bookedPackage: _id,
       guideName: selectedGuide.guideName,
       tourDate: tourDate.toISOString(),
@@ -171,7 +171,7 @@ const PackageDetails = () => {
               <IoLocationOutline />
             </span>
             {tourLocation.map((location, idx) => (
-              <p className="text-gray-400 text-lg font-semibold">{location},</p>
+              <p key={idx} className="text-gray-400 text-lg font-semibold">{location},</p>
             ))}
           </div>
         </div>
@@ -483,7 +483,7 @@ const PackageDetails = () => {
                     <option
                       key={guide?._id}
                       value={JSON.stringify({
-                        guideID: guide?._id,
+                        guideEmail: guide?.email,
                         guideName: guide?.name,
                       })}
                     >
