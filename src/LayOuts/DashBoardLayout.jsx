@@ -15,9 +15,11 @@ import { LuPackagePlus } from "react-icons/lu";
 import useAdmin from "../hooks/useAdmin";
 import useGuide from "../hooks/useGuide";
 import { BsJournalPlus } from "react-icons/bs";
+import useUser from "../hooks/useUser";
 
 const DashBoardLayout = () => {
   const [bookings] = useBooking();
+  // const [userData]=useUser()
   const [isAdmin] = useAdmin();
   const [isGuide] = useGuide();
   // const links = (
@@ -103,7 +105,7 @@ const DashBoardLayout = () => {
                   className="btn justify-start border-none bg-transparent text-lg font-bold"
                 >
                   <FaUsersGear className="text-2xl" />
-                  Manage Users({bookings?.length})
+                  Manage Users
                 </NavLink>
                 <NavLink
                   to="/dashBoard/addPackages"

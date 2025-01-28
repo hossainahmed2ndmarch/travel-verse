@@ -61,7 +61,7 @@ const Register = () => {
         photo: res?.user?.photoURL,
       };
       axiosPublic.post("/users", userInfo).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         navigate(from);
       });
     });

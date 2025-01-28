@@ -35,7 +35,7 @@ const PackageDetails = () => {
     formState: { errors },
   } = useForm();
   useEffect(() => {
-    axios.get("http://localhost:5000/guides").then((res) => {
+    axios.get("https://travel-verse-server.vercel.app/guides").then((res) => {
       setGuides(res?.data);
     });
   }, []);

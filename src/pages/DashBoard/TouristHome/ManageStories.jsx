@@ -4,7 +4,7 @@ import useStories from "../../../hooks/useStories";
 
 const ManageStories = () => {
   const [storyData, refetch] = useStories();
-  console.log(storyData);
+  // console.log(storyData);
   return (
     <div className="min-h-screen py-10 px-4 md:px-16">
       <h2 className="text-4xl font-bold text-center text-primary mb-8">

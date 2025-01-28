@@ -15,7 +15,7 @@ const MyProfile = ({ userData, setModalOpen }) => {
       return res.data;
     },
   });
-console.log(statData?.users);
+// console.log(statData?.users);
   // Data for the Rechart Pie Chart
   const chartData = [
     { name: "Clients", value: statData?.users },

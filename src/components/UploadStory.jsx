@@ -32,7 +32,7 @@ const UploadStory = ({ refetch }) => {
     try {
       // Prepare image upload promises
       const imageFiles = Array.from(data.images);
-      console.log(imageFiles);
+      // console.log(imageFiles);
       const uploadPromises = imageFiles.map((file) => {
         const formData = new FormData();
         formData.append("file", file);
@@ -45,9 +45,9 @@ const UploadStory = ({ refetch }) => {
 
       // Wait for all images to upload
       const uploadResponses = await Promise.all(uploadPromises);
-      console.log(uploadResponses);
+      // console.log(uploadResponses);
       const uploadedImages = uploadResponses.map((res) => res.data.secure_url);
-      console.log(uploadedImages);
+      // console.log(uploadedImages);
       const storyData = {
         storyTeller: userData.email,
         storyTellerName: userData.name,
@@ -56,9 +56,9 @@ const UploadStory = ({ refetch }) => {
         content: data.content,
         images: uploadedImages,
       };
-      console.log(storyData);
+      // console.log(storyData);
       await axiosPublic.post("/stories", storyData).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.insertedId) {
           reset();
           queryClient.invalidateQueries({ queryKey: ["user", user?.email] });
@@ -73,7 +73,7 @@ const UploadStory = ({ refetch }) => {
         }
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       Swal.fire({
         icon: "error",
         title: "Failed to submit the story",

@@ -10,7 +10,7 @@ const useStories = () => {
     queryKey: ["user", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/stories/${user.email}`);
-      console.log(res);
+      // console.log(res);
       return res.data;
     },
   });

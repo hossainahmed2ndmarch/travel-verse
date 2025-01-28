@@ -18,14 +18,14 @@ const CheckoutForm = ({ booking }) => {
   const [refetch] = useBooking();
 
   const { packagePrice } = booking;
-  console.log(packagePrice);
+  // console.log(packagePrice);
 
   useEffect(() => {
     if (packagePrice > 0) {
       axiosSecure
         .post("/create-payment-intent", { price: packagePrice })
         .then((res) => {
-          console.log(res.data.clientSecret);
+          // console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
@@ -46,10 +46,10 @@ const CheckoutForm = ({ booking }) => {
       card,
     });
     if (error) {
-      console.log("payment error", error);
+      // console.log("payment error", error);
       setError(error.message);
     } else {
-      console.log("payment method", paymentMethod);
+      // console.log("payment method", paymentMethod);
       setError("");
     }
 
@@ -66,11 +66,11 @@ const CheckoutForm = ({ booking }) => {
       });
 
     if (confirmError) {
-      console.log("confirm error");
+      // console.log("confirm error");
     } else {
-      console.log("payment intent", paymentIntent);
+      // console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        console.log("transaction id", paymentIntent.id);
+        // console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
 
         // now save the payment in the database
@@ -84,7 +84,7 @@ const CheckoutForm = ({ booking }) => {
         };
 
         const res = await axiosSecure.post("/payments", payment);
-        console.log("payment saved", res.data);
+        // console.log("payment saved", res.data);
 
         if (res.data?.paymentResult?.insertedId) {
           // refetch();
