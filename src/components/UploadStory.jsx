@@ -5,6 +5,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAuth from "../hooks/useAuth";
 import useUser from "../hooks/useUser";
 import { useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 const cloudName = import.meta.env.VITE_CLOUD_NAME;
 const uploadPreset = import.meta.env.VITE_PRESET;
 
@@ -18,6 +19,7 @@ const UploadStory = ({ refetch }) => {
   const [previewImages, setPreviewImages] = useState([]);
   const queryClient = useQueryClient();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure()
   const { user } = useAuth();
   const [userData] = useUser();
 
@@ -57,7 +59,7 @@ const UploadStory = ({ refetch }) => {
         images: uploadedImages,
       };
       // console.log(storyData);
-      await axiosPublic.post("/stories", storyData).then((res) => {
+      await axiosSecure.post("/stories", storyData).then((res) => {
         // console.log(res.data);
         if (res.data.insertedId) {
           reset();

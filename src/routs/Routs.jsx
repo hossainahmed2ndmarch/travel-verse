@@ -26,6 +26,7 @@ import ManageGuideStories from "../pages/DashBoard/GuideHome/ManageGuideStories"
 import MyAssignedTours from "../pages/DashBoard/GuideHome/MyAssignedTours";
 import GuideProfileDashboard from "../pages/DashBoard/GuideHome/GuideProfileDashboard";
 import Payment from "../pages/DashBoard/payment/Payment";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -57,7 +58,7 @@ export const router = createBrowserRouter([
       {
         path: "community",
         element: <Community></Community>,
-        loader: () => fetch("http://localhost:5000/stories")
+        loader: () => fetch("http://localhost:5000/stories"),
       },
       {
         path: "about-us",
@@ -89,19 +90,35 @@ export const router = createBrowserRouter([
       // Admin routs
       {
         path: "adminProfile",
-        element: <AdminProfile></AdminProfile>,
+        element: (
+          <AdminRoute>
+            <AdminProfile></AdminProfile>
+          </AdminRoute>
+        ),
       },
       {
         path: "allUsers",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "addPackages",
-        element: <AddPackage></AddPackage>,
+        element: (
+          <AdminRoute>
+            <AddPackage></AddPackage>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageCandidates",
-        element: <ManageCandidates></ManageCandidates>,
+        element: (
+          <AdminRoute>
+            <ManageCandidates></ManageCandidates>
+          </AdminRoute>
+        ),
       },
       // Guides Routs
       {
@@ -142,9 +159,9 @@ export const router = createBrowserRouter([
         element: <JoinApplication></JoinApplication>,
       },
       {
-        path:'payment',
-        element:<Payment></Payment>
-      }
+        path: "payment",
+        element: <Payment></Payment>,
+      },
     ],
   },
 ]);

@@ -4,9 +4,11 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const JoinApplication = () => {
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure()
   const { user } = useAuth();
   const {
     register,
@@ -49,7 +51,7 @@ const JoinApplication = () => {
       languageSkill: languageSkills,
     };
 
-    axiosPublic
+    axiosSecure
       .post("/applications", applicationData) // Adjust your endpoint
       .then((response) => {
         if (response.data.insertedId) {

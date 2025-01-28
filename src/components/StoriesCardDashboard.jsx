@@ -40,26 +40,6 @@ const StoriesCardDashboard = ({ story, refetch }) => {
     });
   };
 
-  // const handleEdit = () => {
-  //   navigate(`/edit-story/${_id}`); // Navigate to the edit page with the story ID
-  // };
-
-  // const handleRemoveImage = async (image) => {
-  //   if (window.confirm("Are you sure you want to remove this image?")) {
-  //     try {
-  //       const response = await axiosSecure.patch(`/stories/${_id}`, {
-  //         $pull: { images: image },
-  //       });
-  //       if (response.data.modifiedCount > 0) {
-  //         alert("Image removed successfully!");
-  //         refetch(); // Re-fetch stories to update the UI
-  //       }
-  //     } catch (error) {
-  //       console.error("Error removing image:", error);
-  //     }
-  //   }
-  // };
-
   return (
     <div className="p-6 rounded-2xl bg-white shadow-md hover:shadow-lg transition-shadow">
       {/* Images Grid */}
@@ -71,13 +51,6 @@ const StoriesCardDashboard = ({ story, refetch }) => {
               alt={`Story Image ${index + 1}`}
               className="w-full h-32 object-cover rounded-lg"
             />
-            {/* Remove Image Button
-            <button
-              onClick={() => handleRemoveImage(image)}
-              className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
-            >
-              &times;
-            </button> */}
           </div>
         ))}
       </div>
