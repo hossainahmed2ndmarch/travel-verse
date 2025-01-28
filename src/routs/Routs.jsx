@@ -41,23 +41,23 @@ export const router = createBrowserRouter([
         path: "/package-details/:id",
         element: <PackageDetails></PackageDetails>,
         loader: ({ params }) =>
-          fetch(`https://travel-verse-server.vercel.app/packages/${params.id}`),
+          fetch(`http://localhost:5000/packages/${params.id}`),
       },
       {
         path: "trips",
         element: <Trips></Trips>,
-        loader: () => fetch("https://travel-verse-server.vercel.app/packages"),
+        loader: () => fetch("http://localhost:5000/packages"),
       },
       {
         path: "/guide-profile/:id",
         element: <GuideProfile></GuideProfile>,
         loader: ({ params }) =>
-          fetch(`https://travel-verse-server.vercel.app/guides/${params.id}`),
+          fetch(`http://localhost:5000/guides/${params.id}`),
       },
       {
         path: "community",
         element: <Community></Community>,
-        loader: () => fetch("https://travel-verse-server.vercel.app/stories")
+        loader: () => fetch("http://localhost:5000/stories")
       },
       {
         path: "about-us",

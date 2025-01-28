@@ -3,6 +3,7 @@ import Banner from "../Banner";
 import Overview from "./Overview";
 import Stories from "./Stories";
 import TourismGuide from "./TourismGuide";
+import TourismSections from "./TourismSections";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Overview></Overview>
       <TourismGuide></TourismGuide>
       <Stories></Stories>
+      <TourismSections></TourismSections>
     </div>
   );
 };

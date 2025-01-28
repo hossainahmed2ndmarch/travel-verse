@@ -24,7 +24,7 @@ const ManageCandidates = () => {
       confirmButtonText: "Yes, accept!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Create a new object without the excluded fields
+        // Create the guide data object
         const guideData = {
           name: application?.name,
           email: application?.email,
@@ -33,31 +33,36 @@ const ManageCandidates = () => {
           facebook: application?.facebook,
           extraSkill: application?.extraSkill,
           languageSkill: application?.languageSkill,
-          // Add other fields you need from the application object
+          // Add other fields from the application if needed
         };
 
-        // Call both APIs simultaneously
+        // Perform both PATCH and POST requests
         const patchPromise = axiosSecure.patch(
           `/users/guide/${application?.email}`
         );
         const postPromise = axiosSecure.post("/guides", guideData);
 
+        // Handle both promises
         Promise.all([patchPromise, postPromise])
           .then(([patchResponse, postResponse]) => {
+            const { data: patchData } = patchResponse;
+            const { result, deleteResult } = postResponse.data;
+
             if (
-              patchResponse.data.modifiedCount > 0 &&
-              postResponse.data.insertedId
+              patchData.modifiedCount > 0 &&
+              result.insertedId &&
+              deleteResult.deletedCount > 0
             ) {
-              refetch(); // Refresh data
+              refetch();
               Swal.fire({
                 title: "Success!",
-                text: "Candidate has been accepted and added as a guide.",
+                text: "Candidate has been accepted, role updated, and added as a guide.",
                 icon: "success",
               });
             } else {
               Swal.fire({
                 title: "Error!",
-                text: "Something went wrong. Please try again.",
+                text: "Something went wrong. Please check the data and try again.",
                 icon: "error",
               });
             }

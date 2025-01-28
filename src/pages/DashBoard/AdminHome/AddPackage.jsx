@@ -162,7 +162,7 @@ const AddPackage = () => {
       };
 
       // Send package data to the backend
-      await axiosPublic.post("/packages", packageData).then((res) => {
+      await axiosSecure.post("/packages", packageData).then((res) => {
         if (res.data.insertedId) {
           reset();
           queryClient.invalidateQueries({ queryKey: ["packages"] });
