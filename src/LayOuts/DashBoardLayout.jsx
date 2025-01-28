@@ -16,6 +16,7 @@ import useAdmin from "../hooks/useAdmin";
 import useGuide from "../hooks/useGuide";
 import { BsJournalPlus } from "react-icons/bs";
 import useUser from "../hooks/useUser";
+import { Helmet } from "react-helmet-async";
 
 const DashBoardLayout = () => {
   const [bookings] = useBooking();
@@ -63,6 +64,9 @@ const DashBoardLayout = () => {
   // );
   return (
     <div className="bg-secondary">
+      <Helmet>
+        <title>Dashboard | TravelVerse</title>
+      </Helmet>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center m-10">

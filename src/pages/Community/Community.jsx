@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import banner from "../../assets/tourbanner.webp";
 import { useLoaderData } from "react-router-dom";
 import StoriesCard from "../../components/StoriesCard";
+import { Helmet } from "react-helmet-async";
 
 const Community = () => {
- const [stories, setStories] = useState(useLoaderData());
+  const [stories, setStories] = useState(useLoaderData());
   return (
     <div>
+      <Helmet>
+        <title>Community | TravelVerse</title>
+      </Helmet>
       <div
         className="hero min-h-screen"
         style={{

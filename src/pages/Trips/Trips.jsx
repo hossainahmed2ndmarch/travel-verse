@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import banner from "../../assets/tourbanner.webp";
 import { useLoaderData } from "react-router-dom";
 import PackageCard from "../../components/packageCard";
+import { Helmet } from "react-helmet-async";
 
 const Trips = () => {
   const [packagesData, setPackagesData] = useState(useLoaderData());
   return (
     <div>
+      <Helmet>
+        <title>Trips | TravelVerse</title>
+      </Helmet>
       <div
         className="hero min-h-screen"
         style={{
