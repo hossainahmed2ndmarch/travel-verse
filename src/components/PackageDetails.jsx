@@ -3,11 +3,12 @@ import { FaCalendarAlt, FaDollarSign, FaRegClock } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdEmojiTransportation, MdOutlineTravelExplore } from "react-icons/md";
 import { Link, useLoaderData } from "react-router-dom";
-import { Autoplay, FreeMode } from "swiper/modules";
+import { Autoplay, FreeMode, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 import { FaCircleRight } from "react-icons/fa6";
 import { TiTick } from "react-icons/ti";
 import { RxCross2 } from "react-icons/rx";
@@ -162,59 +163,72 @@ const PackageDetails = () => {
         </div>
       </div>
       {/* Main body with package details */}
-      <div className="bg-green-50 p-12 mt-10 flex flex-row items-center justify-between">
+      <div className="bg-green-50 p-12 mt-10 flex flex-col md:flex-row md:items-center justify-between space-y-10 md:space-y-0">
         {/* Tour title, type, and others */}
-        <div className="space-y-6">
-          <h3 className="text-4xl font-bold">{tripTitle}</h3>
-          <div className="flex items-center space-x-2">
+        <div className="space-y-6 w-full md:w-2/3">
+          <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
+            {tripTitle}
+          </h3>
+          <div className="flex flex-col md:flex-row items-start md:items-center space-y-2 md:space-y-0 md:space-x-3">
             <span className="text-green-500 text-3xl">
               <IoLocationOutline />
             </span>
             {tourLocation.map((location, idx) => (
-              <p key={idx} className="text-gray-400 text-lg font-semibold">{location},</p>
+              <p key={idx} className="text-gray-600 text-lg font-semibold">
+                {location}
+              </p>
             ))}
           </div>
         </div>
-        <div className="flex flex-row items-center space-x-5">
-          <div className="flex flex-row items-center space-x-2">
-            <FaDollarSign className="text-4xl text-green-500" />
+
+        {/* Price, Duration, and Tour Type */}
+        <div className="flex flex-col md:flex-row md:items-center space-y-6 md:space-y-0 gap-6 w-full md:w-1/3">
+          {/* Price */}
+          <div className="flex flex-row items-center space-x-3">
+            <FaDollarSign className="text-3xl text-green-500" />
             <div>
-              <p className="text-gray-400">From</p>
-              <p className="text-lg font-bold">${price}</p>
+              <p className="text-gray-500">From</p>
+              <p className="text-xl font-bold">${price}</p>
             </div>
           </div>
-          <div className="flex flex-row items-center space-x-2">
-            <FaRegClock className="text-4xl text-green-500" />
+
+          {/* Duration */}
+          <div className="flex flex-row items-center space-x-3">
+            <FaRegClock className="text-3xl text-green-500" />
             <div>
-              <p className="text-gray-400">Duration</p>
-              <p className="text-lg font-bold">{duration}</p>
+              <p className="text-gray-500">Duration</p>
+              <p className="text-xl font-bold">{duration}</p>
             </div>
           </div>
-          <div className="flex flex-row items-center space-x-2">
-            <MdOutlineTravelExplore className="text-4xl text-green-500" />
+
+          {/* Tour Type */}
+          <div className="flex flex-row items-center space-x-3">
+            <MdOutlineTravelExplore className="text-3xl text-green-500" />
             <div>
-              <p className="text-gray-400">Tour Type</p>
-              <p className="text-lg font-bold">{tourType}</p>
+              <p className="text-gray-500">Tour Type</p>
+              <p className="text-xl font-bold">{tourType}</p>
             </div>
           </div>
         </div>
       </div>
-      <div className="my-10 flex justify-between gap-6">
-        <div className="w-2/3">
+
+      <div className="my-10 md:flex justify-between gap-6">
+        <div className="w-full md:w-2/3">
           {/* Photo gallery of tour */}
           <div className="my-10">
             <Swiper
-              slidesPerView={2}
-              spaceBetween={30}
+              effect="fade"
+              slidesPerView={1}
+              spaceBetween={20}
               freeMode={true}
-              modules={[FreeMode, Autoplay]}
-              autoplay={{ delay: 1000, disableOnInteraction: false }}
+              modules={[FreeMode, Autoplay, EffectFade]}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
               loop={true}
               className="mySwiper"
             >
               {photoGallery.map((photog, idx) => (
-                <SwiperSlide key={idx}>
-                  <img src={photog} alt="" />
+                <SwiperSlide key={idx} className="h-full">
+                  <img className="h-32 w-full object-cover md:h-72" src={photog} alt="" />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -295,8 +309,8 @@ const PackageDetails = () => {
               </div>
             </div>
             <h2 className="text-3xl font-bold">More Information</h2>
-            <div className="flex flex-row items-center space-x-5">
-              <div className="flex flex-row items-center space-x-2">
+            <div className="flex flex-col md:flex-row md:items-center sm:space-y-5 md:space-x-5">
+              <div className="flex mflex-row items-center space-x-2">
                 <BsPeople className="text-4xl text-green-500" />
                 <div>
                   <p className="text-gray-400">Max Guests</p>
@@ -340,9 +354,9 @@ const PackageDetails = () => {
           </div>
         </div>
 
-        <div className="w-1/3 flex flex-col items-center space-y-6">
+        <div className="w-full md:w-1/3 flex flex-col items-center space-y-6">
           {/* Tour Guides */}
-          <div className="p-4">
+          <div className="md:p-4">
             <h2 className="text-3xl text-black font-semibold">
               Choose Your Guide
             </h2>
