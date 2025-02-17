@@ -21,7 +21,7 @@ const TourismGuide = () => {
     });
   }, []);
   return (
-    <div className="my-10 p-6">
+    <div className="my-10 space-y-6">
       <h2 className="text-4xl text-center font-bold">
         Wanderlust Chronicles: Your Ultimate Tourism and Travel Guide
       </h2>
@@ -34,19 +34,29 @@ const TourismGuide = () => {
       </p>
       <div className="mt-10">
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <TabList>
-            <Tab>Our Packages</Tab>
-            <Tab>Meet Our Tour Guides</Tab>
+          <TabList className="flex justify-center space-x-4 ">
+            <Tab
+              className="px-6 py-2 text-lg font-semibold cursor-pointer text-gray-600"
+              selectedClassName="border-b-4 border-green-500 text-green-500"
+            >
+              Our Packages
+            </Tab>
+            <Tab
+              className="px-6 py-2 text-lg font-semibold cursor-pointer  text-gray-600"
+              selectedClassName="border-b-4 border-green-500 text-green-500"
+            >
+              Meet Our Tour Guides
+            </Tab>
           </TabList>
           <TabPanel>
-            <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6">
               {packages?.map((item) => (
                 <PackageCard key={item?._id} item={item}></PackageCard>
               ))}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6">
               {guides?.map((item) => (
                 <GuidesCard key={item?._id} item={item}></GuidesCard>
               ))}

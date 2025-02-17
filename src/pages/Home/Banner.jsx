@@ -40,12 +40,12 @@ const banners = [
 const Banner = () => {
   return (
     <Swiper
-      effect="fade"
-      pagination={{ dynamicBullets: true, clickable: true }}
-      modules={[Pagination, Autoplay, EffectFade]}
-      autoplay={{ delay: 5000, disableOnInteraction: false }}
-      loop={true}
-      className="mySwiper"
+    effect="fade"
+    pagination={{ dynamicBullets: true, clickable: true }}
+    modules={[Pagination, Autoplay, EffectFade]}
+    autoplay={{ delay: 5000, disableOnInteraction: false }}
+    loop={true}
+    className="mySwiper"
     >
       {banners.map((banner, index) => (
         <SwiperSlide

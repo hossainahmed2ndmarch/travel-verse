@@ -13,28 +13,57 @@ const PackageCard = ({ item }) => {
     groupSize,
     price,
     tourLocation,
-    _id
+    _id,
   } = item;
   return (
-    <div className="card bg-base-100 w-96 shadow-xl">
-      <figure>
-        <img src={photo} alt="Shoes" />
+    <div className="card bg-base-100 rounded-xl h-full flex flex-col">
+      {/* Image Section */}
+      <figure className="h-72">
+        <img
+          src={photo}
+          alt={tripTitle}
+          className="w-full h-full object-cover rounded-t-xl"
+        />
       </figure>
-      <div className="card-body">
+
+      {/* Card Body */}
+      <div className="card-body flex flex-col flex-grow">
         <h2 className="card-title font-bold text-xl">{tripTitle}</h2>
         <p className="font-bold text-gray-600">{tourType}</p>
-        <div className="flex flex-row flex-wrap justify-between items-center">
-          <FaLocationDot className="mr-5" />
+
+        {/* Location */}
+        <div className="flex flex-wrap items-center space-x-1">
+          <FaLocationDot className="text-green-500 text-2xl" />
           {tourLocation.map((location, idx) => (
-            <p key={idx}>{location},</p>
+            <p key={idx}>
+              {location}
+              {idx < tourLocation.length - 1 ? "," : ""}
+            </p>
           ))}
         </div>
-        <p className="flex items-center"><FaDollarSign className="mr-2" />{price}</p>
+
+        {/* Price */}
+        <p className="flex items-center">
+          <FaDollarSign className="text-green-500 text-2xl mr-2" />
+          {price}
+        </p>
+        <div className="flex-grow"></div> 
         <div className="divider"></div>
-        <div className="card-actions justify-end">
-          <p className="flex items-center space-x-2"><FaClock className="mr-2"></FaClock>{duration}</p>
-          <p className="flex items-center space-x-2"><IoIosPeople className="mr-2"/> {groupSize}</p>
-          <Link to={`/package-details/${_id}`} className="btn bg-transparent border-none">Explore <FaArrowRightLong /></Link>
+
+        {/* Card Footer */}
+        <div className="card-actions justify-between items-center mt-auto">
+          <p className="flex items-center">
+            <FaClock className="text-green-500 text-2xl mr-2" /> {duration}
+          </p>
+          <p className="flex items-center">
+            <IoIosPeople className="text-green-500 text-2xl mr-2" /> {groupSize}
+          </p>
+          <Link
+            to={`/package-details/${_id}`}
+            className="btn bg-transparent border-none text-green-500 flex items-center"
+          >
+            Explore <FaArrowRightLong className="ml-2" />
+          </Link>
         </div>
       </div>
     </div>
