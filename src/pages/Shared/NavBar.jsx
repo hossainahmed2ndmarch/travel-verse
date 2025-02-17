@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ImEarth } from "react-icons/im";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
@@ -12,40 +12,37 @@ import { GiHamburgerMenu } from "react-icons/gi";
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, logOut } = useAuth();
-  const [isAdmin] = useAdmin();
-  const [isGuide] = useGuide();
-
+  const [isAdmin, isAdminLoading] = useAdmin();
+  const [isGuide, isGuideLoading] = useGuide();
   const navigate = useNavigate();
 
-  // Log out
+  // Ensure we don't access undefined values before the data loads
+  const dashboardPath = useMemo(() => {
+    if (isAdminLoading || isGuideLoading) return null; // Don't set path until data is ready
+    if (isAdmin) return "/dashBoard/adminProfile";
+    if (isGuide) return "/dashBoard/guideProfile";
+    return "/dashBoard/myProfile";
+  }, [isAdmin, isGuide, isAdminLoading, isGuideLoading]);
+
+  // Handle Logout
   const handleLogOut = () => {
     toast.info("🚪 You have successfully logged out. See you soon!", {
       icon: "👋",
     });
+    logOut();
     navigate("/");
-    logOut(navigate);
   };
-  // const location = useLocation();
 
-  // Scroll listener to detect scroll
+  // Scroll Listener
   useEffect(() => {
     const handleScroll = () => {
-      // Check if the user scrolled down 50px
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  // const isPackageDetailsPage = location.pathname.includes("/package-details");
+
+  // Navigation Links
   const navLinks = (
     <>
       {["/", "/trips", "/community", "/about-us"].map((path, index) => {
@@ -70,8 +67,29 @@ const NavBar = () => {
           </NavLink>
         );
       })}
+
+      {/* Dashboard Link (only if role data is loaded) */}
+      {user && !isAdminLoading && !isGuideLoading && dashboardPath && (
+        <NavLink
+          to={dashboardPath}
+          className={({ isActive }) =>
+            `btn border-none bg-transparent text-lg font-bold transition-all ${
+              isActive
+                ? isScrolled
+                  ? "text-slate-800"
+                  : "text-green-400"
+                : isScrolled
+                ? "text-slate-200"
+                : "text-white"
+            }`
+          }
+        >
+          Dashboard
+        </NavLink>
+      )}
     </>
   );
+
   // const navLinksAuth = (
   //   <>
   //     {[ "/login", "/register"].map((path, index) => {
@@ -181,13 +199,7 @@ const NavBar = () => {
               </li>
               {/* Other Menu Items */}
               <li>
-                {isAdmin ? (
-                  <NavLink to="/dashBoard/adminProfile">Dashboard</NavLink>
-                ) : isGuide ? (
-                  <NavLink to="/dashBoard/guideProfile">Dashboard</NavLink>
-                ) : (
-                  <NavLink to="/dashBoard/myProfile">Dashboard</NavLink>
-                )}
+                <NavLink to={dashboardPath}>Dashboard</NavLink>
               </li>
               <li>
                 <a>Settings</a>
