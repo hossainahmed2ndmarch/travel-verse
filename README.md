@@ -2,6 +2,10 @@
 
 TravelVerse is a dynamic and user-friendly travel management platform designed to provide users with seamless trip planning, booking, and exploration experiences.
 
+## 🌐 **Live URL**
+
+[Live Demo](https://travel-verse-3fc49.web.app/)
+
 ## 🚀 Features
 
 - 🏝️ **Discover Destinations** – Explore various travel locations with rich details and images.
