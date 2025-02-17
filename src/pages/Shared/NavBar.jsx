@@ -5,10 +5,15 @@ import { Tooltip } from "react-tooltip";
 import userIcon from "../../assets/user.png";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
+import useAdmin from "../../hooks/useAdmin";
+import useGuide from "../../hooks/useGuide";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
+  const [isGuide] = useGuide();
 
   const navigate = useNavigate();
 
@@ -96,31 +101,20 @@ const NavBar = () => {
 
   return (
     <div
-      className={`navbar fixed z-10 border-b border-b-slate-500 text-white transition-all duration-300 ${
-        isScrolled ? "bg-green-600 bg-opacity-90 shadow-lg" : "bg-opacity-30"
+      className={`navbar fixed px-6 z-10 text-white transition-all duration-300 ${
+        isScrolled ? "bg-green-600 bg-opacity-60 shadow-lg" : "bg-opacity-30"
       }`}
     >
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+            <GiHamburgerMenu className="text-2xl text-green-600" />
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className={`menu menu-sm dropdown-content bg-black rounded-box z-[1] mt-3 w-52 p-2 space-x-4 shadow transition-all ${
+              isScrolled ? "text-slate-200 bg-green-600" : "text-white"
+            }`}
           >
             {navLinks}
           </ul>
@@ -133,13 +127,13 @@ const NavBar = () => {
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+        <ul className="menu menu-horizontal px-1 space-x-4">{navLinks}</ul>
       </div>
       <div className="navbar-end flex items-center space-x-4">
         {user && user?.email ? (
           <button
             onClick={handleLogOut}
-            className="btn border-none bg-transparent text-lg text-white font-bold transition-all"
+            className="btn hidden md:flex border-none bg-transparent text-lg text-white font-bold transition-all"
           >
             LogOut
           </button>
@@ -187,7 +181,13 @@ const NavBar = () => {
               </li>
               {/* Other Menu Items */}
               <li>
-                <NavLink to='/dashBoard'>Dashboard</NavLink>
+                {isAdmin ? (
+                  <NavLink to="/dashBoard/adminProfile">Dashboard</NavLink>
+                ) : isGuide ? (
+                  <NavLink to="/dashBoard/guideProfile">Dashboard</NavLink>
+                ) : (
+                  <NavLink to="/dashBoard/myProfile">Dashboard</NavLink>
+                )}
               </li>
               <li>
                 <a>Settings</a>

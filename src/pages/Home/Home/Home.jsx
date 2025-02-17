@@ -7,15 +7,17 @@ import TourismSections from "./TourismSections";
 
 const Home = () => {
   return (
-    <div>
+    <div className="px-6 mx-auto">
       <Helmet>
         <title>Home | TravelVerse</title>
       </Helmet>
       <Banner></Banner>
-      <Overview></Overview>
-      <TourismGuide></TourismGuide>
-      <Stories></Stories>
-      <TourismSections></TourismSections>
+      <div className="">
+        <Overview></Overview>
+        <TourismGuide></TourismGuide>
+        <Stories></Stories>
+        <TourismSections></TourismSections>
+      </div>
     </div>
   );
 };
