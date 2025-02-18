@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 const Trips = () => {
   const [packagesData, setPackagesData] = useState(useLoaderData());
   return (
-    <div>
+    <div className="px-6">
       <Helmet>
         <title>Trips | TravelVerse</title>
       </Helmet>
@@ -33,7 +33,7 @@ const Trips = () => {
           </div>
         </div>
       </div>
-      <div className="my-10 grid md:grid-cols-3 gap-6">
+      <div className="my-10 grid md:grid-cols-3 justify-items-center gap-6">
         {packagesData.map((item) => (
           <PackageCard key={item?._id} item={item}></PackageCard>
         ))}

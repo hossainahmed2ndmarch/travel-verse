@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { ImEarth } from "react-icons/im";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import userIcon from "../../assets/user.png";
 import { toast } from "react-toastify";
@@ -15,6 +15,8 @@ const NavBar = () => {
   const [isAdmin, isAdminLoading] = useAdmin();
   const [isGuide, isGuideLoading] = useGuide();
   const navigate = useNavigate();
+  const location = useLocation(); 
+  const isAboutPage = location.pathname === "/about-us";
 
   // Ensure we don't access undefined values before the data loads
   const dashboardPath = useMemo(() => {
@@ -119,9 +121,8 @@ const NavBar = () => {
 
   return (
     <div
-      className={`navbar fixed px-6 z-10 text-white transition-all duration-300 ${
-        isScrolled ? "bg-green-600 bg-opacity-60 shadow-lg" : "bg-opacity-30"
-      }`}
+      className={`navbar fixed top-0 left-0 w-full px-6 z-10 text-white transition-all duration-300 
+      ${isAboutPage ? "bg-green-600" : isScrolled ? "bg-opacity-80 shadow-lg bg-green-500" : "bg-opacity-50 bg-gray-700"}`}
     >
       <div className="navbar-start">
         <div className="dropdown">
