@@ -24,7 +24,7 @@ const DashBoardLayout = () => {
   // const [userData]=useUser()
   const [isAdmin] = useAdmin();
   const [isGuide] = useGuide();
-  
+
   return (
     <div className="drawer lg:drawer-open">
       <Helmet>
@@ -175,6 +175,13 @@ const DashBoardLayout = () => {
           ) : isGuide ? (
             <>
               <NavLink
+                to="/dashBoard/guideOverview"
+                className="btn justify-start border-none bg-transparent text-lg font-bold"
+              >
+                <IoStatsChartOutline className="text-2xl" />
+                OverView
+              </NavLink>
+              <NavLink
                 to="/dashBoard/guideProfile"
                 className="btn justify-start border-none bg-transparent text-lg font-bold"
               >
@@ -205,6 +212,13 @@ const DashBoardLayout = () => {
             </>
           ) : (
             <>
+              <NavLink
+                to="/dashBoard/touristOverview"
+                className="btn justify-start border-none bg-transparent text-lg font-bold"
+              >
+                <IoStatsChartOutline className="text-2xl" />
+                OverView
+              </NavLink>
               <NavLink
                 to="/dashBoard/myProfile"
                 className="btn justify-start border-none bg-transparent text-lg font-bold"

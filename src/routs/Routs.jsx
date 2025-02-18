@@ -28,6 +28,8 @@ import GuideProfileDashboard from "../pages/DashBoard/GuideHome/GuideProfileDash
 import Payment from "../pages/DashBoard/payment/Payment";
 import AdminRoute from "./AdminRoute";
 import AdminOverview from "../pages/DashBoard/AdminHome/AdminOverview";
+import GuideOverview from "../pages/DashBoard/GuideHome/GuideOverview";
+import TouristOverview from "../pages/DashBoard/TouristHome/TouristOverview";
 
 export const router = createBrowserRouter([
   {
@@ -130,6 +132,10 @@ export const router = createBrowserRouter([
       },
       // Guides Routs
       {
+        path: "guideOverview",
+        element: <GuideOverview></GuideOverview>,
+      },
+      {
         path: "guideProfile",
         element: <GuideProfileDashboard></GuideProfileDashboard>,
       },
@@ -146,6 +152,10 @@ export const router = createBrowserRouter([
         element: <MyAssignedTours></MyAssignedTours>,
       },
       // Tourist Routs
+      {
+        path: "touristOverview",
+        element: <TouristOverview></TouristOverview>,
+      },
       {
         path: "myProfile",
         element: <TouristProfile></TouristProfile>,
