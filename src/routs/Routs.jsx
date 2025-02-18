@@ -47,7 +47,6 @@ export const router = createBrowserRouter([
       {
         path: "trips",
         element: <Trips></Trips>,
-        loader: () => fetch("https://travel-verse-server.vercel.app/packages"),
       },
       {
         path: "/guide-profile/:id",

@@ -5,7 +5,6 @@ import ReactSelect from "react-select"; // Dropdown for filtering
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { FaUsers } from "react-icons/fa6";
-import { MdEmojiPeople, MdOutlineAdminPanelSettings } from "react-icons/md";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();

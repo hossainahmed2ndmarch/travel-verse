@@ -85,7 +85,7 @@ const AboutUs = () => {
             ].map(({ Icon, name, color }, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow hover:shadow-lg transition"
+                className="flex flex-col items-center p-6 bg-green-50 rounded-lg transition"
               >
                 <Icon className={`${color} text-5xl`} />
                 <span className="mt-2 text-primary font-medium">{name}</span>
