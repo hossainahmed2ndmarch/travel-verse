@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import StoriesCard from "../../../components/StoriesCard";
 import { Link } from "react-router-dom";
+import { FaArrowRightLong, FaLocationDot } from "react-icons/fa6";
 
 const Stories = () => {
   const [stories, setStories] = useState([]);
@@ -12,7 +13,7 @@ const Stories = () => {
     });
   }, []);
   return (
-    <div className="my-10 p-6">
+    <div className="my-10">
       <h2 className="text-4xl text-center font-bold">
         Journey Chronicles: Tales from Around the World
       </h2>
@@ -29,9 +30,9 @@ const Stories = () => {
       </div>
       <Link
         to="/community"
-        className="btn border-none bg-primary text-light rounded-none hover:text-primary mt-10"
+        className="btn border-none bg-primary text-primary rounded-none hover:text-primary mt-10 bg-transparent flex items-center"
       >
-        Explore All Stories
+        Explore All Stories <FaArrowRightLong className="ml-2" />
       </Link>
     </div>
   );

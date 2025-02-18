@@ -7,6 +7,7 @@ const useGuide = () => {
   const axiosSecure = useAxiosSecure();
   const { data: isGuide, isPending: isGuideLoading } = useQuery({
     queryKey: [user?.email, "isGuide"],
+    enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/guide/${user.email}`);
       return res.data?.guide;

@@ -15,24 +15,26 @@ const StoriesCard = ({ story }) => {
   };
 
   return (
-    <div className="p-6 rounded-2xl bg-white shadow-md hover:shadow-lg transition-shadow">
+    <div className="p-5 bg-white min-h-[400px] flex flex-col justify-between">
       {/* Images Grid */}
-      <div className="grid grid-cols-2 gap-2 rounded-t-2xl overflow-hidden">
-        {images.map((image, index) => (
+      <div className="grid grid-cols-2 gap-2 rounded-lg overflow-hidden">
+        {images.slice(0, 2).map((image, index) => (
           <img
             key={index}
             src={image}
             alt={`Story Image ${index + 1}`}
-            className="w-full h-32 object-cover rounded-lg"
+            className="w-full h-40 object-cover rounded-lg"
           />
         ))}
       </div>
 
       {/* Title */}
-      <h2 className="text-2xl font-bold text-gray-800 mt-4">{title}</h2>
+      <h2 className="text-xl font-semibold text-gray-800 mt-4">{title}</h2>
 
       {/* Content */}
-      <p className="text-gray-600 text-sm mt-2">{content}</p>
+      <p className="text-gray-600 text-sm mt-2 min-h-[120px] overflow-hidden line-clamp-3">
+        {content}
+      </p>
 
       {/* Storyteller Info and Share Button */}
       <div className="flex items-center justify-between mt-4">
@@ -41,27 +43,27 @@ const StoriesCard = ({ story }) => {
           <img
             src={storyTellerImage}
             alt={storyTellerName}
-            className="w-12 h-12 rounded-full object-cover border border-primary"
+            className="w-12 h-12 rounded-full object-cover border border-gray-300 shadow-sm"
           />
           <span className="text-gray-800 font-medium">{storyTellerName}</span>
         </div>
 
         {/* Share Button */}
-        <div onClick={handleShare}>
+        <div onClick={handleShare} className="cursor-pointer">
           {user ? (
             <FacebookShareButton
               url={window.location.href} // Current page URL
               quote={`${title} - ${content}`}
               hashtag="#TravelStories"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 bg-blue-100 px-3 py-1 rounded-full hover:bg-blue-200 transition"
             >
-              <FaFacebook className="text-blue-600" size={24} />
-              <span className="text-gray-700">Share</span>
+              <FaFacebook className="text-blue-600" size={20} />
+              <span className="text-gray-700 text-sm font-medium">Share</span>
             </FacebookShareButton>
           ) : (
-            <button className="flex items-center gap-2 text-gray-700">
-              <FaFacebook className="text-blue-600" size={24} />
-              <span>Share</span>
+            <button className="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full hover:bg-gray-200 transition">
+              <FaFacebook className="text-blue-600" size={20} />
+              <span className="text-gray-700 text-sm font-medium">Share</span>
             </button>
           )}
         </div>
