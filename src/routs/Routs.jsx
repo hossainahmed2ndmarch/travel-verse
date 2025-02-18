@@ -27,6 +27,7 @@ import MyAssignedTours from "../pages/DashBoard/GuideHome/MyAssignedTours";
 import GuideProfileDashboard from "../pages/DashBoard/GuideHome/GuideProfileDashboard";
 import Payment from "../pages/DashBoard/payment/Payment";
 import AdminRoute from "./AdminRoute";
+import AdminOverview from "../pages/DashBoard/AdminHome/AdminOverview";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,14 @@ export const router = createBrowserRouter([
     errorElement: <NotFound></NotFound>,
     children: [
       // Admin routs
+      {
+        path: "adminOverview",
+        element: (
+          <AdminRoute>
+            <AdminOverview></AdminOverview>
+          </AdminRoute>
+        ),
+      },
       {
         path: "adminProfile",
         element: (

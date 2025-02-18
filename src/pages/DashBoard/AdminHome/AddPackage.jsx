@@ -186,7 +186,7 @@ const AddPackage = () => {
   };
 
   return (
-    <div className="min-h-screen py-10 px-4 md:px-16 w-full">
+    <div className="min-h-screen mt-12 py-10 px-4 md:px-16 w-full">
       <h2 className="text-4xl font-bold text-center text-primary mb-8">
         Add A New Package
       </h2>
@@ -244,7 +244,7 @@ const AddPackage = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {/* Trip Title */}
           <div className="form-control">
             <label className="label">
@@ -285,7 +285,7 @@ const AddPackage = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {/* Price */}
           <div className="form-control">
             <label className="label">
@@ -326,7 +326,7 @@ const AddPackage = () => {
             )}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {/* Group Size */}
           <div className="form-control">
             <label className="label">
@@ -366,7 +366,7 @@ const AddPackage = () => {
             )}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {[
             {
               label: "Tour Location",
@@ -457,7 +457,7 @@ const AddPackage = () => {
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           <div className="form-control">
             <label className="label">
               <span className="label-text text-xl text-black font-semibold">

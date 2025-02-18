@@ -10,7 +10,7 @@ const AdminProfile = () => {
   const [userData, refetch] = useUser();
   const [isModalOpen, setModalOpen] = useState(false);
   return (
-    <div>
+    <div className="mt-24">
       <h2 className="text-3xl text-center font-bold">
         {" "}
         Hi! Welcome

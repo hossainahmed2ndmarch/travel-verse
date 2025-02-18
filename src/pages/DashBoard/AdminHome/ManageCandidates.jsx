@@ -104,7 +104,7 @@ const ManageCandidates = () => {
     });
   };
   return (
-    <div className="min-h-screen py-10 px-4 md:px-16">
+    <div className="min-h-screen mt-12 py-10 px-4 md:px-16">
       <h2 className="text-4xl font-bold text-center text-primary mb-8">
         Guide Candidates
       </h2>
@@ -118,7 +118,7 @@ const ManageCandidates = () => {
           <h3 className="text-2xl font-bold mb-10">
             Total Applications: {applications?.length}
           </h3>
-          <table className="table w-full border-collapse border border-secondary">
+          <table className="table table-xs w-full border-collapse border border-secondary">
             <thead className="rounded-t-3xl">
               <tr className="bg-primary text-white text-lg font-bold">
                 <th className="p-4 first:rounded-tl-2xl"></th>

@@ -5,26 +5,22 @@ import { Tooltip } from "react-tooltip";
 import userIcon from "../../assets/user.png";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
-import useAdmin from "../../hooks/useAdmin";
-import useGuide from "../../hooks/useGuide";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, logOut } = useAuth();
-  const [isAdmin, isAdminLoading] = useAdmin();
-  const [isGuide, isGuideLoading] = useGuide();
   const navigate = useNavigate();
   const location = useLocation(); 
   const isAboutPage = location.pathname === "/about-us";
 
   // Ensure we don't access undefined values before the data loads
-  const dashboardPath = useMemo(() => {
-    if (isAdminLoading || isGuideLoading) return null; // Don't set path until data is ready
-    if (isAdmin) return "/dashBoard/adminProfile";
-    if (isGuide) return "/dashBoard/guideProfile";
-    return "/dashBoard/myProfile";
-  }, [isAdmin, isGuide, isAdminLoading, isGuideLoading]);
+  // const dashboardPath = useMemo(() => {
+  //   if (isAdminLoading || isGuideLoading) return null; // Don't set path until data is ready
+  //   if (isAdmin) return "/dashBoard/adminProfile";
+  //   if (isGuide) return "/dashBoard/guideProfile";
+  //   return "/dashBoard/myProfile";
+  // }, [isAdmin, isGuide, isAdminLoading, isGuideLoading]);
 
   // Handle Logout
   const handleLogOut = () => {
@@ -71,9 +67,9 @@ const NavBar = () => {
       })}
 
       {/* Dashboard Link (only if role data is loaded) */}
-      {user && !isAdminLoading && !isGuideLoading && dashboardPath && (
+      {user && user?.email && (
         <NavLink
-          to={dashboardPath}
+          to="/dashBoard"
           className={({ isActive }) =>
             `btn border-none bg-transparent text-lg font-bold transition-all ${
               isActive
@@ -200,7 +196,7 @@ const NavBar = () => {
               </li>
               {/* Other Menu Items */}
               <li>
-                <NavLink to={dashboardPath}>Dashboard</NavLink>
+                <NavLink to='/dashBoard'>Dashboard</NavLink>
               </li>
               <li>
                 <a>Settings</a>

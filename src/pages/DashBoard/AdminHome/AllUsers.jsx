@@ -77,7 +77,7 @@ const AllUsers = () => {
   };
 
   return (
-    <div className="min-h-screen py-10 px-4 md:px-16">
+    <div className="min-h-screen overflow-x-auto mt-12 py-10 px-4 md:px-16">
       <h2 className="text-4xl font-bold text-center text-primary mb-8">
         All Users
       </h2>
@@ -108,14 +108,14 @@ const AllUsers = () => {
           <h3 className="text-2xl font-bold mb-10">
             Total Users: {data.totalUsers}
           </h3>
-          <table className="table w-full border-collapse border border-secondary">
+          <table className="table table-xs table-pin-rows table-pin-cols ">
             <thead className="rounded-t-3xl">
               <tr className="bg-primary text-white text-lg font-bold">
-                <th className="p-4 first:rounded-tl-2xl">#</th>
-                <th className="p-4">User Name</th>
-                <th className="p-4">User Email</th>
-                <th className="p-4">Role</th>
-                <th className="p-4 last:rounded-tr-2xl">Action</th>
+                <td className="p-4 first:rounded-tl-2xl">#</td>
+                <td className="p-4">User Name</td>
+                <td className="p-4">User Email</td>
+                <td className="p-4">Role</td>
+                <td className="p-4 last:rounded-tr-2xl">Action</td>
               </tr>
             </thead>
             <tbody>
@@ -124,7 +124,7 @@ const AllUsers = () => {
                   key={user._id}
                   className="hover:bg-gray-100 border-b border-gray-200"
                 >
-                  <td className="p-4">{(page - 1) * limit + idx + 1}</td>
+                  <th className="p-4">{(page - 1) * limit + idx + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
@@ -137,7 +137,7 @@ const AllUsers = () => {
                         onClick={() => handleMakeAdmin(user)}
                         className="btn btn-md bg-primary text-light flex items-center gap-1"
                       >
-                        <FaUsers /> Make Admin
+                        <FaUsers />
                       </button>
                     )}
                   </td>
@@ -147,7 +147,7 @@ const AllUsers = () => {
                       onClick={() => handleDelete(user._id)}
                       className="btn btn-md text-red-500 flex items-center gap-1"
                     >
-                      <RiDeleteBin6Line /> Delete
+                      <RiDeleteBin6Line />
                     </button>
                   </td>
                 </tr>
@@ -163,7 +163,9 @@ const AllUsers = () => {
           <button
             key={pageNumber}
             className={`btn btn-sm mx-1 ${
-              page === pageNumber + 1 ? "btn-primary border-none bg-primary text-light rounded-none hover:bg-light hover:text-primary " : "btn-outline bg-light text-primary rounded-none hover:bg-light hover:text-primary"
+              page === pageNumber + 1
+                ? "btn-primary border-none bg-primary text-light rounded-none hover:bg-light hover:text-primary "
+                : "btn-outline bg-light text-primary rounded-none hover:bg-light hover:text-primary"
             }`}
             onClick={() => setPage(pageNumber + 1)}
           >
