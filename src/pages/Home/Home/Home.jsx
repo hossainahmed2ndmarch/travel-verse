@@ -6,6 +6,7 @@ import TourismGuide from "./TourismGuide";
 import TourismSections from "./TourismSections";
 import EventFestival from "./EventFestival";
 import Offer from "./Offer";
+import TravelInsurance from "./TravelInsurance";
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
         <TourismSections></TourismSections>
         <EventFestival></EventFestival>
         <Offer></Offer>
+        <TravelInsurance></TravelInsurance>
       </div>
     </div>
   );
