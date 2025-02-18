@@ -15,7 +15,7 @@ const VideoModal = () => {
   };
 
   return (
-    <div className="my-10 grid grid-cols-1 md:grid-cols-2 gap-6 rounded-2xl">
+    <div className="container mx-auto my-10 grid grid-cols-1 md:grid-cols-2 gap-6 rounded-2xl">
       {/* Video Section */}
       <div className="relative flex justify-center">
         <img src={videoThumb} className="rounded-2xl w-full object-cover" alt="" />
@@ -29,7 +29,7 @@ const VideoModal = () => {
 
       {/* FAQ Section */}
       <div className="flex flex-col justify-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 text-center md:text-left">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 text-center md:text-left text-primary">
           Discover the Beauty of Your Next Destination
         </h2>
         <div className="join join-vertical w-full">

@@ -14,7 +14,7 @@ const Stories = () => {
   }, []);
   return (
     <div className="my-10">
-      <h2 className="text-4xl text-center font-bold">
+      <h2 className="text-4xl text-center text-primary font-bold">
         Journey Chronicles: Tales from Around the World
       </h2>
       <p className="text-center">

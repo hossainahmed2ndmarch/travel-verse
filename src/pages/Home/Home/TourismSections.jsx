@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const TourismSections = () => {
+  const [packages, setPackages] = useState([]);
+  const axiosPublic = useAxiosPublic();
+  useEffect(() => {
+    axiosPublic.get("/packages-home").then((res) => {
+      setPackages(res?.data);
+    });
+  }, []);
   // Animation Variants
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -14,14 +22,19 @@ const TourismSections = () => {
   };
 
   return (
-    <div className="container mx-auto space-y-16 px-4 md:px-8">
+    <div className="container mx-auto space-y-10">
       {/* Section 1: Top Destinations */}
       <section className="space-y-8">
         <h2 className="text-4xl font-bold text-center text-primary">
           Top Destinations
         </h2>
+        <p className="text-center">
+          Explore breathtaking destinations around the world! From serene
+          beaches to bustling <br /> cities, find the perfect place for your
+          next adventure.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {["Paris", "Maldives", "Tokyo"].map((destination, index) => (
+          {packages?.map((destination, index) => (
             <motion.div
               key={index}
               className="relative overflow-hidden bg-white shadow-lg rounded-lg cursor-pointer"
@@ -32,12 +45,14 @@ const TourismSections = () => {
               viewport={{ once: true }}
             >
               <img
-                src={`https://source.unsplash.com/400x300/?${destination}`}
-                alt={destination}
+                src={destination?.photo}
+                alt={destination?.tourLocation[0]}
                 className="h-64 w-full object-cover"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                <h3 className="text-2xl text-white font-bold">{destination}</h3>
+                <h3 className="text-2xl text-white font-bold">
+                  {destination?.tourLocation[0]}
+                </h3>
               </div>
             </motion.div>
           ))}
@@ -49,19 +64,24 @@ const TourismSections = () => {
         <h2 className="text-4xl font-bold text-center text-primary">
           Customer Experiences
         </h2>
+        <p className="text-center">
+          Hear from fellow travelers! Read authentic reviews and experiences{" "}
+          <br />
+          to make informed decisions for your next trip.
+        </p>
         <div className="overflow-hidden">
           <motion.div
-            className="flex gap-6"
+            className="flex gap-6 items-center justify-center"
             initial="hidden"
             whileInView="visible"
             transition={{ duration: 1 }}
             viewport={{ once: true }}
             variants={testimonialsVariants}
           >
-            {[1, 2, 3].map((testimonial, index) => (
+            {[1, 2, 3, 4].map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-md w-80"
+                className="bg-white p-6 rounded-lg shadow-md w-full"
               >
                 <p className="text-gray-700 italic">
                   "It was a breathtaking experience! From the beautiful

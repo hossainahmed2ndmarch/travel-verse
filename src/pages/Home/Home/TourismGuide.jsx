@@ -22,7 +22,7 @@ const TourismGuide = () => {
   }, []);
   return (
     <div className="my-10 space-y-6">
-      <h2 className="text-4xl text-center font-bold">
+      <h2 className="text-4xl text-center text-primary font-bold">
         Wanderlust Chronicles: Your Ultimate Tourism and Travel Guide
       </h2>
       <p className="text-center">
