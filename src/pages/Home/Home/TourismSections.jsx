@@ -81,7 +81,7 @@ const TourismSections = () => {
             {[1, 2, 3, 4].map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-md w-full"
+                className="bg-white p-6 rounded-xl shadow-md w-full"
               >
                 <p className="text-gray-700 italic">
                   "It was a breathtaking experience! From the beautiful
@@ -94,7 +94,7 @@ const TourismSections = () => {
                     className="h-12 w-12 rounded-full object-cover"
                   />
                   <div>
-                    <p className="text-lg font-bold">Customer {index + 1}</p>
+                    <p className="text-xl font-bold">Customer {index + 1}</p>
                     <p className="text-sm text-gray-500">Traveler</p>
                   </div>
                 </div>

@@ -5,6 +5,7 @@ import Stories from "./Stories";
 import TourismGuide from "./TourismGuide";
 import TourismSections from "./TourismSections";
 import EventFestival from "./EventFestival";
+import Offer from "./Offer";
 
 const Home = () => {
   return (
@@ -13,12 +14,13 @@ const Home = () => {
         <title>Home | TravelVerse</title>
       </Helmet>
       <Banner></Banner>
-      <div className="">
+      <div className="bg-green-50  py-6">
         <Overview></Overview>
         <TourismGuide></TourismGuide>
         <Stories></Stories>
         <TourismSections></TourismSections>
         <EventFestival></EventFestival>
+        <Offer></Offer>
       </div>
     </div>
   );

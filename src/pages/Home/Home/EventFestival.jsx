@@ -51,7 +51,7 @@ const EventFestival = () => {
         {events.map((event) => (
           <motion.div
             key={event.id}
-            className="bg-white  rounded-2xl overflow-hidden  transition duration-300"
+            className="bg-white  rounded-xl overflow-hidden  transition duration-300"
             whileHover={{ scale: 1.05 }}
           >
             <img

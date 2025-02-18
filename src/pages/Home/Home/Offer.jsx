@@ -1,24 +1,36 @@
-import React from "react";
+import bali from "../../../assets/bali.webp";
+import paris from "../../../assets/paris.jpeg";
+import tokyo from "../../../assets/japan.jpg";
+import newzealand from "../../../assets/newzealand.webp";
+import { Link } from "react-router-dom";
+import { FaArrowRightLong } from "react-icons/fa6";
 
-const TravelDeals = () => {
+const Offer = () => {
   const deals = [
     {
       destination: "Bali, Indonesia",
-      image: "https://source.unsplash.com/400x300/?bali,beach",
+      image: bali,
       discount: "30% OFF",
       price: "$799",
       duration: "7 Days / 6 Nights",
     },
     {
       destination: "Paris, France",
-      image: "https://source.unsplash.com/400x300/?paris,eiffel-tower",
+      image: paris,
       discount: "25% OFF",
       price: "$999",
       duration: "5 Days / 4 Nights",
     },
     {
       destination: "Tokyo, Japan",
-      image: "https://source.unsplash.com/400x300/?tokyo,city",
+      image: tokyo,
+      discount: "20% OFF",
+      price: "$899",
+      duration: "6 Days / 5 Nights",
+    },
+    {
+      destination: "Newzealand",
+      image: newzealand,
       discount: "20% OFF",
       price: "$899",
       duration: "6 Days / 5 Nights",
@@ -26,35 +38,42 @@ const TravelDeals = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-100">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
+    <section className="my-10">
+      <div className="mx-auto">
+        <h2 className="text-4xl font-bold text-center text-primary mb-8">
           ✨ Travel Deals & Discounts ✨
         </h2>
         <p className="text-center text-gray-600 mb-12">
           Grab exclusive travel deals and save big on your next adventure! 🌍✈️
         </p>
-        
-        <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+
+        <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8">
           {deals.map((deal, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-              <div className="relative">
-                <img src={deal.image} alt={deal.destination} className="w-full h-56 object-cover rounded-t-xl" />
-                <span className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-md text-sm font-bold">
-                  {deal.discount}
-                </span>
-              </div>
-              <div className="p-5">
-                <h3 className="text-xl font-semibold text-gray-800">{deal.destination}</h3>
-                <p className="text-gray-600 text-sm">{deal.duration}</p>
-                <div className="flex justify-between items-center mt-3">
-                  <p className="text-lg font-bold text-green-500">{deal.price}</p>
-                  <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
-                    Book Now
+            <div key={index} className="bg-white rounded-xl transition duration-300">
+            <div className="relative">
+              <img
+                src={deal.image}
+                alt={deal.destination}
+                className="w-full h-56 object-cover rounded-t-xl"
+              />
+              <span className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-md text-sm font-bold">
+                {deal.discount}
+              </span>
+            </div>
+            <div className="p-5">
+              <h3 className="text-xl font-semibold text-gray-800">{deal.destination}</h3>
+              <p className="text-gray-600 text-sm">{deal.duration}</p>
+              <div className="flex justify-between items-center mt-5">
+                <p className="text-lg font-bold text-green-500">{deal.price}</p>
+                <Link to="/trips">
+                  <button className="btn border-none bg-transparent text-primary rounded-lg hover:text-primary transition-colors">
+                    Book Now <FaArrowRightLong className="ml-2" />
                   </button>
-                </div>
+                </Link>
               </div>
             </div>
+          </div>
+          
           ))}
         </div>
       </div>
@@ -62,4 +81,4 @@ const TravelDeals = () => {
   );
 };
 
-export default TravelDeals;
+export default Offer;
