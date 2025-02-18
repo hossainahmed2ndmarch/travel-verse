@@ -9,7 +9,7 @@ const TouristProfile = () => {
   const [userData, refetch] = useUser();
   const [isModalOpen, setModalOpen] = useState(false);
   return (
-    <div>
+    <div className="mt-12">
       <h2 className="text-3xl text-center font-bold">
         {" "}
         Hi! Welcome
@@ -18,7 +18,13 @@ const TouristProfile = () => {
           {userData?.name ? userData.name : "Back"}
         </span>
       </h2>
-      {userData && <MyProfile userData={userData} setModalOpen={setModalOpen} isModalOpen={isModalOpen}></MyProfile>}
+      {userData && (
+        <MyProfile
+          userData={userData}
+          setModalOpen={setModalOpen}
+          isModalOpen={isModalOpen}
+        ></MyProfile>
+      )}
       {isModalOpen && (
         <EditModal
           setModalOpen={setModalOpen}

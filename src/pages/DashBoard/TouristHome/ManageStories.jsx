@@ -6,7 +6,7 @@ const ManageStories = () => {
   const [storyData, refetch] = useStories();
   // console.log(storyData);
   return (
-    <div className="min-h-screen py-10 px-4 md:px-16">
+    <div className="min-h-screen mt-12 py-10 px-4 md:px-16">
       <h2 className="text-4xl font-bold text-center text-primary mb-8">
         Manage Your Story
       </h2>

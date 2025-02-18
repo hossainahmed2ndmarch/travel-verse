@@ -36,18 +36,8 @@ const MyBookings = () => {
     });
   };
 
-  // const handlePayClick = (id) => {
-  //   setSelectedBookingId(id); // Set the booking ID
-  //   setModalOpen(true); // Open the modal
-  // };
-
-  // const closeModal = () => {
-  //   setModalOpen(false);
-  //   setSelectedBookingId(null);
-  // };
-
   return (
-    <div className="min-h-screen py-10 px-4 md:px-16">
+    <div className="min-h-screen mt-12 py-10 px-4 md:px-16">
       <h2 className="text-4xl font-bold text-center text-primary mb-8">
         My Bookings
       </h2>

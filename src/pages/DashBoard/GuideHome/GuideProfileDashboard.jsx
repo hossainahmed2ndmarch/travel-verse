@@ -10,7 +10,7 @@ const GuideProfileDashboard = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   return (
     <div>
-      <h2 className="text-3xl text-center font-bold">
+      <h2 className="text-3xl mt-24 text-center font-bold">
         {" "}
         Hi! Welcome
         <span className="text-primary">
