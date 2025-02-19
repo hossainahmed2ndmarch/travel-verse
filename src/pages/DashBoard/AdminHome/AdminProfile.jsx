@@ -1,6 +1,5 @@
 import useAuth from "../../../hooks/useAuth";
 import MyProfile from "../../../components/MyProfile";
-import Admin from "../../../components/Admin";
 import useUser from "../../../hooks/useUser";
 import { useState } from "react";
 import EditModal from "../../../components/EditModal";
@@ -20,11 +19,6 @@ const AdminProfile = () => {
         </span>
       </h2>
       {userData && (
-        // <Admin
-        //   userData={userData}
-        //   setModalOpen={setModalOpen}
-        //   isModalOpen={isModalOpen}
-        // ></Admin>
         <MyProfile
           userData={userData}
           setModalOpen={setModalOpen}
