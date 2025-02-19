@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        primaryBg: "var(--primary-bg-color)",
         primary: "#4ade80", // Olive green
         blackLight: "#9ca3af",
         secondary: "#f0fdf4", // Beige gold

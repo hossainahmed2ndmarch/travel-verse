@@ -30,6 +30,7 @@ import AdminRoute from "./AdminRoute";
 import AdminOverview from "../pages/DashBoard/AdminHome/AdminOverview";
 import GuideOverview from "../pages/DashBoard/GuideHome/GuideOverview";
 import TouristOverview from "../pages/DashBoard/TouristHome/TouristOverview";
+import TermsConditions from "../pages/termsconditions/TermsConditions";
 
 export const router = createBrowserRouter([
   {
@@ -59,8 +60,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "community",
-        element: <Community></Community>,
+        element: (
+          <PrivateRoute>
+            <Community></Community>
+          </PrivateRoute>
+        ),
         loader: () => fetch("https://travel-verse-server.vercel.app/stories"),
+      },
+      {
+        path: "terms-conditions",
+        element: <TermsConditions></TermsConditions>,
       },
       {
         path: "about-us",

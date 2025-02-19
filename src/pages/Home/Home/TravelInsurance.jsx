@@ -1,16 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const TravelInsurance = () => {
   return (
-    <section className="py-1">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl text-primary font-bold text-center mb-8">
-          Travel Insurance & Safety Tips
-        </h2>
-        <p className="text-center mb-12">
-          Stay safe and protected while traveling with the best insurance and
-          expert safety tips.
-        </p>
+    <section>
+      <div className="max-w-6xl mx-auto px-6 space-y-10">
+        <div className="space-y-6">
+          <h2 className="text-4xl text-primary font-bold text-center">
+            Travel Insurance & Safety Tips
+          </h2>
+          <p className="text-center">
+            Stay safe and protected while traveling with the best insurance and
+            expert safety tips.
+          </p>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Travel Insurance */}
@@ -29,9 +32,9 @@ const TravelInsurance = () => {
               <li>Emergency evacuation and repatriation</li>
             </ul>
             <div className="text-center">
-              <button className="btn bg-transparent text-primary rounded-lg hover:text-primary transition-colors">
+              <Link to='/terms-conditions' className="btn bg-transparent text-primary shadow-none border-none rounded-lg hover:text-primary transition-colors">
                 Learn More
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -53,9 +56,9 @@ const TravelInsurance = () => {
               </li>
             </ul>
             <div className="text-center">
-              <button className="btn bg-transparent text-primary rounded-lg hover:text-primary transition-colors">
+              <Link to='/terms-conditions' className="btn bg-transparent shadow-none border-none text-primary rounded-lg hover:text-primary transition-colors">
                 Read More Tips
-              </button>
+              </Link>
             </div>
           </div>
         </div>

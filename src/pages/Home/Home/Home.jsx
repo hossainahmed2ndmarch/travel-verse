@@ -15,7 +15,7 @@ const Home = () => {
         <title>Home | TravelVerse</title>
       </Helmet>
       <Banner></Banner>
-      <div className="bg-green-50  py-6">
+      <div className="py-6 bg-primaryBg">
         <Overview></Overview>
         <TourismGuide></TourismGuide>
         <Stories></Stories>

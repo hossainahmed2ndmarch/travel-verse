@@ -29,7 +29,7 @@ const VideoModal = () => {
 
       {/* FAQ Section */}
       <div className="flex flex-col justify-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 text-center md:text-left text-primary">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-10 text-center md:text-left text-primary">
           Discover the Beauty of Your Next Destination
         </h2>
         <div className="join join-vertical w-full">

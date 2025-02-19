@@ -14,14 +14,16 @@ const Stories = () => {
   }, []);
   return (
     <div className="my-10">
-      <h2 className="text-4xl text-center text-primary font-bold">
-        Journey Chronicles: Tales from Around the World
-      </h2>
-      <p className="text-center">
-        Discover captivating stories and experiences from travelers around the
-        world. <br />
-        Explore their journeys, adventures, and cherished memories.
-      </p>
+      <div className="space-y-6">
+        <h2 className="text-4xl text-center text-primary font-bold">
+          Journey Chronicles: Tales from Around the World
+        </h2>
+        <p className="text-center">
+          Discover captivating stories and experiences from travelers around the
+          world. <br />
+          Explore their journeys, adventures, and cherished memories.
+        </p>
+      </div>
 
       <div className="mt-10 grid md:grid-cols-2 gap-6">
         {stories.map((story) => (

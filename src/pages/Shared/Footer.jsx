@@ -71,8 +71,7 @@ const Footer = () => {
       </footer>
       <aside className="footer bg-neutral footer-center text-primary p-4">
         <p >
-          Copyright © {new Date().getFullYear()} - All right reserved by ACME
-          Industries Ltd
+          Copyright © {new Date().getFullYear()} - All right reserved by TravelVerse Company Ltd.
         </p>
       </aside>
     </footer>

@@ -39,41 +39,50 @@ const Offer = () => {
 
   return (
     <section className="my-10">
-      <div className="mx-auto">
-        <h2 className="text-4xl font-bold text-center text-primary mb-8">
-          ✨ Travel Deals & Discounts ✨
-        </h2>
-        <p className="text-center text-gray-600 mb-12">
-          Grab exclusive travel deals and save big on your next adventure! 🌍✈️
-        </p>
+      <div className="mx-auto space-y-10">
+        <div className="space-y-6">
+          <h2 className="text-4xl font-bold text-center text-primary">
+            ✨ Travel Deals & Discounts ✨
+          </h2>
+          <p className="text-center text-gray-700">
+            Grab exclusive travel deals and save big on your next adventure!
+            🌍✈️
+          </p>
+        </div>
 
         <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8">
           {deals.map((deal, index) => (
-            <div key={index} className="bg-white rounded-xl transition duration-300">
-            <div className="relative">
-              <img
-                src={deal.image}
-                alt={deal.destination}
-                className="w-full h-56 object-cover rounded-t-xl"
-              />
-              <span className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-md text-sm font-bold">
-                {deal.discount}
-              </span>
-            </div>
-            <div className="p-5">
-              <h3 className="text-xl font-semibold text-gray-800">{deal.destination}</h3>
-              <p className="text-gray-600 text-sm">{deal.duration}</p>
-              <div className="flex justify-between items-center mt-5">
-                <p className="text-lg font-bold text-green-500">{deal.price}</p>
-                <Link to="/trips">
-                  <button className="btn border-none bg-transparent text-primary rounded-lg hover:text-primary transition-colors">
-                    Book Now <FaArrowRightLong className="ml-2" />
-                  </button>
-                </Link>
+            <div
+              key={index}
+              className="bg-white rounded-xl transition duration-300"
+            >
+              <div className="relative">
+                <img
+                  src={deal.image}
+                  alt={deal.destination}
+                  className="w-full h-56 object-cover rounded-t-xl"
+                />
+                <span className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-md text-sm font-bold">
+                  {deal.discount}
+                </span>
+              </div>
+              <div className="p-5">
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {deal.destination}
+                </h3>
+                <p className="text-gray-600 text-sm">{deal.duration}</p>
+                <div className="flex justify-between items-center mt-5">
+                  <p className="text-lg font-bold text-green-500">
+                    {deal.price}
+                  </p>
+                  <Link to="/trips">
+                    <button className="btn border-none bg-transparent text-primary rounded-lg hover:text-primary transition-colors">
+                      Book Now <FaArrowRightLong className="ml-2" />
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-          
           ))}
         </div>
       </div>

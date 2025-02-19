@@ -6,21 +6,17 @@ import userIcon from "../../assets/user.png";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useTheme } from "../../providers/ThemeProvider";
+import { MdOutlineWbSunny } from "react-icons/md";
+import { IoMoonOutline } from "react-icons/io5";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
+  const { isDark, toggleTheme } = useTheme();
   const isAboutPage = location.pathname === "/about-us";
-
-  // Ensure we don't access undefined values before the data loads
-  // const dashboardPath = useMemo(() => {
-  //   if (isAdminLoading || isGuideLoading) return null; // Don't set path until data is ready
-  //   if (isAdmin) return "/dashBoard/adminProfile";
-  //   if (isGuide) return "/dashBoard/guideProfile";
-  //   return "/dashBoard/myProfile";
-  // }, [isAdmin, isGuide, isAdminLoading, isGuideLoading]);
 
   // Handle Logout
   const handleLogOut = () => {
@@ -43,8 +39,8 @@ const NavBar = () => {
   // Navigation Links
   const navLinks = (
     <>
-      {["/", "/trips", "/community", "/about-us"].map((path, index) => {
-        const labels = ["Home", "Trips", "Community", "About Us"];
+      {["/", "/trips", "/about-us", "/terms-conditions"].map((path, index) => {
+        const labels = ["Home", "Trips", "About Us", "Terms&Conditions"];
         return (
           <NavLink
             key={index}
@@ -65,6 +61,24 @@ const NavBar = () => {
           </NavLink>
         );
       })}
+      {user && user?.email && (
+        <NavLink
+          to="/community"
+          className={({ isActive }) =>
+            `btn border-none bg-transparent text-lg font-bold transition-all ${
+              isActive
+                ? isScrolled
+                  ? "text-slate-800"
+                  : "text-green-400"
+                : isScrolled
+                ? "text-slate-200"
+                : "text-white"
+            }`
+          }
+        >
+          Community
+        </NavLink>
+      )}
 
       {/* Dashboard Link (only if role data is loaded) */}
       {user && user?.email && (
@@ -118,7 +132,13 @@ const NavBar = () => {
   return (
     <div
       className={`navbar fixed top-0 left-0 w-full px-6 z-10 text-white transition-all duration-300 
-      ${isAboutPage ? "bg-green-600" : isScrolled ? "bg-opacity-80 shadow-lg bg-green-500" : "bg-opacity-50 bg-gray-700"}`}
+      ${
+        isAboutPage
+          ? "bg-green-600"
+          : isScrolled
+          ? "bg-opacity-80 shadow-lg bg-green-500"
+          : "bg-opacity-50 bg-gray-700"
+      }`}
     >
       <div className="navbar-start">
         <div className="dropdown">
@@ -134,7 +154,7 @@ const NavBar = () => {
             {navLinks}
           </ul>
         </div>
-        <Link to='/' className="btn btn-ghost text-3xl">
+        <Link to="/" className="btn btn-ghost text-3xl">
           <span className="text-green-400">
             <ImEarth />
           </span>
@@ -145,6 +165,16 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1 space-x-4">{navLinks}</ul>
       </div>
       <div className="navbar-end flex items-center space-x-4">
+        <button
+          onClick={toggleTheme}
+          data-tooltip-id="theme-tooltip"
+          data-tooltip-content={
+            isDark ? "Switch to Light Mode" : "Switch to Dark Mode"
+          }
+          className="p-2 rounded-full text-primary hover:bg-primary hover:text-light font-semibold bg-transparent border-none shadow-none text-2xl"
+        >
+          {isDark ? <MdOutlineWbSunny /> : <IoMoonOutline />}
+        </button>
         {user && user?.email ? (
           <button
             onClick={handleLogOut}
@@ -196,7 +226,7 @@ const NavBar = () => {
               </li>
               {/* Other Menu Items */}
               <li>
-                <NavLink to='/dashBoard'>Dashboard</NavLink>
+                <NavLink to="/dashBoard">Dashboard</NavLink>
               </li>
               <li>
                 <a>Settings</a>
@@ -219,6 +249,7 @@ const NavBar = () => {
       <Tooltip id="register-tooltip" place="bottom" />
       <Tooltip id="logout-tooltip" place="bottom" />
       <Tooltip id="login-tooltip" place="bottom" />
+      <Tooltip id="theme-tooltip" place="bottom" />
     </div>
   );
 };

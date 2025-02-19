@@ -21,17 +21,19 @@ const TourismGuide = () => {
     });
   }, []);
   return (
-    <div className="my-10 space-y-6">
-      <h2 className="text-4xl text-center text-primary font-bold">
-        Wanderlust Chronicles: Your Ultimate Tourism and Travel Guide
-      </h2>
-      <p className="text-center">
-        Embark on an unforgettable journey with our comprehensive tourism and{" "}
-        <br />
-        travel guide. From exotic destinations to hidden gems, we bring <br />{" "}
-        you curated travel experiences, insider tips, and must-visit <br />
-        attractions worldwide.
-      </p>
+    <div className="my-10 space-y-10">
+      <div className="space-y-6">
+        <h2 className="text-4xl text-center text-primary font-bold">
+          Wanderlust Chronicles: Your Ultimate Tourism and Travel Guide
+        </h2>
+        <p className="text-center text-gray-700">
+          Embark on an unforgettable journey with our comprehensive tourism and{" "}
+          <br />
+          travel guide. From exotic destinations to hidden gems, we bring <br />{" "}
+          you curated travel experiences, insider tips, and must-visit <br />
+          attractions worldwide.
+        </p>
+      </div>
       <div className="mt-10">
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <TabList className="flex justify-center space-x-4 ">

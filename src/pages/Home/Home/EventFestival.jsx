@@ -38,20 +38,22 @@ const events = [
 
 const EventFestival = () => {
   return (
-    <div className="my-10 pb-10 space-y-6 bg-green-50">
-      <h2 className="text-4xl font-bold text-center text-primary mb-8">
-        🎉 Upcoming Events & Festivals
-      </h2>
-      <p className="text-center">
-        Stay updated on the most exciting cultural events and festivals
-        worldwide. <br /> Plan your travels around unforgettable celebrations!
-        🎉
-      </p>
+    <div className="my-10 pb-10 space-y-10">
+      <div className="space-y-6">
+        <h2 className="text-4xl font-bold text-center text-primary">
+          🎉 Upcoming Events & Festivals
+        </h2>
+        <p className="text-center">
+          Stay updated on the most exciting cultural events and festivals
+          worldwide. <br /> Plan your travels around unforgettable celebrations!
+          🎉
+        </p>
+      </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {events.map((event) => (
           <motion.div
             key={event.id}
-            className="bg-white  rounded-xl overflow-hidden  transition duration-300"
+            className="rounded-xl overflow-hidden  transition duration-300"
             whileHover={{ scale: 1.05 }}
           >
             <img

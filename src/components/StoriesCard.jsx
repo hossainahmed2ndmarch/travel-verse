@@ -15,7 +15,7 @@ const StoriesCard = ({ story }) => {
   };
 
   return (
-    <div className="p-5 bg-white min-h-[400px] flex flex-col justify-between">
+    <div className="p-5 bg-white min-h-[400px] flex flex-col justify-between rounded-xl">
       {/* Images Grid */}
       <div className="grid grid-cols-2 gap-2 rounded-lg overflow-hidden">
         {images.slice(0, 2).map((image, index) => (

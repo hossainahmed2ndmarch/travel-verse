@@ -24,15 +24,17 @@ const TourismSections = () => {
   return (
     <div className="container mx-auto space-y-10">
       {/* Section 1: Top Destinations */}
-      <section className="space-y-8">
-        <h2 className="text-4xl font-bold text-center text-primary">
-          Top Destinations
-        </h2>
-        <p className="text-center">
-          Explore breathtaking destinations around the world! From serene
-          beaches to bustling <br /> cities, find the perfect place for your
-          next adventure.
-        </p>
+      <section className="space-y-10">
+        <div className="space-y-6">
+          <h2 className="text-4xl font-bold text-center text-primary">
+            Top Destinations
+          </h2>
+          <p className="text-center">
+            Explore breathtaking destinations around the world! From serene
+            beaches to bustling <br /> cities, find the perfect place for your
+            next adventure.
+          </p>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {packages?.map((destination, index) => (
             <motion.div
@@ -60,15 +62,17 @@ const TourismSections = () => {
       </section>
 
       {/* Section 2: Customer Experiences */}
-      <section className="space-y-8">
-        <h2 className="text-4xl font-bold text-center text-primary">
-          Customer Experiences
-        </h2>
-        <p className="text-center">
-          Hear from fellow travelers! Read authentic reviews and experiences{" "}
-          <br />
-          to make informed decisions for your next trip.
-        </p>
+      <section className="space-y-10">
+        <div className="space-y-6">
+          <h2 className="text-4xl font-bold text-center text-primary">
+            Customer Experiences
+          </h2>
+          <p className="text-center">
+            Hear from fellow travelers! Read authentic reviews and experiences{" "}
+            <br />
+            to make informed decisions for your next trip.
+          </p>
+        </div>
         <div className="overflow-hidden">
           <motion.div
             className="flex gap-6 items-center justify-center"
