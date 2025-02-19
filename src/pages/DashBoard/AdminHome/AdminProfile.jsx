@@ -20,11 +20,16 @@ const AdminProfile = () => {
         </span>
       </h2>
       {userData && (
-        <Admin
+        // <Admin
+        //   userData={userData}
+        //   setModalOpen={setModalOpen}
+        //   isModalOpen={isModalOpen}
+        // ></Admin>
+        <MyProfile
           userData={userData}
           setModalOpen={setModalOpen}
           isModalOpen={isModalOpen}
-        ></Admin>
+        ></MyProfile>
       )}
       {isModalOpen && (
         <EditModal
