@@ -68,19 +68,19 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-8">
+    <div className="min-h-screen bg-primaryBg flex items-center justify-center py-8">
       <Helmet>
         <title>Register | TravelVerse</title>
       </Helmet>
-      <div className="card w-full max-w-2xl p-2 md:p-[76px] shrink-0">
-        <h2 className="text-4xl font-semibold text-black text-center">
+      <div className="card w-full bg-secondaryBg max-w-2xl p-2 md:p-[76px] shrink-0">
+        <h2 className="text-4xl font-semibold text-primaryText text-center">
           Register your account
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           {/* Name */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-secondaryText font-semibold">
                 Your Name
               </span>
             </label>
@@ -88,7 +88,7 @@ const Register = () => {
               type="text"
               {...register("name", { required: "Name is required." })}
               placeholder="Enter your name"
-              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
+              className="input w-full md:w-auto rounded-none border border-primaryText bg-primaryBg"
             />
             {errors.name && (
               <p className="text-red-600 text-sm font-semibold">
@@ -99,7 +99,7 @@ const Register = () => {
           {/* Photo */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-secondaryText font-semibold">
                 Photo URL
               </span>
             </label>
@@ -107,7 +107,7 @@ const Register = () => {
               type="url"
               {...register("photo", { required: "Photo URL is required." })}
               placeholder="Drop your photo url"
-              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
+              className="input w-full md:w-auto rounded-none border border-primaryText bg-primaryBg"
             />
             {errors.photo && (
               <p className="text-red-600 font-semibold text-sm">
@@ -118,7 +118,7 @@ const Register = () => {
           {/* Email */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-secondaryText font-semibold">
                 Email address
               </span>
             </label>
@@ -126,7 +126,7 @@ const Register = () => {
               type="email"
               {...register("email", { required: "Email is required." })}
               placeholder="Enter your email address"
-              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
+              className="input w-full md:w-auto rounded-none border border-primaryText bg-primaryBg"
             />
             {errors.email && (
               <p className="text-red-600 font-semibold text-sm">
@@ -137,7 +137,7 @@ const Register = () => {
           {/* Password Create */}
           <div className="form-control relative">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-secondaryText font-semibold">
                 Create Your Password
               </span>
             </label>
@@ -153,12 +153,12 @@ const Register = () => {
                 },
               })}
               placeholder="Enter your password"
-              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
+              className="input w-full md:w-auto rounded-none border border-primaryText bg-primaryBg"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="btn btn-xs bg-transparent hover:bg-transparent text-primary shadow-none border-none absolute right-2 top-14"
+              className="btn btn-xs bg-transparent hover:bg-transparent text-primaryText shadow-none border-none absolute right-2 top-14"
             >
               {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
             </button>
@@ -171,7 +171,7 @@ const Register = () => {
           {/* Confirm Password */}
           <div className="form-control relative">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-secondaryText font-semibold">
                 Confirm Your Password
               </span>
             </label>
@@ -183,7 +183,7 @@ const Register = () => {
                   value === watch("password") || "Passwords do not match.",
               })}
               placeholder="Enter your password"
-              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
+              className="input w-full md:w-auto rounded-none border border-primaryText bg-primaryBg"
             />
             {errors.confirmPassword && (
               <p className="text-red-600 font-semibold text-sm">
@@ -199,17 +199,25 @@ const Register = () => {
                 {...register("terms", {
                   required: "You must accept the terms.",
                 })}
-                className="checkbox checked:bg-navyText border-2 border-black checkbox-primary outline-navyText"
+                className="checkbox checked:bg-primaryText border-2 border-primaryText checkbox-primary outline-navyText"
               />
-              <span className="label-text text-black font-semibold ml-4">
+              <span className="label-text text-secondaryText font-semibold ml-4">
                 Accept our{" "}
-                <a className="underline text-primary" href="">
+                <Link
+                  to="/terms-conditions"
+                  className="underline text-primaryText"
+                  href=""
+                >
                   terms
-                </a>{" "}
+                </Link>{" "}
                 and{" "}
-                <a className="underline text-primary" href="">
+                <Link
+                  to="/terms-conditions"
+                  className="underline text-primaryText"
+                  href=""
+                >
                   conditions
-                </a>
+                </Link>
               </span>
             </label>
             {errors.terms && (
@@ -219,27 +227,27 @@ const Register = () => {
             )}
           </div>
           <div className="form-control mt-6">
-            <button className="btn border-none bg-primary text-light rounded-none hover:text-primary w-full">
+            <button className="btn border-none bg-primaryText text-white rounded-none hover:text-white w-full">
               Register
             </button>
           </div>
 
           <div className="form-control mt-6">
-            <h5 className="text-3xl font-semibold text-blackLight text-center mb-6">
+            <h5 className="text-3xl font-semibold text-primaryText text-center mb-6">
               Or
             </h5>
             <button
               onClick={handleGoogleSignUp}
-              className="btn border-none bg-primary text-light rounded-none hover:text-primary w-full"
+              className="btn bg-transparent border-primaryText text-primaryText rounded-none hover:text-primaryText  w-full"
             >
               <FaGoogle></FaGoogle>{" "}
               <span className="hidden md:flex">Sign Up With Google</span>
             </button>
           </div>
         </form>
-        <p className="font-semibold text-blackLight text-center">
+        <p className="font-semibold text-secondaryText text-center">
           Already Have An Account ?{" "}
-          <Link to={"/login"} className="text-primary">
+          <Link to={"/login"} className="text-primaryText">
             Login
           </Link>
         </p>

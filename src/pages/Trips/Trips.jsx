@@ -74,7 +74,7 @@ const Trips = () => {
   };
 
   return (
-    <div className="px-6">
+    <div className="px-6 bg-primaryBg">
       <Helmet>
         <title>Trips | TravelVerse</title>
       </Helmet>

@@ -139,7 +139,7 @@ const PackageDetails = () => {
     });
   };
   return (
-    <div className="px-6">
+    <div className="px-6 bg-secondaryBg">
       {/* Tour cover image */}
       <div
         className="hero min-h-screen"
@@ -163,18 +163,18 @@ const PackageDetails = () => {
         </div>
       </div>
       {/* Main body with package details */}
-      <div className="bg-green-50 p-12 mt-10 flex flex-col md:flex-row md:items-center justify-between space-y-10 md:space-y-0">
+      <div className="bg-primaryBg p-12 mt-10 flex flex-col md:flex-row md:items-center justify-between space-y-10 md:space-y-0">
         {/* Tour title, type, and others */}
         <div className="space-y-6 w-full md:w-2/3">
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
+          <h3 className="text-3xl md:text-4xl font-bold text-primaryText">
             {tripTitle}
           </h3>
           <div className="flex flex-col md:flex-row items-start md:items-center space-y-2 md:space-y-0 md:space-x-3">
-            <span className="text-green-500 text-3xl">
+            <span className="text-primaryText text-3xl">
               <IoLocationOutline />
             </span>
             {tourLocation.map((location, idx) => (
-              <p key={idx} className="text-gray-600 text-lg font-semibold">
+              <p key={idx} className="text-secondaryText text-lg font-semibold">
                 {location}
               </p>
             ))}
@@ -184,29 +184,29 @@ const PackageDetails = () => {
         {/* Price, Duration, and Tour Type */}
         <div className="flex flex-col md:flex-row md:items-center space-y-6 md:space-y-0 gap-6 w-full md:w-1/3">
           {/* Price */}
-          <div className="flex flex-row items-center space-x-3">
-            <FaDollarSign className="text-3xl text-green-500" />
+          <div className="flex flex-row  items-center space-x-3">
+            <FaDollarSign className="text-3xl text-primaryText" />
             <div>
-              <p className="text-gray-500">From</p>
-              <p className="text-xl font-bold">${price}</p>
+              <p className="text-secondaryText">From</p>
+              <p className="text-xl font-bold text-primaryText">${price}</p>
             </div>
           </div>
 
           {/* Duration */}
           <div className="flex flex-row items-center space-x-3">
-            <FaRegClock className="text-3xl text-green-500" />
+            <FaRegClock className="text-3xl text-primaryText" />
             <div>
-              <p className="text-gray-500">Duration</p>
-              <p className="text-xl font-bold">{duration}</p>
+              <p className="text-secondaryText">Duration</p>
+              <p className="text-xl font-bold text-primaryText">{duration}</p>
             </div>
           </div>
 
           {/* Tour Type */}
           <div className="flex flex-row items-center space-x-3">
-            <MdOutlineTravelExplore className="text-3xl text-green-500" />
+            <MdOutlineTravelExplore className="text-3xl text-primaryText" />
             <div>
-              <p className="text-gray-500">Tour Type</p>
-              <p className="text-xl font-bold">{tourType}</p>
+              <p className="text-secondaryText">Tour Type</p>
+              <p className="text-xl font-bold text-primaryText">{tourType}</p>
             </div>
           </div>
         </div>
@@ -228,43 +228,55 @@ const PackageDetails = () => {
             >
               {photoGallery.map((photog, idx) => (
                 <SwiperSlide key={idx} className="h-full">
-                  <img className="h-32 w-full object-cover md:h-72" src={photog} alt="" />
+                  <img
+                    className="h-32 w-full object-cover md:h-72"
+                    src={photog}
+                    alt=""
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
           <div className="space-y-4 my-10">
-            <h2 className="text-3xl font-bold">Explore Tour</h2>
-            <p className="text-gray-500">{overview}</p>
+            <h2 className="text-3xl font-bold text-primaryText">
+              Explore Tour
+            </h2>
+            <p className="text-secondaryText">{overview}</p>
 
             <div className=" grid md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-3xl font-bold">Challenges</h3>
-                <p className="text-gray-500">{challenges}</p>
+                <h3 className="text-3xl font-bold text-primaryText">
+                  Challenges
+                </h3>
+                <p className="text-secondaryText">{challenges}</p>
               </div>
               <div>
-                <h3 className="text-3xl font-bold mb-5">Advanced Facilities</h3>
+                <h3 className="text-3xl font-bold mb-5 text-primaryText">
+                  Advanced Facilities
+                </h3>
                 {extraFacilities.map((facility, idx) => (
                   <li
-                    className="list-none text-gray-500 flex items-center "
+                    className="list-none text-secondaryText flex items-center "
                     key={idx}
                   >
-                    <FaCircleRight className="mr-4" />
+                    <FaCircleRight className="mr-4 text-primaryText" />
                     {facility}
                   </li>
                 ))}
               </div>
             </div>
             <div>
-              <h3 className="text-3xl font-bold">Excluded/Included</h3>
+              <h3 className="text-3xl font-bold text-primaryText">
+                Excluded/Included
+              </h3>
               <div className="mt-5 grid md:grid-cols-2 gap-6">
                 <div>
                   {included.map((includes, idx) => (
                     <li
-                      className="list-none text-gray-400 flex flex-row items-center"
+                      className="list-none text-secondaryText flex flex-row items-center"
                       key={idx}
                     >
-                      <span className="text-green-400 text-xl mr-2">
+                      <span className="text-primaryText text-xl mr-2">
                         <TiTick />
                       </span>
                       {includes}
@@ -274,10 +286,10 @@ const PackageDetails = () => {
                 <div>
                   {excluded.map((excludes, idx) => (
                     <li
-                      className="list-none text-gray-400 flex flex-row items-center"
+                      className="list-none text-secondaryText flex flex-row items-center"
                       key={idx}
                     >
-                      <span className="text-red-500 text-xl mr-2">
+                      <span className="text-primaryText text-xl mr-2">
                         <RxCross2 />
                       </span>
                       {excludes}
@@ -287,20 +299,21 @@ const PackageDetails = () => {
               </div>
             </div>
             <div>
-              <h3 className="text-3xl font-bold mb-6">Tour Amenities</h3>
+              <h3 className="text-3xl font-bold mb-6 text-primaryText">
+                Tour Amenities
+              </h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {tourAmenities.map((tAmenity, idx) => {
                   const normalizedAmenity = normalizeKey(tAmenity);
                   return (
                     <div
                       key={idx}
-                      className="bg-green-50 p-6 flex items-center space-x-4"
+                      className="bg-primaryBg p-6 flex items-center space-x-4"
                     >
                       <span className="text-3xl text-green-400">
                         {tourAmenityIcons[normalizedAmenity] || "❓"}{" "}
-                        {/* Default icon if not found */}
                       </span>
-                      <span className="text-gray-400 font-bold">
+                      <span className="text-secondaryText font-bold">
                         {tAmenity}
                       </span>
                     </div>
@@ -308,44 +321,50 @@ const PackageDetails = () => {
                 })}
               </div>
             </div>
-            <h2 className="text-3xl font-bold">More Information</h2>
+            <h2 className="text-3xl font-bold text-primaryText">
+              More Information
+            </h2>
             <div className="flex flex-col md:flex-row md:items-center sm:space-y-5 md:space-x-5">
               <div className="flex mflex-row items-center space-x-2">
-                <BsPeople className="text-4xl text-green-500" />
+                <BsPeople className="text-4xl text-primaryText" />
                 <div>
-                  <p className="text-gray-400">Max Guests</p>
-                  <p className="text-lg font-bold">{groupSize}</p>
+                  <p className="text-secondaryText">Max Guests</p>
+                  <p className="text-lg font-bold text-primaryText">
+                    {groupSize}
+                  </p>
                 </div>
               </div>
               <div className="flex flex-row items-center space-x-2">
-                <CgProfile className="text-4xl text-green-500" />
+                <CgProfile className="text-4xl text-primaryText" />
                 <div>
-                  <p className="text-gray-400">Min Age</p>
-                  <p className="text-lg font-bold">{minAge}</p>
+                  <p className="text-secondaryText">Min Age</p>
+                  <p className="text-lg font-bold text-primaryText">{minAge}</p>
                 </div>
               </div>
               <div className="flex flex-row items-center space-x-2">
-                <MdEmojiTransportation className="text-4xl text-green-500" />
+                <MdEmojiTransportation className="text-4xl text-primaryText" />
                 <div>
-                  <p className="text-gray-400">Transportation </p>
-                  <p className="text-lg font-bold">{transportation}</p>
+                  <p className="text-secondaryText">Transportation </p>
+                  <p className="text-lg font-bold text-primaryText">
+                    {transportation}
+                  </p>
                 </div>
               </div>
             </div>
             <div>
-              <h3 className="text-3xl font-bold">Tour plan</h3>
+              <h3 className="text-3xl font-bold text-primaryText">Tour plan</h3>
               <div className="mt-6 grid grid-cols-1 gap-6">
                 {Object.entries(tourPlans).map(([day, activities], idx) => (
                   <div
                     key={idx}
-                    className="collapse collapse-arrow bg-[#4ec479]"
+                    className="collapse collapse-arrow border border-primaryText bg-primaryBg"
                   >
                     <input type="radio" name="my-accordion-2" defaultChecked />
-                    <div className="collapse-title text-xl font-bold text-white">
+                    <div className="collapse-title text-xl font-bold text-secondaryText">
                       {day}
                     </div>
                     <div className="collapse-content">
-                      <p className="text-white">{activities}</p>
+                      <p className="text-secondaryText">{activities}</p>
                     </div>
                   </div>
                 ))}
@@ -357,7 +376,7 @@ const PackageDetails = () => {
         <div className="w-full md:w-1/3 flex flex-col items-center space-y-6">
           {/* Tour Guides */}
           <div className="md:p-4">
-            <h2 className="text-3xl text-black font-semibold">
+            <h2 className="text-3xl text-primaryText font-semibold">
               Choose Your Guide
             </h2>
             <div className="grid grid-cols-1 gap-4 mt-6">
@@ -365,7 +384,7 @@ const PackageDetails = () => {
                 <Link
                   key={guide?._id}
                   to={`/guide-profile/${guide?._id}`}
-                  className="flex items-center space-x-4 bg-secondary rounded-xl p-2"
+                  className="flex items-center space-x-4 bg-primaryBg rounded-xl p-2"
                 >
                   <img
                     src={guide?.photo}
@@ -373,7 +392,7 @@ const PackageDetails = () => {
                     alt=""
                   />
                   <div>
-                    <h5 className="text-blackLight font-semibold">
+                    <h5 className="text-secondaryText font-semibold">
                       {guide?.name}
                     </h5>
                     <Rating
@@ -390,92 +409,102 @@ const PackageDetails = () => {
             </div>
           </div>
           {/* Booking Tour Form */}
-          <div className="bg-secondary rounded-xl p-6 w-full max-w-lg mx-auto">
-            <h2 className="text-3xl font-semibold text-center text-black  mb-4">
+          <div className="bg-primaryBg rounded-xl p-6 w-full max-w-lg mx-auto">
+            <h2 className="text-3xl font-semibold text-center text-primaryText mb-4">
               Book Your Tour
             </h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Package Name */}
               <div className="form-control">
-                <label className="label text-white font-semibold">
-                  <span className="label-text">Package Name</span>
+                <label className="label font-semibold">
+                  <span className="label-text text-secondaryText">
+                    Package Name
+                  </span>
                 </label>
                 <input
                   type="text"
                   {...register("tripTitle")}
                   value={tripTitle}
                   readOnly
-                  className="input input-bordered border-primary w-full rounded-none"
+                  className="input border-primaryText w-full rounded-none bg-secondaryBg"
                 />
               </div>
 
               {/* Tourist Name */}
               <div className="form-control">
                 <label className="label text-white font-semibold">
-                  <span className="label-text">Tourist Name</span>
+                  <span className="label-text text-secondaryText">
+                    Tourist Name
+                  </span>
                 </label>
                 <input
                   type="text"
                   {...register("touristName")}
                   defaultValue={user?.displayName}
                   readOnly
-                  className="input input-bordered border-primary w-full rounded-none"
+                  className="input border-primaryText w-full rounded-none bg-secondaryBg"
                 />
               </div>
 
               {/* Tourist Email */}
               <div className="form-control">
                 <label className="label text-white font-semibold">
-                  <span className="label-text">Tourist Email</span>
+                  <span className="label-text text-secondaryText">
+                    Tourist Email
+                  </span>
                 </label>
                 <input
                   type="email"
                   {...register("touristEmail")}
                   defaultValue={user?.email}
                   readOnly
-                  className="input input-bordered border-primary w-full rounded-none"
+                  className="input border-primaryText w-full rounded-none bg-secondaryBg"
                 />
               </div>
 
               {/* Tourist Image */}
               <div className="form-control">
                 <label className="label text-white font-semibold">
-                  <span className="label-text">Tourist Image</span>
+                  <span className="label-text text-secondaryText">
+                    Tourist Image
+                  </span>
                 </label>
                 <input
                   type="url"
                   {...register("touristPhoto")}
                   defaultValue={user?.photoURL}
                   readOnly
-                  className="input input-bordered border-primary w-ful rounded-none"
+                  className="input border-primaryText w-full rounded-none bg-secondaryBg"
                 />
               </div>
 
               {/* Price */}
               <div className="form-control">
                 <label className="label text-white font-semibold">
-                  <span className="label-text">Price</span>
+                  <span className="label-text text-secondaryText">Price</span>
                 </label>
                 <input
                   type="number"
                   {...register("packagePrice")}
                   value={price}
                   readOnly
-                  className="input input-bordered border-primary w-full rounded-none"
+                  className="input border-primaryText w-full rounded-none bg-secondaryBg"
                 />
               </div>
 
               {/* Tour Date */}
               <div className="form-control">
                 <label className="label text-white font-semibold">
-                  <span className="label-text">From</span>
+                  <span className="label-text text-secondaryText">From</span>
                 </label>
                 <DatePicker
                   selected={tourDate}
                   onChange={(date) => setTourDate(date)}
-                  className="input input-bordered space-x-3 border-primary w-full rounded-none"
+                  className="input border-primaryText w-full rounded-none bg-secondaryBg"
                   showIcon
-                  icon={<FaCalendarAlt className="mt-1 text-xl text-primary" />}
+                  icon={
+                    <FaCalendarAlt className="mt-1 text-xl text-[#22c55e]" />
+                  }
                   minDate={new Date()}
                   dateFormat="MMMM d, yyyy"
                 />
@@ -490,9 +519,11 @@ const PackageDetails = () => {
                   {...register("selectedGuide", {
                     required: "Please select a guide.",
                   })}
-                  className="select select-bordered border-primary w-full rounded-none"
+                  className="select border-primaryText w-full rounded-none bg-secondaryBg"
                 >
-                  <option value="">Select a guide</option>
+                  <option value="" className="border border-primaryText">
+                    Select a guide
+                  </option>
                   {guides.map((guide) => (
                     <option
                       key={guide?._id}
@@ -516,7 +547,7 @@ const PackageDetails = () => {
               <div className="form-control mt-4">
                 <button
                   type="submit"
-                  className="btn rounded-none bg-secondary border-primary text-primary font-semibold hover:bg-primary hover:text-secondary w-full"
+                  className="btn rounded-none bg-transparent border-primaryText text-primaryText font-semibold  hover:text-primaryText hover:bg-transparent hover:border-primaryText w-full"
                   disabled={!user}
                 >
                   Book Now

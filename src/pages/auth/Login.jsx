@@ -69,19 +69,19 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-8">
+    <div className="min-h-screen bg-primaryBg flex items-center justify-center py-8">
       <Helmet>
         <title>Login | TravelVerse</title>
       </Helmet>
-      <div className="card w-full max-w-lg p-6 md:p-12 flex flex-col items-center">
-        <h2 className="text-4xl font-semibold text-black text-center mb-6">
+      <div className="card w-full bg-secondaryBg max-w-lg p-6 md:p-12 flex flex-col items-center">
+        <h2 className="text-4xl font-semibold text-primaryText text-center mb-6">
           Login to your account
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           {/* Email */}
           <div className="form-control mb-4">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-secondaryText font-semibold">
                 Email address
               </span>
             </label>
@@ -95,7 +95,7 @@ const Login = () => {
                 },
               })}
               placeholder="Enter your email address"
-              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
+              className="input w-full md:w-auto rounded-none border border-primaryText bg-primaryBg"
             />
             {errors.email && (
               <p className="text-red-600 text-sm mt-2 font-semibold">
@@ -107,7 +107,7 @@ const Login = () => {
           {/* Password */}
           <div className="form-control relative mb-6">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-primaryText font-semibold">
                 Password
               </span>
             </label>
@@ -123,12 +123,12 @@ const Login = () => {
                 },
               })}
               placeholder="Enter your password"
-              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
+              className="input w-full md:w-auto rounded-none border border-primaryText bg-primaryBg"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="btn btn-xs bg-transparent hover:bg-transparent text-primary shadow-none border-none absolute right-4 top-14"
+              className="btn btn-xs bg-transparent hover:bg-transparent text-primaryText shadow-none border-none absolute right-4 top-14"
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
@@ -146,7 +146,7 @@ const Login = () => {
               <Link
                 to="/forgot-password"
                 onClick={handleForgotPasswordRedirect}
-                className="label-text-alt text-primary font-semibold link link-hover"
+                className="label-text-alt text-primaryText font-semibold link link-hover"
               >
                 Forgot password?
               </Link>
@@ -155,20 +155,20 @@ const Login = () => {
 
           {/* Submit Button */}
           <div className="form-control mt-6">
-            <button className="btn border-none bg-primary text-light rounded-none hover:text-primary w-full">
+            <button className="btn border-none bg-primaryText text-white rounded-none hover:text-white w-full">
               Login
             </button>
           </div>
 
           {/* Google Signup Button */}
           <div className="form-control mt-6">
-            <h5 className="text-3xl font-semibold text-blackLight text-center mb-6">
+            <h5 className="text-3xl font-semibold text-primaryText text-center mb-6">
               Or
             </h5>
             <button
               type="button"
               onClick={handleGoogleSignUp}
-              className="btn border-none bg-primary text-light rounded-none hover:text-primary  w-full"
+              className="btn bg-transparent border-primaryText text-primaryText rounded-none hover:text-primaryText  w-full"
             >
               <FaGoogle />
               <span className="ml-2">Sign Up With Google</span>
@@ -177,7 +177,7 @@ const Login = () => {
         </form>
         <p className="font-semibold text-blackLight text-center mt-6">
           Don’t Have An Account?{" "}
-          <Link to={"/register"} className="text-primary">
+          <Link to={"/register"} className="text-primaryText">
             Register
           </Link>
         </p>

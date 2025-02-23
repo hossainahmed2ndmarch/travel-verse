@@ -28,12 +28,12 @@ const VideoModal = () => {
       </div>
 
       {/* FAQ Section */}
-      <div className="flex flex-col justify-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-10 text-center md:text-left text-primary">
+      <div className="flex flex-col p-6 rounded-xl bg-secondaryBg justify-center">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-10 text-center md:text-left text-primaryText">
           Discover the Beauty of Your Next Destination
         </h2>
         <div className="join join-vertical w-full">
-          <div className="collapse collapse-arrow join-item border border-base-300">
+          <div className="collapse collapse-arrow join-item border border-green-500">
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title text-lg sm:text-xl font-medium">
               What types of tours are available?
@@ -45,7 +45,7 @@ const VideoModal = () => {
               </p>
             </div>
           </div>
-          <div className="collapse collapse-arrow join-item border border-base-300">
+          <div className="collapse collapse-arrow join-item border border-green-500">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-lg sm:text-xl font-medium">
               How do I find the best tour for me?
@@ -57,7 +57,7 @@ const VideoModal = () => {
               </p>
             </div>
           </div>
-          <div className="collapse collapse-arrow join-item border border-base-300">
+          <div className="collapse collapse-arrow join-item border border-green-500">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-lg sm:text-xl font-medium">
               Can I customize a tour?

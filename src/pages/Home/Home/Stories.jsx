@@ -15,10 +15,10 @@ const Stories = () => {
   return (
     <div className="my-10">
       <div className="space-y-6">
-        <h2 className="text-4xl text-center text-primary font-bold">
+        <h2 className="text-4xl text-center text-primaryText font-bold">
           Journey Chronicles: Tales from Around the World
         </h2>
-        <p className="text-center">
+        <p className="text-center text-secondaryText">
           Discover captivating stories and experiences from travelers around the
           world. <br />
           Explore their journeys, adventures, and cherished memories.
@@ -32,7 +32,7 @@ const Stories = () => {
       </div>
       <Link
         to="/community"
-        className="btn border-none bg-primary text-primary rounded-none hover:text-primary mt-10 bg-transparent flex items-center"
+        className="btn border-none bg-transparent shadow-none text-primaryText rounded-none hover:bg-secondaryBg hover:text-primaryText mt-10 flex items-center"
       >
         Explore All Stories <FaArrowRightLong className="ml-2" />
       </Link>

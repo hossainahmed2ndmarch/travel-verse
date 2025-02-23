@@ -40,10 +40,10 @@ const EventFestival = () => {
   return (
     <div className="my-10 pb-10 space-y-10">
       <div className="space-y-6">
-        <h2 className="text-4xl font-bold text-center text-primary">
+        <h2 className="text-4xl font-bold text-center text-primaryText">
           🎉 Upcoming Events & Festivals
         </h2>
-        <p className="text-center">
+        <p className="text-center text-secondaryText">
           Stay updated on the most exciting cultural events and festivals
           worldwide. <br /> Plan your travels around unforgettable celebrations!
           🎉
@@ -53,7 +53,7 @@ const EventFestival = () => {
         {events.map((event) => (
           <motion.div
             key={event.id}
-            className="rounded-xl overflow-hidden  transition duration-300"
+            className="rounded-xl overflow-hidden bg-secondaryBg  transition duration-300"
             whileHover={{ scale: 1.05 }}
           >
             <img
@@ -62,11 +62,11 @@ const EventFestival = () => {
               className="w-full h-48 object-cover"
             />
             <div className="p-5">
-              <h3 className="text-xl font-semibold text-gray-700">
+              <h3 className="text-xl font-semibold text-primaryText">
                 {event.title}
               </h3>
-              <p className="text-gray-500">{event.date}</p>
-              <p className="text-green-600 font-medium mt-2">
+              <p className="text-secondaryText">{event.date}</p>
+              <p className="text-secondaryText font-medium mt-2">
                 {event.location}
               </p>
             </div>

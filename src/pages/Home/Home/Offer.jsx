@@ -41,10 +41,10 @@ const Offer = () => {
     <section className="my-10">
       <div className="mx-auto space-y-10">
         <div className="space-y-6">
-          <h2 className="text-4xl font-bold text-center text-primary">
+          <h2 className="text-4xl font-bold text-center text-primaryText">
             ✨ Travel Deals & Discounts ✨
           </h2>
-          <p className="text-center text-gray-700">
+          <p className="text-center text-secondaryText">
             Grab exclusive travel deals and save big on your next adventure!
             🌍✈️
           </p>
@@ -54,7 +54,7 @@ const Offer = () => {
           {deals.map((deal, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl transition duration-300"
+              className="rounded-xl transition duration-300 bg-secondaryBg"
             >
               <div className="relative">
                 <img
@@ -67,16 +67,16 @@ const Offer = () => {
                 </span>
               </div>
               <div className="p-5">
-                <h3 className="text-xl font-semibold text-gray-800">
+                <h3 className="text-xl font-semibold text-secondaryText">
                   {deal.destination}
                 </h3>
-                <p className="text-gray-600 text-sm">{deal.duration}</p>
+                <p className="text-secondaryText text-sm">{deal.duration}</p>
                 <div className="flex justify-between items-center mt-5">
-                  <p className="text-lg font-bold text-green-500">
+                  <p className="text-lg font-bold text-primaryText">
                     {deal.price}
                   </p>
                   <Link to="/trips">
-                    <button className="btn border-none bg-transparent text-primary rounded-lg hover:text-primary transition-colors">
+                    <button className="btn border-none bg-transparent text-secondaryText rounded-lg hover:text-secondaryText shadow-none hover:bg-primaryBg transition-colors">
                       Book Now <FaArrowRightLong className="ml-2" />
                     </button>
                   </Link>

@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 const Community = () => {
   const [stories, setStories] = useState(useLoaderData());
   return (
-    <div className="px-6">
+    <div className="px-6 bg-primaryBg">
       <Helmet>
         <title>Community | TravelVerse</title>
       </Helmet>

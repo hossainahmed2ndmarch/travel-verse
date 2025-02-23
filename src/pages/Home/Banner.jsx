@@ -63,7 +63,7 @@ const Banner = () => {
                 <p className="mb-5">{banner.description}</p>
                 <Link
                   to="/trips"
-                  className="btn bg-transparent rounded-none border border-light hover:bg-green-400 hover:border-none text-light text-2xl"
+                  className="btn bg-transparent rounded-none border border-white hover:bg-[#22c55e] hover:border-none text-white text-2xl"
                 >
                   Book Now
                 </Link>

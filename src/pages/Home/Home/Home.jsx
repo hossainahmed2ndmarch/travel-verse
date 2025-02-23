@@ -10,12 +10,12 @@ import TravelInsurance from "./TravelInsurance";
 
 const Home = () => {
   return (
-    <div className="px-6 mx-auto">
+    <div className="px-6 mx-auto bg-primaryBg">
       <Helmet>
         <title>Home | TravelVerse</title>
       </Helmet>
       <Banner></Banner>
-      <div className="py-6 bg-primaryBg">
+      <div className="py-6">
         <Overview></Overview>
         <TourismGuide></TourismGuide>
         <Stories></Stories>

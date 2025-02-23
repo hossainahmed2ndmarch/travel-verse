@@ -26,10 +26,10 @@ const TourismSections = () => {
       {/* Section 1: Top Destinations */}
       <section className="space-y-10">
         <div className="space-y-6">
-          <h2 className="text-4xl font-bold text-center text-primary">
+          <h2 className="text-4xl font-bold text-center text-primaryText">
             Top Destinations
           </h2>
-          <p className="text-center">
+          <p className="text-center text-secondaryText">
             Explore breathtaking destinations around the world! From serene
             beaches to bustling <br /> cities, find the perfect place for your
             next adventure.
@@ -64,10 +64,10 @@ const TourismSections = () => {
       {/* Section 2: Customer Experiences */}
       <section className="space-y-10">
         <div className="space-y-6">
-          <h2 className="text-4xl font-bold text-center text-primary">
+          <h2 className="text-4xl font-bold text-center text-primaryText">
             Customer Experiences
           </h2>
-          <p className="text-center">
+          <p className="text-center text-secondaryText">
             Hear from fellow travelers! Read authentic reviews and experiences{" "}
             <br />
             to make informed decisions for your next trip.
@@ -85,9 +85,9 @@ const TourismSections = () => {
             {[1, 2, 3, 4].map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-md w-full"
+                className="bg-secondaryBg p-6 rounded-xl w-full"
               >
-                <p className="text-gray-700 italic">
+                <p className="text-secondaryText italic">
                   "It was a breathtaking experience! From the beautiful
                   landscapes to the friendly guides, everything was perfect."
                 </p>
@@ -98,8 +98,8 @@ const TourismSections = () => {
                     className="h-12 w-12 rounded-full object-cover"
                   />
                   <div>
-                    <p className="text-xl font-bold">Customer {index + 1}</p>
-                    <p className="text-sm text-gray-500">Traveler</p>
+                    <p className="text-xl font-bold text-secondaryText">Customer {index + 1}</p>
+                    <p className="text-sm text-secondaryText">Traveler</p>
                   </div>
                 </div>
               </div>

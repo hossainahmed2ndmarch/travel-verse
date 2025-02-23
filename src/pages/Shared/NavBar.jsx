@@ -46,7 +46,7 @@ const NavBar = () => {
             key={index}
             to={path}
             className={({ isActive }) =>
-              `btn border-none bg-transparent text-lg font-bold transition-all ${
+              `btn border-none bg-transparent text-lg font-bold transition-all shadow-none hover:bg-transparent ${
                 isActive
                   ? isScrolled
                     ? "text-slate-800"
@@ -154,8 +154,8 @@ const NavBar = () => {
             {navLinks}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-3xl">
-          <span className="text-green-400">
+        <Link to="/" className="btn btn-ghost shadow-none hover:bg-transparent text-3xl">
+          <span className="text-white">
             <ImEarth />
           </span>
           TravelVerse
@@ -171,21 +171,21 @@ const NavBar = () => {
           data-tooltip-content={
             isDark ? "Switch to Light Mode" : "Switch to Dark Mode"
           }
-          className="p-2 rounded-full text-primary hover:bg-primary hover:text-light font-semibold bg-transparent border-none shadow-none text-2xl"
+          className="p-2 rounded-full text-white font-semibold bg-transparent border-none shadow-none text-2xl"
         >
           {isDark ? <MdOutlineWbSunny /> : <IoMoonOutline />}
         </button>
         {user && user?.email ? (
           <button
             onClick={handleLogOut}
-            className="btn hidden md:flex border-none bg-transparent text-lg text-white font-bold transition-all"
+            className="btn hidden md:flex border-none bg-transparent text-lg shadow-none hover:bg-transparent text-white font-bold transition-all"
           >
             LogOut
           </button>
         ) : (
           <NavLink
             to="/login"
-            className="btn border-none bg-transparent text-lg text-white font-bold transition-all"
+            className="btn border-none bg-transparent text-lg text-white font-bold shadow-none hover:bg-transparent transition-all"
           >
             LogIn
           </NavLink>
@@ -239,7 +239,7 @@ const NavBar = () => {
         ) : (
           <NavLink
             to="/register"
-            className="btn border-none bg-transparent text-lg text-white font-bold transition-all"
+            className="btn border-none bg-transparent text-lg text-white font-bold shadow-none hover:bg-transparent transition-all"
           >
             SignUp
           </NavLink>

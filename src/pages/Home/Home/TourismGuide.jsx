@@ -23,10 +23,10 @@ const TourismGuide = () => {
   return (
     <div className="my-10 space-y-10">
       <div className="space-y-6">
-        <h2 className="text-4xl text-center text-primary font-bold">
+        <h2 className="text-4xl text-center text-primaryText font-bold">
           Wanderlust Chronicles: Your Ultimate Tourism and Travel Guide
         </h2>
-        <p className="text-center text-gray-700">
+        <p className="text-center text-secondaryText">
           Embark on an unforgettable journey with our comprehensive tourism and{" "}
           <br />
           travel guide. From exotic destinations to hidden gems, we bring <br />{" "}
@@ -38,13 +38,13 @@ const TourismGuide = () => {
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <TabList className="flex justify-center space-x-4 ">
             <Tab
-              className="px-6 py-2 text-lg font-semibold cursor-pointer text-gray-600"
+              className="px-6 py-2 text-lg font-semibold cursor-pointer text-secondaryText"
               selectedClassName="border-b-4 border-green-500 text-green-500"
             >
               Our Packages
             </Tab>
             <Tab
-              className="px-6 py-2 text-lg font-semibold cursor-pointer  text-gray-600"
+              className="px-6 py-2 text-lg font-semibold cursor-pointer  text-secondaryText"
               selectedClassName="border-b-4 border-green-500 text-green-500"
             >
               Meet Our Tour Guides
