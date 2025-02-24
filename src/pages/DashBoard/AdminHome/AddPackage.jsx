@@ -20,7 +20,7 @@ const AddPackage = () => {
   const [previewGallery, setPreviewGallery] = useState([]);
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
-  const axiosPublic = useAxiosPublic()
+  const axiosPublic = useAxiosPublic();
   const [included, setIncluded] = useState([]);
   const [newIncluded, setNewIncluded] = useState("");
   const [excluded, setExcluded] = useState([]);
@@ -187,29 +187,31 @@ const AddPackage = () => {
 
   return (
     <div className="min-h-screen mt-12 py-10 px-4 md:px-16 w-full">
-      <h2 className="text-4xl font-bold text-center text-primary mb-8">
+      <h2 className="text-4xl font-bold text-center text-primaryText mb-8">
         Add A New Package
       </h2>
       <form
         onSubmit={handleSubmit(handleFormSubmit)}
-        className="space-y-6 p-8 bg-white rounded shadow-md mx-auto w-full"
+        className="space-y-6 p-8 mx-auto w-full"
       >
         {/* Main Photo Upload */}
         <div className="mb-4">
           <label className="label">
-            <span className="label-text">Main Photo</span>
+            <span className="label-text text-xl font-semibold text-secondaryText">
+              Main Photo
+            </span>
           </label>
           <input
             type="file"
             {...register("photo", { required: true })}
-            className="file-input file-input-bordered w-full"
+            className="file-input file-input-bordered w-full rounded-none border bg-secondaryBg border-primaryText"
           />
         </div>
 
         {/* Photo Gallery */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text text-xl text-black font-semibold">
+            <span className="label-text text-xl font-semibold text-secondaryText">
               Photo Gallery
             </span>
           </label>
@@ -220,7 +222,7 @@ const AddPackage = () => {
             {...register("photoGallery", {
               required: "Please upload at least one image",
             })}
-            className="file-input file-input-bordered w-full rounded-none border border-primary"
+            className="file-input file-input-bordered w-full rounded-none border bg-secondaryBg border-primaryText"
             onChange={handleGalleryPreview}
           />
           {errors.photoGallery && (
@@ -248,14 +250,14 @@ const AddPackage = () => {
           {/* Trip Title */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl font-semibold text-secondaryText">
                 Trip Title
               </span>
             </label>
             <input
               type="text"
               {...register("tripTitle", { required: "Trip title is required" })}
-              className="input input-bordered w-full rounded-none border border-primary"
+              className="input bg-secondaryBg w-full rounded-none border border-primaryText"
               placeholder="Enter the trip title"
             />
             {errors.tripTitle && (
@@ -267,14 +269,14 @@ const AddPackage = () => {
           {/* Trip Type */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl font-semibold text-secondaryText">
                 Trip Type
               </span>
             </label>
             <input
               type="text"
               {...register("tourType", { required: "Tour Type is required" })}
-              className="input input-bordered w-full rounded-none border border-primary"
+              className="input bg-secondaryBg w-full rounded-none border border-primaryText"
               placeholder="Enter the tour type"
             />
             {errors.tourType && (
@@ -289,14 +291,14 @@ const AddPackage = () => {
           {/* Price */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl font-semibold text-secondaryText">
                 Price ($)
               </span>
             </label>
             <input
               type="number"
               {...register("price", { required: "Price is required" })}
-              className="input input-bordered w-full rounded-none border border-primary"
+              className="input bg-secondaryBg w-full rounded-none border border-primaryText"
               placeholder="Enter price per person"
             />
             {errors.price && (
@@ -309,14 +311,14 @@ const AddPackage = () => {
           {/* Duration */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl font-semibold text-secondaryText">
                 Duration
               </span>
             </label>
             <input
               type="text"
               {...register("duration", { required: "Duration is required" })}
-              className="input input-bordered w-full rounded-none border border-primary"
+              className="input bg-secondaryBg w-full rounded-none border border-primaryText"
               placeholder="e.g., 3 Days, 2 Nights"
             />
             {errors.duration && (
@@ -330,14 +332,14 @@ const AddPackage = () => {
           {/* Group Size */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl font-semibold text-secondaryText">
                 Group Size
               </span>
             </label>
             <input
               type="text"
               {...register("groupSize", { required: "Group Size is required" })}
-              className="input input-bordered w-full rounded-none border border-primary"
+              className="input bg-secondaryBg w-full rounded-none border border-primaryText"
               placeholder="e.g., Up to 10 guests"
             />
             {errors.groupSize && (
@@ -349,14 +351,14 @@ const AddPackage = () => {
           {/*minAge */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl font-semibold text-secondaryText">
                 Minimum Age
               </span>
             </label>
             <input
               type="number"
               {...register("minAge", { required: "Age is required" })}
-              className="input input-bordered w-full rounded-none border border-primary"
+              className="input bg-secondaryBg w-full rounded-none border border-primaryText"
               placeholder="Enter Minimum Age"
             />
             {errors.minAge && (
@@ -418,7 +420,7 @@ const AddPackage = () => {
             },
           ].map(({ label, state, setState, items, add, remove }, index) => (
             <div className="form-control mb-4" key={index}>
-              <label className="label-text text-xl text-black font-semibold">
+              <label className="label-text text-xl font-semibold text-secondaryText">
                 {label}
               </label>
               <div className="flex gap-2">
@@ -427,12 +429,12 @@ const AddPackage = () => {
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                   placeholder={`Add a ${label.toLowerCase()}`}
-                  className="flex-1 input input-bordered w-full md:w-auto rounded-none border border-primary"
+                  className="flex-1 input md:w-auto rounded-none border bg-secondaryBg w-full border-primaryText"
                 />
                 <button
                   type="button"
                   onClick={add}
-                  className="btn border-none bg-primary text-light rounded-none hover:text-primary font-bold"
+                  className="btn border-none bg-primary text-light rounded-none hover:text-secondaryBg font-bold bg-primaryText text-secondaryBg hover:bg-primaryText"
                 >
                   Add
                 </button>
@@ -460,7 +462,7 @@ const AddPackage = () => {
         <div className="grid md:grid-cols-2 gap-5">
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl font-semibold text-secondaryText">
                 Challenges
               </span>
             </label>
@@ -469,7 +471,7 @@ const AddPackage = () => {
               {...register("challenges", {
                 required: "Challenges field is required",
               })}
-              className="input input-bordered w-full rounded-none border border-primary"
+              className="input bg-secondaryBg w-full rounded-none border border-primaryText"
               placeholder="e.g., High altitude, extreme weather"
             />
             {errors.challenges && (
@@ -481,14 +483,14 @@ const AddPackage = () => {
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl font-semibold text-secondaryText">
                 Overview
               </span>
             </label>
             <input
               type="text"
               {...register("overview", { required: "Overview is required" })}
-              className="input input-bordered w-full rounded-none border border-primary"
+              className="input bg-secondaryBg w-full rounded-none border border-primaryText"
               placeholder="e.g., A thrilling trek across mountain trails"
             />
             {errors.overview && (
@@ -497,34 +499,33 @@ const AddPackage = () => {
               </span>
             )}
           </div>
-
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
-                Transportation
-              </span>
-            </label>
-            <input
-              type="text"
-              {...register("transportation", {
-                required: "Transportation is required",
-              })}
-              className="input input-bordered w-full rounded-none border border-primary"
-              placeholder="e.g., By bus, train, or private car"
-            />
-            {errors.transportation && (
-              <span className="text-red-500 text-sm mt-1">
-                {errors.transportation.message}
-              </span>
-            )}
-          </div>
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text text-xl font-semibold text-secondaryText">
+              Transportation
+            </span>
+          </label>
+          <input
+            type="text"
+            {...register("transportation", {
+              required: "Transportation is required",
+            })}
+            className="input bg-secondaryBg w-full rounded-none border border-primaryText"
+            placeholder="e.g., By bus, train, or private car"
+          />
+          {errors.transportation && (
+            <span className="text-red-500 text-sm mt-1">
+              {errors.transportation.message}
+            </span>
+          )}
         </div>
 
         {/* Submit Button */}
         <div className="form-control">
           <button
             type="submit"
-            className="btn bg-primary text-white rounded-none hover:bg-secondary w-full font-bold"
+            className="btn bg-primaryText text-secondaryBg rounded-none hover:bg-primaryText w-full font-bold"
           >
             Add Package
           </button>

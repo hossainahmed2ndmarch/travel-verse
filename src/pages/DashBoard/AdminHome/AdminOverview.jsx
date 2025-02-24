@@ -1,12 +1,31 @@
 import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as LineTooltip, Legend, ResponsiveContainer as LineResponsiveContainer } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip as LineTooltip,
+  Legend,
+  ResponsiveContainer as LineResponsiveContainer,
+} from "recharts";
 import CountUp from "react-countup";
 
 const AdminOverview = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: statData, isLoading, isError, error } = useQuery({
+  const {
+    data: statData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin-stats");
@@ -35,7 +54,14 @@ const AdminOverview = () => {
     { name: "Applications", value: statData?.applications },
   ];
 
-  const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff7f50", "#0088FE", "#FF6347"];
+  const COLORS = [
+    "#8884d8",
+    "#82ca9d",
+    "#ffc658",
+    "#ff7f50",
+    "#0088FE",
+    "#FF6347",
+  ];
 
   // Revenue Trend Data for Line Chart
   const revenueTrendData = statData?.revenueTrend.map((entry) => ({
@@ -44,8 +70,8 @@ const AdminOverview = () => {
   }));
 
   return (
-    <div className="bg-white w-full mt-12 p-6 rounded-lg shadow-lg space-y-8 md:space-y-10">
-      <h2 className="text-xl md:text-2xl font-bold text-primary text-center mb-6">
+    <div className="min-h-screen mt-12 py-10 px-4 md:px-16 w-full">
+      <h2 className="text-4xl font-bold text-center text-primaryText mb-8">
         Admin Stats Overview
       </h2>
 
@@ -61,13 +87,13 @@ const AdminOverview = () => {
         ].map((item, index) => (
           <div
             key={index}
-            className="bg-light shadow-md p-4 md:p-6 rounded-lg text-center"
+            className="bg-secondaryBg p-4 md:p-6 rounded-lg text-center"
           >
-            <p className="text-base md:text-lg font-semibold text-gray-600">
+            <p className="text-base md:text-lg font-semibold text-secondaryText">
               {item.label}
             </p>
             <CountUp
-              className="text-xl md:text-3xl font-bold text-primary"
+              className="text-xl md:text-3xl font-bold text-primaryText"
               end={item.value}
               prefix={item.prefix || ""}
               duration={2}
@@ -78,11 +104,11 @@ const AdminOverview = () => {
       </div>
 
       {/* Pie Chart */}
-      <div className="mt-10 bg-white shadow-lg rounded-2xl p-6">
-        <h3 className="text-lg font-semibold text-gray-700 text-center mb-4">
+      <div className="mt-10 bg-secondaryBg rounded-xl p-6">
+        <h3 className="text-xl font-semibold text-primaryText text-center mb-4">
           Stats Breakdown
         </h3>
-        <div className="flex justify-center items-center w-full">
+        <div className="flex relative justify-center items-center w-full">
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -107,8 +133,8 @@ const AdminOverview = () => {
       </div>
 
       {/* Line Chart (Revenue Trend) */}
-      <div className="mt-10 bg-white shadow-lg rounded-2xl p-6">
-        <h3 className="text-lg font-semibold text-gray-700 text-center mb-4">
+      <div className="mt-10 bg-secondaryBg rounded-2xl p-6">
+        <h3 className="text-xl font-semibold text-primaryText text-center mb-4">
           Revenue Trend Over Time
         </h3>
         <div className="flex justify-center items-center w-full">
@@ -120,7 +146,7 @@ const AdminOverview = () => {
               <Line
                 type="monotone"
                 dataKey="totalRevenue"
-                stroke="#8884d8"
+                stroke="#4ade80"
                 activeDot={{ r: 8 }}
               />
               <LineTooltip />

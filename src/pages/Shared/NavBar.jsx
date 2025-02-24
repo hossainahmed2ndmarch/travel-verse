@@ -65,7 +65,7 @@ const NavBar = () => {
         <NavLink
           to="/community"
           className={({ isActive }) =>
-            `btn border-none bg-transparent text-lg font-bold transition-all ${
+            `btn border-none bg-transparent text-lg font-bold transition-all shadow-none hover:bg-transparent ${
               isActive
                 ? isScrolled
                   ? "text-slate-800"
@@ -85,7 +85,7 @@ const NavBar = () => {
         <NavLink
           to="/dashBoard"
           className={({ isActive }) =>
-            `btn border-none bg-transparent text-lg font-bold transition-all ${
+            `btn border-none bg-transparent text-lg font-bold transition-all shadow-none hover:bg-transparent ${
               isActive
                 ? isScrolled
                   ? "text-slate-800"
@@ -101,33 +101,6 @@ const NavBar = () => {
       )}
     </>
   );
-
-  // const navLinksAuth = (
-  //   <>
-  //     {[ "/login", "/register"].map((path, index) => {
-  //       const labels = ["Login", "SignUp"];
-  //       return (
-  //         <NavLink
-  //           key={index}
-  //           to={path}
-  //           className={({ isActive }) =>
-  //             `btn border-none bg-transparent text-lg font-bold transition-all ${
-  //               isActive
-  //                 ? isScrolled
-  //                   ? "text-slate-800"
-  //                   : "text-green-400"
-  //                 : isScrolled
-  //                 ? "text-slate-200"
-  //                 : "text-white"
-  //             }`
-  //           }
-  //         >
-  //           {labels[index]}
-  //         </NavLink>
-  //       );
-  //     })}
-  //   </>
-  // );
 
   return (
     <div

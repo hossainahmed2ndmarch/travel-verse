@@ -50,15 +50,15 @@ const DashBoardLayout = () => {
       </Helmet>
 
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content  bg-secondary flex flex-col items-center">
+      <div className="drawer-content  bg-primaryBg flex flex-col items-center">
         {/* Navbar */}
-        <div className="navbar fixed left-0 bg-base-100">
+        <div className="navbar fixed left-0 z-10 bg-secondaryBg">
           <div className="flex-1">
             <label
               htmlFor="my-drawer-2"
-              className="btn bg-transparent border-none rounded-none shadow-none lg:hidden"
+              className="btn bg-transparent border-none rounded-none hover:bg-transparent shadow-none lg:hidden"
             >
-              <GiHamburgerMenu className="text-2xl text-green-600" />
+              <GiHamburgerMenu className="text-2xl text-primaryText" />
             </label>
           </div>
           <div className="navbar-end flex items-center space-x-4">
@@ -68,7 +68,7 @@ const DashBoardLayout = () => {
               data-tooltip-content={
                 isDark ? "Switch to Light Mode" : "Switch to Dark Mode"
               }
-              className="p-2 rounded-full text-primary hover:bg-primary hover:text-light font-semibold bg-transparent border-none shadow-none text-2xl"
+              className="p-2 rounded-full text-primaryText hover:bg-transparent hover:text-primaryText font-semibold bg-transparent border-none shadow-none text-2xl"
             >
               {isDark ? <MdOutlineWbSunny /> : <IoMoonOutline />}
             </button>
@@ -119,9 +119,11 @@ const DashBoardLayout = () => {
           <Tooltip id="theme-tooltip" place="bottom" />
         </div>
         <Outlet></Outlet>
-        <footer className="footer bg-neutral footer-center text-primary p-4">
+        {/* Footer */}
+        <footer className="footer bg-secondaryBg footer-center text-primaryText p-4">
           <p>
-            Copyright © {new Date().getFullYear()} - All right reserved by TravelVerse Company Ltd.
+            Copyright © {new Date().getFullYear()} - All right reserved by
+            TravelVerse Company Ltd.
           </p>
         </footer>
       </div>
@@ -132,132 +134,198 @@ const DashBoardLayout = () => {
           className="drawer-overlay"
         ></label>
 
-        <ul className="menu bg-primary text-base-content min-h-full w-80 p-4">
+        <ul className="menu bg-secondaryBg text-base-content min-h-full w-80 p-4">
           <Link
             to="/"
-            className="btn btn-ghost text-3xl font-bold text-light mb-10"
+            className="btn btn-ghost shadow-none hover:bg-transparent bg-transparent text-3xl font-bold text-primaryText my-10"
           >
             <span>
               <ImEarth />
             </span>
             TravelVerse
           </Link>
-          {isAdmin ? (
+          {isAdmin && (
             <>
               <NavLink
                 to="/dashBoard/adminOverview"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <IoStatsChartOutline className="text-2xl" />
                 OverView
               </NavLink>
               <NavLink
                 to="/dashBoard/adminProfile"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <CgProfile className="text-2xl" />
                 My Profile
               </NavLink>
               <NavLink
                 to="/dashBoard/allUsers"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <FaUsersGear className="text-2xl" />
                 Manage Users
               </NavLink>
               <NavLink
                 to="/dashBoard/addPackages"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <LuPackagePlus className="text-2xl" />
                 Add Packages
               </NavLink>
               <NavLink
                 to="/dashBoard/manageCandidates"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <ImProfile className="text-2xl" />
                 Recruit Guides
               </NavLink>
             </>
-          ) : isGuide ? (
+          )}
+          {isGuide && (
             <>
               <NavLink
                 to="/dashBoard/guideOverview"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <IoStatsChartOutline className="text-2xl" />
                 OverView
               </NavLink>
               <NavLink
                 to="/dashBoard/guideProfile"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <CgProfile className="text-2xl" />
                 My Profile
               </NavLink>
               <NavLink
                 to="/dashBoard/guideTours"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <MdOutlineTravelExplore className="text-2xl" />
                 My Assigned Tours
               </NavLink>
               <NavLink
                 to="/dashBoard/guideStories"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <MdOutlineHistoryEdu className="text-2xl" />
                 My Stories
               </NavLink>
               <NavLink
                 to="/dashBoard/guideAddStories"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <BsJournalPlus className="text-2xl" />
                 Add Stories
               </NavLink>
             </>
-          ) : (
+          )}{" "}
+          {!isAdmin && !isGuide && (
             <>
               <NavLink
                 to="/dashBoard/touristOverview"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <IoStatsChartOutline className="text-2xl" />
                 OverView
               </NavLink>
               <NavLink
                 to="/dashBoard/myProfile"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <CgProfile className="text-2xl" />
                 My Profile
               </NavLink>
               <NavLink
                 to="/dashBoard/myBookings"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <TbBrandBooking className="text-2xl" />
                 My Bookings({bookings?.length})
               </NavLink>
               <NavLink
                 to="/dashBoard/myStories"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <MdOutlineHistoryEdu className="text-2xl" />
                 My Stories
               </NavLink>
               <NavLink
                 to="/dashBoard/addStories"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <BsJournalPlus className="text-2xl" />
                 Add Your Story
               </NavLink>
               <NavLink
                 to="/dashBoard/application"
-                className="btn justify-start border-none bg-transparent text-lg font-bold"
+                className={({ isActive }) =>
+                  `btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-lg font-bold ${
+                    isActive ? "text-primaryText" : "text-secondaryText"
+                  }`
+                }
               >
                 <VscGitStashApply className="text-2xl" />
                 Join Us
@@ -268,21 +336,21 @@ const DashBoardLayout = () => {
           <div className="divider"></div>
           <NavLink
             to="/"
-            className="btn justify-start border-none bg-transparent text-lg font-bold"
+            className="btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-secondaryText text-lg font-bold"
           >
             <IoHomeOutline className="text-2xl" />
             Home
           </NavLink>
           <NavLink
             to="/trips"
-            className="btn justify-start border-none bg-transparent text-lg font-bold"
+            className="btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-secondaryText text-lg font-bold"
           >
             <MdOutlineTravelExplore className="text-2xl" />
             Trips
           </NavLink>
           <NavLink
             to="/community"
-            className="btn justify-start border-none bg-transparent text-lg font-bold"
+            className="btn justify-start border-none shadow-none hover:bg-transparent bg-transparent text-secondaryText text-lg font-bold"
           >
             <GrGroup className="text-2xl" />
             Community
