@@ -28,7 +28,9 @@ const PackageCard = ({ item }) => {
 
       {/* Card Body */}
       <div className="card-body flex flex-col flex-grow">
-        <h2 className="card-title font-bold text-secondaryText text-xl">{tripTitle}</h2>
+        <h2 className="card-title font-bold text-secondaryText text-xl">
+          {tripTitle}
+        </h2>
         <p className="font-bold text-secondaryText">{tourType}</p>
 
         {/* Location */}
@@ -47,7 +49,7 @@ const PackageCard = ({ item }) => {
           <FaDollarSign className="text-primaryText text-2xl mr-2" />
           {price}
         </p>
-        <div className="flex-grow"></div> 
+        <div className="flex-grow"></div>
         <div className="divider"></div>
 
         {/* Card Footer */}
@@ -56,11 +58,12 @@ const PackageCard = ({ item }) => {
             <FaClock className="text-primaryText text-2xl mr-2" /> {duration}
           </p>
           <p className="flex items-center text-secondaryText">
-            <IoIosPeople className="text-primaryText text-2xl mr-2" /> {groupSize}
+            <IoIosPeople className="text-primaryText text-2xl mr-2" />{" "}
+            {groupSize}
           </p>
           <Link
             to={`/package-details/${_id}`}
-            className="btn bg-transparent shadow-none border-none text-primaryText flex items-center"
+            className="btn bg-transparent shadow-none border-none text-primaryText flex items-center hover:bg-primaryBg"
           >
             Explore <FaArrowRightLong className="ml-2" />
           </Link>

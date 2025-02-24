@@ -52,20 +52,20 @@ const EditModal = ({ setModalOpen, isModalOpen, userData, refetch }) => {
 
   return (
     <div className="modal modal-open">
-      <div className="modal-box relative">
+      <div className="modal-box relative bg-secondaryBg">
         <button
           onClick={() => setModalOpen(false)}
-          className="btn btn-sm btn-circle absolute right-2 top-2"
+          className="btn btn-sm btn-circle absolute right-2 top-2 text-primaryText"
         >
           ✕
         </button>
-        <h3 className="font-bold text-2xl mb-4 text-center text-primary">
+        <h3 className="font-bold text-2xl mb-4 text-center text-primaryText">
           Edit Your Profile
         </h3>
         <form onSubmit={handleSubmit(handleEdit)} className="space-y-4">
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-secondaryText font-semibold">
                 Name
               </span>
             </label>
@@ -73,51 +73,51 @@ const EditModal = ({ setModalOpen, isModalOpen, userData, refetch }) => {
               type="text"
               defaultValue={userData?.name}
               {...register("name")}
-              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
+              className="input w-full md:w-auto rounded-none border border-primaryText bg-secondaryBg text-secondaryText"
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-secondaryText font-semibold">
                 Photo
               </span>
             </label>
             <input
               type="file"
               {...register("photo")}
-              className="file-input file-input-bordered w-full md:w-auto rounded-none border bg-secondary"
+              className="file-input file-input-bordered w-full md:w-auto rounded-none border border-primaryText bg-secondaryBg text-secondaryText"
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-secondaryText font-semibold">
                 Email
               </span>
             </label>
             <input
               type="email"
               defaultValue={userData?.email}
-              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
+              className="input w-full md:w-auto rounded-none border border-primaryText bg-secondaryBg text-secondaryText"
               disabled
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-xl text-black font-semibold">
+              <span className="label-text text-xl text-secondaryText font-semibold">
                 Role
               </span>
             </label>
             <input
               type="text"
               defaultValue={userData?.role || "Tourist"}
-              className="input input-bordered w-full md:w-auto rounded-none border border-primary bg-secondary"
+              className="input w-full md:w-auto rounded-none border border-primaryText bg-secondaryBg text-secondaryText"
               disabled
             />
           </div>
           <div className="modal-action">
             <button
               type="submit"
-              className="btn border-none bg-primary text-light rounded-none hover:text-primary w-full"
+              className="btn border-none bg-primaryText text-white rounded-none hover:text-white w-full"
             >
               Save Changes
             </button>

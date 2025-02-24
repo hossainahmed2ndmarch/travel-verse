@@ -203,7 +203,7 @@ const DashBoardLayout = () => {
               </NavLink>
             </>
           )}
-          {isGuide && (
+          {!isAdmin && isGuide && (
             <>
               <NavLink
                 to="/dashBoard/guideOverview"

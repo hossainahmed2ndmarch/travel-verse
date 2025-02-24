@@ -10,10 +10,10 @@ const AdminProfile = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   return (
     <div className="mt-24">
-      <h2 className="text-3xl text-center font-bold">
+      <h2 className="text-3xl text-secondaryText text-center font-bold">
         {" "}
         Hi! Welcome
-        <span className="text-primary">
+        <span className="text-primaryText">
           {" "}
           {userData?.name ? userData.name : "Back"}
         </span>

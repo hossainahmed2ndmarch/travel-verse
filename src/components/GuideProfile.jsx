@@ -22,7 +22,7 @@ const GuideProfile = () => {
   } = guideData;
 
   return (
-    <div className="px-6 mb-10">
+    <div className="px-6 bg-primaryBg  pb-10">
       {/* Header Section */}
       <div
         className="relative min-h-screen bg-cover bg-center flex items-center justify-center text-center"
@@ -34,15 +34,15 @@ const GuideProfile = () => {
       </div>
 
       {/* Guide Info Section */}
-      <div className="bg-white shadow-lg rounded-lg p-6 mt-6">
-        <h2 className="text-3xl font-semibold text-gray-800 border-b-2 pb-2 mb-6">
+      <div className="bg-secondaryBg rounded-lg p-6 mt-6">
+        <h2 className="text-3xl font-semibold text-primaryText border-b-2 pb-2 mb-6">
           Guide Information
         </h2>
 
         {/* Contact and Ratings Section */}
         <div className="md:flex justify-between items-center mb-6">
           <div className="space-y-5">
-            <h3 className="text-xl flex items-center space-x-4 font-bold text-green-600">
+            <h3 className="text-xl flex items-center space-x-4 font-bold text-primaryText">
               <IoIosContact className="text-3xl" />
               <span>Contact</span>
             </h3>
@@ -50,7 +50,7 @@ const GuideProfile = () => {
               <Link
                 to={`https://wa.me/${whatsapp}`}
                 target="_blank"
-                className="text-green-500 text-2xl hover:text-green-700 transition-all"
+                className="text-primaryText text-2xl hover:text-green-700 transition-all"
               >
                 <FaWhatsapp />
               </Link>
@@ -63,8 +63,11 @@ const GuideProfile = () => {
               </Link>
             </div>
             <p className="text-gray-600 flex items-center space-x-2">
-              <MdOutlineMail className="text-2xl text-red-500" />
-              <span className="font-medium">Email:</span> {email}
+              <MdOutlineMail className="text-2xl text-primaryText" />
+              <span className="font-medium text-secondaryText">
+                Email:
+              </span>{" "}
+              {email}
             </p>
           </div>
 
@@ -77,7 +80,7 @@ const GuideProfile = () => {
               stars={5}
               step={0.5}
             />
-            <p className="text-gray-500 text-sm mt-2">
+            <p className="text-secondaryText text-sm mt-2">
               ({ratings} from {reviews} reviews)
             </p>
           </div>
@@ -86,13 +89,13 @@ const GuideProfile = () => {
         {/* Guide Details */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 className="text-lg font-medium text-gray-700">Experience:</h3>
-            <p className="text-gray-600">{experience}</p>
+            <h3 className="text-lg font-bold text-primaryText">Experience:</h3>
+            <p className="text-secondaryText">{experience}</p>
           </div>
 
           <div>
-            <h3 className="text-lg font-medium text-gray-700">Languages:</h3>
-            <ul className="list-disc pl-6 text-gray-600">
+            <h3 className="text-lg font-bold text-primaryText">Languages:</h3>
+            <ul className="list-disc pl-6 text-secondaryText">
               {languageSkill.map((lang, index) => (
                 <li key={index}>{lang}</li>
               ))}
@@ -100,8 +103,10 @@ const GuideProfile = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-medium text-gray-700">Extra Skills:</h3>
-            <ul className="list-disc pl-6 text-gray-600">
+            <h3 className="text-lg font-bold text-primaryText">
+              Extra Skills:
+            </h3>
+            <ul className="list-disc pl-6 text-secondaryText">
               {extraSkill.map((skill, index) => (
                 <li key={index}>{skill}</li>
               ))}
