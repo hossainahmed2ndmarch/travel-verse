@@ -32,9 +32,9 @@ const TouristOverview = () => {
   const COLORS = ["#4ade80", "#facc15", "#f87171", "#60a5fa"]; // Green, Yellow, Red, Blue
 
   return (
-    <div className="bg-white w-full mt-12 p-6 rounded-lg shadow-lg space-y-8 md:space-y-10">
+    <div className="min-h-screen mt-12 py-10 px-4 md:px-16 w-full">
       {/* Title */}
-      <h2 className="text-xl md:text-2xl font-bold text-primary text-center mb-6">
+      <h2 className="text-4xl font-bold text-center text-primaryText mb-8">
         Your Travel Overview
       </h2>
 
@@ -45,19 +45,19 @@ const TouristOverview = () => {
           { label: "Total Spent ($)", value: totalSpent },
           { label: "Total Stories", value: totalStories },
         ].map((item, index) => (
-          <div key={index} className="bg-light shadow-md p-4 md:p-6 rounded-lg text-center">
-            <h3 className="text-base md:text-lg font-semibold text-gray-600">{item.label}</h3>
-            <CountUp start={0} end={item.value || 0} duration={2} separator="," className="text-xl md:text-3xl font-bold text-primary" />
+          <div key={index} className="bg-secondaryBg p-4 md:p-6 rounded-lg text-center">
+            <h3 className="text-base md:text-lg font-semibold text-secondaryText">{item.label}</h3>
+            <CountUp start={0} end={item.value || 0} duration={2} separator="," className="text-xl md:text-3xl font-bold text-primaryText" />
           </div>
         ))}
       </div>
 
       {/* Booking Status Chart */}
-      <div className="mt-10 bg-white shadow-lg rounded-2xl p-6">
-        <h3 className="text-lg font-semibold text-gray-700 text-center mb-4">
+      <div className="mt-10 bg-secondaryBg rounded-xl p-6">
+        <h3 className="text-xl font-semibold text-primaryText text-center mb-4">
           Booking Status
         </h3>
-        <div className="flex justify-center items-center w-full">
+        <div className="flex relative justify-center items-center w-full">
           <ResponsiveContainer width={300} height={300}>
             <PieChart>
               <Pie data={bookingData} cx="50%" cy="50%" label outerRadius={100} fill="#8884d8" dataKey="value">
@@ -72,8 +72,8 @@ const TouristOverview = () => {
       </div>
 
       {/* Spending Trends Graph */}
-      <div className="mt-10 bg-white shadow-lg rounded-2xl p-6">
-        <h3 className="text-lg font-semibold text-gray-700 text-center mb-4">
+      <div className="mt-10 bg-secondaryBg rounded-2xl p-6">
+        <h3 className="text-xl font-semibold text-primaryText text-center mb-4">
           Monthly Spending Trend
         </h3>
         <div className="flex justify-center items-center w-full">

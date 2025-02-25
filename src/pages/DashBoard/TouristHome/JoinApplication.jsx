@@ -73,57 +73,58 @@ const JoinApplication = () => {
   };
 
   return (
-    <div className="min-h-screen mt-12 py-10 px-4 md:px-16">
-      <h2 className="text-4xl font-bold text-center text-primary mb-8">
+    <div className="min-h-screen mt-12 py-10 px-4 md:px-16 w-full">
+      <h2 className="text-4xl font-bold text-center text-primaryText mb-8">
         Join Us As Tour Guide
       </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md"
+        className="space-y-6 p-8 mx-auto w-full"
       >
-        {/* Read-Only Fields */}
+        <div className="grid md:grid-cols-2 gap-5">
+          {/* Read-Only Fields */}
         <div className="form-control mb-4">
-          <label className="label-text text-xl text-black font-semibold">
+          <label className="label-text text-xl font-semibold text-secondaryText">
             Name
           </label>
           <input
             type="text"
             {...register("name")}
             defaultValue={user?.displayName}
-            readOnly
-            className="input input-bordered w-full md:w-auto rounded-none border border-primary"
+            disabled
+            className="input bg-secondaryBg w-full rounded-none border border-primaryText"
           />
         </div>
 
         <div className="form-control mb-4">
-          <label className="label-text text-xl text-black font-semibold">
+          <label className="label-text text-xl font-semibold text-secondaryText">
             Email
           </label>
           <input
             type="email"
             {...register("email")}
             defaultValue={user?.email}
-            readOnly
-            className="input input-bordered w-full md:w-auto rounded-none border border-primary"
+            disabled
+            className="input bg-secondaryBg w-full rounded-none border border-primaryText"
           />
         </div>
 
         <div className="form-control mb-4">
-          <label className="label-text text-xl text-black font-semibold">
+          <label className="label-text text-xl font-semibold text-secondaryText">
             Photo URL
           </label>
           <input
             type="text"
             {...register("photo")}
             defaultValue={user?.photoURL}
-            readOnly
-            className="input input-bordered w-full md:w-auto rounded-none border border-primary"
+            disabled
+            className="input bg-secondaryBg w-full rounded-none border border-primaryText"
           />
         </div>
 
         {/* Dynamic Language Skills */}
         <div className="form-control mb-4">
-          <label className="label-text text-xl text-black font-semibold">
+          <label className="label-text text-xl font-semibold text-secondaryText">
             Language Skills
           </label>
           <div className="flex gap-2">
@@ -132,12 +133,12 @@ const JoinApplication = () => {
               value={newLanguage}
               onChange={(e) => setNewLanguage(e.target.value)}
               placeholder="Add a language"
-              className="flex-1 input input-bordered w-full md:w-auto rounded-none border border-primary"
+              className="flex-1 input md:w-auto rounded-none border bg-secondaryBg w-full border-primaryText"
             />
             <button
               type="button"
               onClick={addLanguageSkill}
-              className="btn border-none bg-primary text-light rounded-none hover:text-primary font-bold "
+              className="btn border-none bg-primary text-light rounded-none hover:text-secondaryBg font-bold bg-primaryText text-secondaryBg hover:bg-primaryText"
             >
               Add
             </button>
@@ -146,13 +147,13 @@ const JoinApplication = () => {
             {languageSkills.map((language, index) => (
               <li
                 key={index}
-                className="flex justify-between items-center bg-gray-100 p-2 rounded mb-1"
+                className="flex justify-between items-center bg-secondaryBg p-2 rounded-none mb-1"
               >
                 {language}
                 <button
                   type="button"
                   onClick={() => removeLanguageSkill(index)}
-                  className="btn btn-sm btn-error border-none text-light rounded-none hover:text-primary font-bold"
+                  className="btn btn-sm btn-error border-none text-secondaryText rounded-none hover:text-secondaryText font-bold"
                 >
                   Remove
                 </button>
@@ -163,7 +164,7 @@ const JoinApplication = () => {
 
         {/* Dynamic Extra Skills */}
         <div className="form-control mb-4">
-          <label className="label-text text-xl text-black font-semibold">
+          <label className="label-text text-xl font-semibold text-secondaryText">
             Extra Skills
           </label>
           <div className="flex gap-2">
@@ -172,12 +173,12 @@ const JoinApplication = () => {
               value={newSkill}
               onChange={(e) => setNewSkill(e.target.value)}
               placeholder="Add a skill"
-              className="flex-1 input input-bordered w-full md:w-auto rounded-none border border-primary"
+              className="flex-1 input md:w-auto rounded-none border bg-secondaryBg w-full border-primaryText"
             />
             <button
               type="button"
               onClick={addExtraSkill}
-              className="btn border-none bg-primary text-light rounded-none hover:text-primary font-bold "
+              className="btn border-none bg-primary text-light rounded-none hover:text-secondaryBg font-bold bg-primaryText text-secondaryBg hover:bg-primaryText"
             >
               Add
             </button>
@@ -186,13 +187,13 @@ const JoinApplication = () => {
             {extraSkills.map((skill, index) => (
               <li
                 key={index}
-                className="flex justify-between items-center bg-gray-100 p-2 rounded mb-1"
+                className="flex justify-between items-center bg-secondaryBg p-2 rounded-none mb-1"
               >
                 {skill}
                 <button
                   type="button"
                   onClick={() => removeExtraSkill(index)}
-                  className="btn btn-sm btn-error border-none text-light rounded-none hover:text-primary font-bold"
+                  className="btn btn-sm btn-error border-none text-secondaryText rounded-none hover:text-secondaryText font-bold"
                 >
                   Remove
                 </button>
@@ -203,14 +204,14 @@ const JoinApplication = () => {
 
         {/* Other Fields */}
         <div className="form-control mb-4">
-          <label className="label-text text-xl text-black font-semibold">
+          <label className="label-text text-xl font-semibold text-secondaryText">
             WhatsApp Number
           </label>
           <input
             type="text"
             {...register("whatsapp", { required: true })}
             defaultValue="+1234567890"
-            className={`input input-bordered w-full md:w-auto rounded-none border border-primary ${
+            className={`input bg-secondaryBg w-full rounded-none border border-primaryText ${
               errors.whatsapp ? "input-error" : ""
             }`}
           />
@@ -222,14 +223,14 @@ const JoinApplication = () => {
         </div>
 
         <div className="form-control mb-4">
-          <label className="label-text text-xl text-black font-semibold">
+          <label className="label-text text-xl font-semibold text-secondaryText">
             Facebook Profile
           </label>
           <input
             type="url"
             {...register("facebook", { required: true })}
             defaultValue="https://facebook.com/johnsmith"
-            className={`input input-bordered w-full md:w-auto rounded-none border border-primary ${
+            className={`input bg-secondaryBg w-full rounded-none border border-primaryText ${
               errors.facebook ? "input-error" : ""
             }`}
           />
@@ -241,14 +242,14 @@ const JoinApplication = () => {
         </div>
 
         <div className="form-control mb-4">
-          <label className="label-text text-xl text-black font-semibold">
+          <label className="label-text text-xl font-semibold text-secondaryText">
             Application Title
           </label>
           <input
             type="text"
             {...register("applicationTitle", { required: true })}
             placeholder="Enter your application title"
-            className={`input input-bordered w-full md:w-auto rounded-none border border-primary ${
+            className={`input bg-secondaryBg w-full rounded-none border border-primaryText ${
               errors.applicationTitle ? "input-error" : ""
             }`}
           />
@@ -260,13 +261,13 @@ const JoinApplication = () => {
         </div>
 
         <div className="form-control mb-4">
-          <label className="label-text text-xl text-black font-semibold">
+          <label className="label-text text-xl font-semibold text-secondaryText">
             Why do you want to be a Tour Guide?
           </label>
           <textarea
             {...register("reason", { required: true })}
             placeholder="Describe your motivation"
-            className={`textarea textarea-bordered w-full md:w-auto rounded-none border border-primary ${
+            className={`textarea textarea-bordered w-full md:w-auto bg-secondaryBg rounded-none border border-primaryText${
               errors.reason ? "textarea-error" : ""
             }`}
           ></textarea>
@@ -278,14 +279,14 @@ const JoinApplication = () => {
         </div>
 
         <div className="form-control mb-4">
-          <label className="label-text text-xl text-black font-semibold">
+          <label className="label-text text-xl font-semibold text-secondaryText">
             CV Link
           </label>
           <input
             type="url"
             {...register("cvLink", { required: true })}
             placeholder="Enter a link to your CV"
-            className={`input input-bordered w-full md:w-auto rounded-none border border-primary ${
+            className={`input bg-secondaryBg w-full rounded-none border border-primaryText ${
               errors.cvLink ? "input-error" : ""
             }`}
           />
@@ -296,10 +297,11 @@ const JoinApplication = () => {
           )}
         </div>
 
+        </div>
         <div className="form-control mt-6">
           <button
             type="submit"
-            className="btn border-none bg-primary text-light rounded-none hover:text-primary font-bold w-full"
+            className="btn bg-primaryText text-secondaryBg rounded-none hover:bg-primaryText w-full font-bold"
           >
             Submit Application
           </button>

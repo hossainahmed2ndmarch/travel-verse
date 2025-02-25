@@ -4,6 +4,7 @@ import useBooking from "../../../hooks/useBooking";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import moment from "moment/moment";
 
 const MyBookings = () => {
   const [bookings, refetch] = useBooking();
@@ -37,49 +38,49 @@ const MyBookings = () => {
   };
 
   return (
-    <div className="min-h-screen mt-12 py-10 px-4 md:px-16">
-      <h2 className="text-4xl font-bold text-center text-primary mb-8">
+    <div className="min-h-screen mt-12 py-10 px-4">
+      <h2 className="text-4xl font-bold text-center text-primaryText mb-8">
         My Bookings
       </h2>
 
       {bookings?.length === 0 ? (
-        <div className="text-center text-gray-500">
+        <div className="text-center text-primaryText">
           <p className="text-lg">No bookings found!</p>
         </div>
       ) : (
-        <div className="overflow-x-auto bg-light p-12">
-          <h3 className="text-2xl font-bold mb-10">
+        <div className="bg-secondaryBg p-6 rounded-lg">
+          <h3 className="text-2xl text-primaryText font-bold mb-6">
             Total Trips: {bookings?.length}
           </h3>
-          <table className="table w-full border-collapse border border-secondary">
+          <div className="w-full overflow-x-auto">
+          <table className="table table-xs table-pin-rows table-pin-cols w-full min-w-[600px]">
             <thead className="rounded-t-3xl">
-              <tr className="bg-primary text-white text-lg font-bold">
-                <th className="p-4 first:rounded-tl-2xl"></th>
-                <th className="p-4">Package Name</th>
-                <th className="p-4">Guide Name</th>
-                <th className="p-4">Tour Date</th>
-                <th className="p-4">Price</th>
-                <th className="p-4">Status</th>
-                <th className="text-center p-4">Action</th>
-                <th className="text-center last:rounded-tr-2xl p-4">Action</th>
+              <tr className="bg-primaryText text-secondaryText text-lg font-bold">
+                <td className="p-4 first:rounded-tl-2xl"></td>
+                <td className="p-4">Package</td>
+                <td className="p-4">Guide</td>
+                <td className="p-4">Date</td>
+                <td className="p-4">Price</td>
+                <td className="p-4">Status</td>
+                <td className="text-center p-4">Action</td>
+                <td className="p-4 last:rounded-tr-2xl">Action</td>
               </tr>
             </thead>
             <tbody>
               {bookings.map((booking, idx) => (
                 <tr
                   key={booking._id}
-                  className="hover:bg-gray-100 border-b border-gray-200"
+                  className="hover:bg-primaryBg border-b border-gray-200"
                 >
                   <td className="p-4">{idx + 1}</td>
-                  <td>{booking.tripTitle}</td>
-                  <td>{booking.guideName}</td>
-                  <td>{booking.tourDate}</td>
-                  <td className="flex items-center space-y-2">
-                    <FaDollarSign className="text-primary text-lg" />
-                    {booking.packagePrice}
+                  <td className="p-4 whitespace-normal break-words text-secondaryText max-w-[50px]">{booking.tripTitle}</td>
+                  <td className="p-4 whitespace-normal break-words text-secondaryText max-w-[50px]">{booking.guideName}</td>
+                  <td className="p-4 whitespace-normal break-words text-secondaryText max-w-[100px]">{moment(booking.tourDate).format("YYYY-MM-DD")}</td>
+                  <td className="p-4 whitespace-normal break-words text-primaryText font-bold max-w-[50px]">
+                    {booking.packagePrice} $
                   </td>
                   <td
-                    className={`font-bold ${
+                    className={`font-bold p-4 whitespace-normal break-words max-w-[50px] ${
                       booking.status === "Accepted"
                         ? "text-green-500"
                         : booking.status === "Rejected"
@@ -93,9 +94,9 @@ const MyBookings = () => {
                     {booking.status === "in-review" ? (
                       <button
                         disabled
-                        className="btn btn-success text-light opacity-50 cursor-not-allowed"
+                        className="btnbtn-sm text-primaryText opacity-50 cursor-not-allowed"
                       >
-                        Pay
+                        Paid
                       </button>
                     ) : (
                       <Link
@@ -110,7 +111,7 @@ const MyBookings = () => {
                   <td>
                     <button
                       onClick={() => handleCancel(booking._id)}
-                      className="btn btn-error text-light"
+                      className="btn btn-sm bg-transparent hover:bg-transparent border-none shadow-none text-red-500"
                     >
                       Cancel
                     </button>
@@ -119,6 +120,7 @@ const MyBookings = () => {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </div>

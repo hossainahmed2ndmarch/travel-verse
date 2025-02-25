@@ -19,7 +19,7 @@ const UploadStory = ({ refetch }) => {
   const [previewImages, setPreviewImages] = useState([]);
   const queryClient = useQueryClient();
   const axiosPublic = useAxiosPublic();
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [userData] = useUser();
 
@@ -84,18 +84,21 @@ const UploadStory = ({ refetch }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
+    <form
+      onSubmit={handleSubmit(handleFormSubmit)}
+      className="space-y-6 p-8 mx-auto w-full"
+    >
       {/* Title */}
       <div className="form-control">
         <label className="label">
-          <span className="label-text text-xl text-black font-semibold">
+          <span className="label-text text-xl font-semibold text-secondaryText">
             Title
           </span>
         </label>
         <input
           type="text"
           {...register("title", { required: "Title is required" })}
-          className="input input-bordered w-full md:w-auto rounded-none border border-primary"
+          className="input bg-secondaryBg w-full rounded-none border border-primaryText"
           placeholder="Enter a title for your story"
         />
         {errors.title && (
@@ -108,13 +111,13 @@ const UploadStory = ({ refetch }) => {
       {/* Content */}
       <div className="form-control">
         <label className="label">
-          <span className="label-text text-xl text-black font-semibold">
+          <span className="label-text text-xl font-semibold text-secondaryText">
             Story Content
           </span>
         </label>
         <textarea
           {...register("content", { required: "Content is required" })}
-          className="textarea textarea-bordered w-full md:w-auto rounded-none border border-primary"
+          className="textarea w-full md:w-auto bg-secondaryBg rounded-none border border-primaryText"
           rows="6"
           placeholder="Write your story here..."
         ></textarea>
@@ -128,7 +131,7 @@ const UploadStory = ({ refetch }) => {
       {/* Image Upload */}
       <div className="form-control">
         <label className="label">
-          <span className="label-text text-xl text-black font-semibold">
+          <span className="label-text text-xl font-semibold text-secondaryText">
             Upload Images
           </span>
         </label>
@@ -139,7 +142,7 @@ const UploadStory = ({ refetch }) => {
           })}
           multiple
           accept="image/*"
-          className="file-input file-input-bordered w-full md:w-auto rounded-none border border-primary"
+          className="file-input file-input-bordered w-full md:w-auto rounded-none border border-primary bg-secondaryBg border-primaryText"
           onChange={handleImagePreview}
         />
         {errors.images && (
@@ -167,7 +170,7 @@ const UploadStory = ({ refetch }) => {
       <div className="form-control">
         <button
           type="submit"
-          className="btn border-none bg-primary text-light rounded-none hover:text-primary font-bold w-full"
+          className="btn bg-primaryText text-secondaryBg rounded-none hover:bg-primaryText w-full font-bold"
         >
           Submit Story
         </button>

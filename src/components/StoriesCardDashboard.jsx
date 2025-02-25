@@ -41,7 +41,7 @@ const StoriesCardDashboard = ({ story, refetch }) => {
   };
 
   return (
-    <div className="p-6 rounded-2xl bg-white shadow-md hover:shadow-lg transition-shadow">
+    <div className="p-5 rounded-xl bg-secondaryBg">
       {/* Images Grid */}
       <div className="grid grid-cols-2 gap-2 rounded-t-2xl overflow-hidden">
         {images.map((image, index) => (
@@ -56,10 +56,10 @@ const StoriesCardDashboard = ({ story, refetch }) => {
       </div>
 
       {/* Title */}
-      <h2 className="text-2xl font-bold text-gray-800 mt-4">{title}</h2>
+      <h2 className="text-2xl font-bold text-secondaryText mt-4">{title}</h2>
 
       {/* Content */}
-      <p className="text-gray-600 text-sm mt-2">{content}</p>
+      <p className="text-secondaryText text-sm mt-2 min-h-[120px] overflow-hidden line-clamp-3">{content}</p>
 
       {/* Storyteller Info and Actions */}
       <div className="flex items-center justify-between mt-4">
@@ -70,7 +70,7 @@ const StoriesCardDashboard = ({ story, refetch }) => {
             alt={storyTellerName}
             className="w-12 h-12 rounded-full object-cover border border-primary"
           />
-          <span className="text-gray-800 font-medium">{storyTellerName}</span>
+          <span className="text-secondaryText font-medium">{storyTellerName}</span>
         </div>
 
         {/* Action Buttons */}
@@ -78,7 +78,8 @@ const StoriesCardDashboard = ({ story, refetch }) => {
           {/* Edit Button */}
           <button
             onClick={() => setModalOpen(true)}
-            className="btn btn-sm bg-blue-500 text-white hover:bg-blue-600 flex items-center gap-1"
+            className="btn btn-sm bg-primaryText text-secondaryText hover:bg-primaryText border-none flex items-center gap-1"
+
           >
             <FaEdit /> Edit
           </button>
@@ -86,7 +87,7 @@ const StoriesCardDashboard = ({ story, refetch }) => {
           {/* Delete Button */}
           <button
             onClick={() => handleDelete(_id)}
-            className="btn btn-sm bg-red-500 text-white hover:bg-red-600 flex items-center gap-1"
+            className="btn btn-sm bg-red-500 text-secondaryText hover:bg-red-600 border-none flex items-center gap-1"
           >
             <FaTrashAlt /> Delete
           </button>

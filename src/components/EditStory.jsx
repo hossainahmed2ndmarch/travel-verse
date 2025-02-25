@@ -116,14 +116,14 @@ const EditStory = ({ setModalOpen, story, refetch }) => {
 
   return (
     <div className="modal modal-open">
-      <div className="modal-box relative">
+      <div className="modal-box relative bg-secondaryBg">
         <button
           onClick={() => setModalOpen(false)}
-          className="btn btn-sm btn-circle absolute right-2 top-2"
+          className="btn btn-sm btn-circle absolute right-2 top-2 text-primaryText"
         >
           ✕
         </button>
-        <h3 className="font-bold text-2xl mb-4 text-center text-primary">
+        <h3 className="font-bold text-2xl mb-4 text-center text-primaryText">
           Edit Your Story
         </h3>
 
@@ -139,7 +139,7 @@ const EditStory = ({ setModalOpen, story, refetch }) => {
               <button
                 onClick={() => handleRemoveImage(image)}
                 disabled={loading}
-                className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                className="absolute top-2 right-2 bg-secondaryBg text-primaryText rounded-full w-6 h-6 flex items-center justify-center"
               >
                 ✕
               </button>
@@ -149,13 +149,13 @@ const EditStory = ({ setModalOpen, story, refetch }) => {
 
         {/* Add New Image */}
         <div className="mt-6">
-          <h4 className="font-medium text-lg mb-2">Upload New Image</h4>
+          <h4 className="font-medium text-lg mb-2 text-secondaryText">Upload New Image</h4>
           <div className="flex items-center gap-2">
             <input
               type="file"
               accept="image/*"
               onChange={handleAddImage}
-              className="file-input file-input-bordered w-full"
+              className="file-input file-input-bordered w-full md:w-auto rounded-none border border-primary bg-secondaryBg border-primaryText"
             />
           </div>
         </div>
@@ -164,7 +164,7 @@ const EditStory = ({ setModalOpen, story, refetch }) => {
         <div className="mt-6 text-center">
           <button
             onClick={handleSaveChanges}
-            className="btn border-none bg-primary text-light rounded-none hover:text-primary w-full"
+            className="btn bg-primaryText text-secondaryText rounded-none hover:bg-primaryText w-full font-bold"
           >
             Save Changes
           </button>

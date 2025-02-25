@@ -116,7 +116,7 @@ const NavBar = () => {
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <GiHamburgerMenu className="text-2xl text-green-600" />
+            <GiHamburgerMenu className="text-2xl text-secondaryText" />
           </div>
           <ul
             tabIndex={0}
@@ -127,7 +127,7 @@ const NavBar = () => {
             {navLinks}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost shadow-none hover:bg-transparent text-3xl">
+        <Link to="/" className="btn hidden md:flex btn-ghost shadow-none hover:bg-transparent text-3xl">
           <span className="text-white">
             <ImEarth />
           </span>
