@@ -1,6 +1,7 @@
 import React from "react";
 import useGuide from "../hooks/useGuide";
 import useAdmin from "../hooks/useAdmin";
+import { Link } from "react-router-dom";
 
 const MyProfile = ({ userData, setModalOpen, isModalOpen }) => {
   const [isGuide] = useGuide();
@@ -42,11 +43,11 @@ const MyProfile = ({ userData, setModalOpen, isModalOpen }) => {
 
         {/* Apply as Tour Guide */}
         {!isAdmin && !isGuide && (
-          <button
+          <Link to='/dashBoard/application'
             className="btn bg-primaryBg hover:bg-primaryBg border-primaryText text-primaryText rounded-none hover:text-primaryText  w-full"
           >
             Apply For Tour Guide
-          </button>
+          </Link>
         )}
       </div>
     </div>

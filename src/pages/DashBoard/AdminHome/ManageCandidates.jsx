@@ -104,71 +104,75 @@ const ManageCandidates = () => {
     });
   };
   return (
-    <div className="min-h-screen mt-12 py-10 px-4 md:px-16">
-      <h2 className="text-4xl font-bold text-center text-primary mb-8">
+    <div className="min-h-screen mt-12 py-10 px-4">
+      <h2 className="text-4xl font-bold text-center text-primaryText mb-8">
         Guide Candidates
       </h2>
 
       {applications?.length === 0 ? (
-        <div className="text-center text-gray-500">
+        <div className="text-center text-primaryText">
           <p className="text-lg">No bookings found!</p>
         </div>
       ) : (
-        <div className="overflow-x-auto bg-light p-12">
-          <h3 className="text-2xl font-bold mb-10">
+        <div className="bg-secondaryBg p-6 rounded-lg">
+          <h3 className="text-2xl text-primaryText font-bold mb-6">
             Total Applications: {applications?.length}
           </h3>
-          <table className="table table-xs w-full border-collapse border border-secondary">
-            <thead className="rounded-t-3xl">
-              <tr className="bg-primary text-white text-lg font-bold">
-                <th className="p-4 first:rounded-tl-2xl"></th>
-                <th className="p-4"></th>
-                <th className="p-4">Candidate Name</th>
-                <th className="p-4">Candidate Email</th>
-                <th className="p-4">Action</th>
-                <th className="text-center last:rounded-tr-2xl p-4">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {applications.map((application, idx) => (
-                <tr
-                  key={application._id}
-                  className="hover:bg-gray-100 border-b border-gray-200"
-                >
-                  <td className="p-4">{idx + 1}</td>
-                  <td>
-                    {" "}
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src={application?.photo}
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </div>
-                  </td>
-                  <td>{application?.name}</td>
-                  <td>{application?.email}</td>
-                  <td>
-                    <button
-                      onClick={() => handleAccept(application)}
-                      className="btn btn-success text-light"
-                    >
-                      Accept
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => handleReject(application?._id)}
-                      className="btn btn-error text-light"
-                    >
-                      Reject
-                    </button>
+          <div className="w-full overflow-x-auto">
+            <table className="table table-xs table-pin-rows table-pin-cols w-full min-w-[600px]">
+              <thead className="rounded-t-3xl">
+                <tr className="bg-primaryText text-secondaryText text-lg font-bold">
+                  <td className="p-4 first:rounded-tl-2xl"></td>
+                  <td className="p-4"></td>
+                  <td className="p-4">Name</td>
+                  <td className="p-4">Email</td>
+                  <td className="p-4">Action</td>
+                  <td className="p-4 last:rounded-tr-2xl">
+                    Action
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {applications.map((application, idx) => (
+                  <tr
+                    key={application._id}
+                    className="hover:bg-primaryBg border-b border-gray-200 text-secondaryText"
+                  >
+                    <td className="p-4">{idx + 1}</td>
+                    <td>
+                      {" "}
+                      <div className="avatar">
+                        <div className="mask mask-squircle h-12 w-12">
+                          <img
+                            src={application?.photo}
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-4 whitespace-normal break-words text-secondaryText max-w-[50px]">{application?.name}</td>
+                    <td className="p-4 whitespace-normal break-words max-w-[100px] text-secondaryText">{application?.email}</td>
+                    <td>
+                      <button
+                        onClick={() => handleAccept(application)}
+                        className="btn shadow-none bg-transparent hover:bg-transparent border-none text-primaryText"
+                      >
+                        Accept
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => handleReject(application?._id)}
+                        className="btn shadow-none bg-transparent hover:bg-transparent border-none text-red-500"
+                      >
+                        Reject
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

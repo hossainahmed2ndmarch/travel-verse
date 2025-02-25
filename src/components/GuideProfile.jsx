@@ -62,7 +62,7 @@ const GuideProfile = () => {
                 <FaFacebook />
               </Link>
             </div>
-            <p className="text-gray-600 flex items-center space-x-2">
+            <p className="text-gray-600 flex items-center space-x-2 text-secondaryText">
               <MdOutlineMail className="text-2xl text-primaryText" />
               <span className="font-medium text-secondaryText">
                 Email:
