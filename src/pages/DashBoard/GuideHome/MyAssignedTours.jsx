@@ -3,10 +3,11 @@ import { FaDollarSign } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAssigned from "../../../hooks/useAssigned";
+import moment from "moment";
 
 const MyAssignedTours = () => {
-  const [assigned, refetch] = useAssigned(); // Custom hook to fetch assigned tours
-  const axiosSecure = useAxiosSecure(); // Axios instance with authentication
+  const [assigned, refetch] = useAssigned();
+  const axiosSecure = useAxiosSecure();
 
   // Handle Accept
   const handleAccept = async (id) => {
@@ -61,88 +62,94 @@ const MyAssignedTours = () => {
   };
 
   return (
-    <div className="min-h-screen mt-12 py-10 px-4 md:px-16">
-      <h2 className="text-4xl font-bold text-center text-primary mb-8">
+    <div className="min-h-screen mt-12 py-10 px-4">
+      <h2 className="text-4xl font-bold text-center text-primaryText mb-8">
         My Assigned Tours
       </h2>
 
       {assigned?.length === 0 ? (
-        <div className="text-center text-gray-500">
+        <div className="text-center text-primaryText">
           <p className="text-lg">No assigned tours found!</p>
         </div>
       ) : (
-        <div className="overflow-x-auto bg-light p-12">
-          <h3 className="text-2xl font-bold mb-10">
+        <div className="bg-secondaryBg p-6 rounded-lg">
+          <h3 className="text-2xl text-primaryText font-bold mb-6">
             Total Assigned Tours: {assigned?.length}
           </h3>
-          <table className="table w-full border-collapse border border-secondary">
-            <thead>
-              <tr className="bg-primary text-white text-lg font-bold">
-                <th className="p-4 first:rounded-tl-2xl"></th>
-                <th className="p-4">Package Name</th>
-                <th className="p-4">Tourist Name</th>
-                <th className="p-4">Tour Date</th>
-                <th className="p-4">Price</th>
-                <th className="p-4">Status</th>
-                <th className="text-center p-4">Accept</th>
-                <th className="text-center last:rounded-tr-2xl p-4">Reject</th>
-              </tr>
-            </thead>
-            <tbody>
-              {assigned.map((assign, idx) => (
-                <tr
-                  key={assign._id}
-                  className="hover:bg-gray-100 border-b border-gray-200"
-                >
-                  <td className="p-4">{idx + 1}</td>
-                  <td>{assign.tripTitle}</td>
-                  <td>{assign.touristName}</td>
-                  <td>{assign.tourDate}</td>
-                  <td className="flex items-center">
-                    <FaDollarSign className="text-primary text-lg mr-2" />
-                    {assign.packagePrice}
-                  </td>
-                  <td
-                    className={`font-bold ${
-                      assign.status === "Accepted"
-                        ? "text-green-500"
-                        : assign.status === "Rejected"
-                        ? "text-red-500"
-                        : "text-yellow-500"
-                    }`}
-                  >
-                    {assign.status}
-                  </td>
-                  <td>
-                    {assign.status === "pending" ||
-                    assign.status === "Rejected" ? (
-                      <button
-                        disabled
-                        className="btn btn-success text-light opacity-50 cursor-not-allowed"
-                      >
-                        Accept
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleAccept(assign._id)}
-                        className="btn btn-success text-light"
-                      >
-                        Accept
-                      </button>
-                    )}
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => handleReject(assign._id)}
-                      className="btn btn-error text-light"
-                    >
-                      Reject
-                    </button>
-                  </td>
+          <div className="w-full overflow-x-auto">
+            <table className="table table-xs table-pin-rows table-pin-cols w-full min-w-[600px]">
+              <thead className="rounded-t-3xl">
+                <tr className="bg-primaryText text-secondaryText text-lg font-bold">
+                  <td className="p-4 first:rounded-tl-2xl"></td>
+                  <td className="p-4">Package</td>
+                  <td className="p-4">Tourist</td>
+                  <td className="p-4">Date</td>
+                  <td className="p-4">Price</td>
+                  <td className="p-4">Status</td>
+                  <td className="text-center p-4">Accept</td>
+                  <td className="p-4 last:rounded-tr-2xl">Reject</td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {assigned.map((assign, idx) => (
+                  <tr
+                    key={assign._id}
+                    className="hover:bg-primaryBg border-b border-gray-200"
+                  >
+                    <td className="p-4">{idx + 1}</td>
+                    <td className="p-4 whitespace-normal break-words text-secondaryText max-w-[50px]">
+                      {assign.tripTitle}
+                    </td>
+                    <td className="p-4 whitespace-normal break-words text-secondaryText max-w-[50px]">
+                      {assign.touristName}
+                    </td>
+                    <td className="p-4 whitespace-normal break-words text-secondaryText max-w-[100px]">
+                      {moment(assign.tourDate).format("YYYY-MM-DD")}
+                    </td>
+                    <td className="p-4 whitespace-normal break-words text-primaryText max-w-[50px]">
+                      {assign.packagePrice} $
+                    </td>
+                    <td
+                      className={`font-bold p-4 whitespace-normal break-words max-w-[50px] ${
+                        assign.status === "Accepted"
+                          ? "text-primaryText"
+                          : assign.status === "Rejected"
+                          ? "text-red-500"
+                          : "text-yellow-500"
+                      }`}
+                    >
+                      {assign.status}
+                    </td>
+                    <td>
+                      {assign.status !== "in-review"? (
+                        <button
+                          disabled
+                          className="btn btn-sm shadow-none bg-transparent hover:bg-transparent border-none  text-primaryText"
+                        >
+                          Accept
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleAccept(assign._id)}
+                          className="btn btn-sm shadow-none bg-transparent hover:bg-transparent border-none  text-primaryText"
+                        >
+                          Accept
+                        </button>
+                      )}
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => handleReject(assign._id)}
+                        className="btn btn-sm bg-transparent hover:bg-transparent border-none shadow-none text-red-500"
+                      >
+                        Reject
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

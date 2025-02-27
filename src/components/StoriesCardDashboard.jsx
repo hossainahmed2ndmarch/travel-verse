@@ -68,7 +68,7 @@ const StoriesCardDashboard = ({ story, refetch }) => {
           <img
             src={storyTellerImage}
             alt={storyTellerName}
-            className="w-12 h-12 rounded-full object-cover border border-primary"
+            className="w-12 h-12 rounded-full object-cover border border-primaryText"
           />
           <span className="text-secondaryText font-medium">{storyTellerName}</span>
         </div>

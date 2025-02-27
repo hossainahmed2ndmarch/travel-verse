@@ -34,8 +34,8 @@ const GuideOverview = () => {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="bg-white w-full mt-12 p-6 rounded-lg shadow-lg space-y-8 md:space-y-10">
-      <h2 className="text-xl md:text-2xl font-bold text-primary text-center mb-6">
+    <div className="min-h-screen mt-12 py-10 px-4 md:px-16 w-full">
+      <h2 className="text-4xl font-bold text-center text-primaryText mb-8">
         Guide Stats Overview
       </h2>
 
@@ -49,13 +49,13 @@ const GuideOverview = () => {
         ].map((item, index) => (
           <div
             key={index}
-            className="bg-light shadow-md p-4 md:p-6 rounded-lg text-center"
+            className="bg-secondaryBg p-4 md:p-6 rounded-lg text-center"
           >
-            <p className="text-base md:text-lg font-semibold text-gray-600">
+            <p className="text-base md:text-lg font-semibold text-secondaryText">
               {item.label}
             </p>
             <CountUp
-              className="text-xl md:text-3xl font-bold text-primary"
+              className="text-xl md:text-3xl font-bold text-primaryText"
               end={item.value}
               duration={2}
               decimals={item.label === "Average Rating" ? 1 : 0} // For rating, show one decimal place
@@ -65,27 +65,32 @@ const GuideOverview = () => {
       </div>
 
       {/* Pie Chart */}
-      <div className="flex justify-center items-center w-full">
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={chartData}
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-              dataKey="value"
-              label
-            >
-              {chartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
+      <div className="mt-10 bg-secondaryBg rounded-xl p-6">
+        <h3 className="text-xl font-semibold text-primaryText text-center mb-4">
+          Booking Status
+        </h3>
+        <div className="flex relative justify-center items-center w-full">
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={chartData}
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                dataKey="value"
+                label
+              >
+                {chartData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );

@@ -183,7 +183,7 @@ const AllUsers = () => {
                 {users.map((user, idx) => (
                   <tr
                     key={user._id}
-                    className="hover:bg-primaryBg border-b border-gray-200 "
+                    className="hover:bg-primaryBg border-b border-gray-200"
                   >
                     <td className="p-4 text-secondaryText">
                       {(page - 1) * limit + idx + 1}
